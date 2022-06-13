@@ -1,4 +1,4 @@
-package com.bangbangs.controller;
+package com.bbs.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
