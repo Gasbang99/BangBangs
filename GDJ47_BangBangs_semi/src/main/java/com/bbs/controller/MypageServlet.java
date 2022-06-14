@@ -8,34 +8,27 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class LoginServlet
+ * Servlet implementation class MypageServlet
  */
-@WebServlet("/login.do")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/mypage.do")
+public class MypageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginServlet() {
+    public MypageServlet() {
         super();
         // TODO Auto-generated constructor stub
-        
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
-		// 클라이언트가 보낸 userId, password 값을 가져온다.
-		String userId = request.getParameter("userId");
-		String password = request.getParameter("password");
 		
 		
-		
-		
+		request.getRequestDispatcher("/views/mypage/mypageMain.jsp").forward(request, response);
 	}
 
 	/**
