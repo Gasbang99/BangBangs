@@ -51,7 +51,7 @@
            <select id="comPaymentClsCd" name="comPaymentClsCd" class="fl" style="width: 55%" onchange="comPayment();">
                 <option id="selectDefaltGen" value="">선택</option>
                 <option id="BIL_001" value="1000" etc1="1000" etc2="1000">일일 회원(1시간권)</option>
-                <option id="BIL_002" value="2000" etc1="2000" etc2="2000">일일 회원(1시간권)</option>
+                <option id="BIL_002" value="2000" etc1="2000" etc2="2000">일일 회원(2시간권)</option>
             </select>  
     </div>
     <br>
