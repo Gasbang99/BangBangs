@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<a href="<%=request.getContextPath()%>/index.do">aa</a>
 
 </body>
 </html>
