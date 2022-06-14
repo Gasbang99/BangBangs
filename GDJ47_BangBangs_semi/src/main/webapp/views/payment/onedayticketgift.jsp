@@ -29,11 +29,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>정기권 구매하기</title>
+    <title>일일권 선물하기</title>
 </head>
 <body>
     <div>
-        <h1>정기권 구매하기</h1>
+        <h1>일일권 선물하기</h1>
     </div>
     <div>
         <h3>이용권 사용안내</h3>
@@ -47,18 +47,16 @@
     </ul>
 
     <div id="selecttype">
-        <p style="font-weight: bold;">정기권종류선택</p>
+        <p style="font-weight: bold;">일일권종류선택</p>
            <select id="comPaymentClsCd" name="comPaymentClsCd" class="fl" style="width: 55%" onchange="comPayment();">
                 <option id="selectDefaltGen" value="">선택</option>
-                <option id="BIL_001" value="3000" etc1="3000" etc2="3000">7일(1시간권)</option>
-                <option id="BIL_002" value="5000" etc1="5000" etc2="5000">30일(1시간권)</option>
-                <option id="BIL_004" value="15000" etc1="15000" etc2="15000">180일(1시간권)</option>
-                <option id="BIL_005" value="30000" title="Y" etc1="30000" etc2="30000">365일(1시간권)</option>
-                <option id="BIL_011" value="4000" etc1="4000" etc2="4000">7일(2시간권)</option>
-                <option id="BIL_012" value="7000" etc1="7000" etc2="7000">30일(2시간권)</option>
-                <option id="BIL_014" value="20000" etc1="20000" etc2="20000">180일(2시간권)</option>
-                <option id="BIL_015" value="40000" title="Y" etc1="40000" etc2="40000">365일(2시간권)</option>
+                <option id="BIL_001" value="1000" etc1="1000" etc2="1000">일일 회원(1시간권)</option>
+                <option id="BIL_002" value="2000" etc1="2000" etc2="2000">일일 회원(1시간권)</option>
             </select>  
+    </div>
+    <br>
+        <p style="font-weight: bold;">선물 받는 사람</p>
+            
     </div>
     <br><br>
     <div id="comPaymentClsCd">
@@ -134,3 +132,4 @@
 </body>
     
 </html>
+
