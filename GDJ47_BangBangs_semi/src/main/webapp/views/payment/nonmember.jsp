@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="/views/common/header.jsp" %>
+<%@ include file="/views/common/footer.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -11,29 +13,31 @@
 </head>
 <body>
     <head>
-        <h1>이용권 구매</h1>
+        <h1 style="margin-left:400px">이용권 구매</h1>
     </head>
     <body>
+    <div id="total">
     <table class="table">
         <tr>
             <tr>
                 <th>이용권 구분</th>
                 <td>
-                <select id="ticektTime" name="ticketTime">
-                    <option value="ticket1">1시간</option>
-                    <option value="ticket2">2시간</option>
+                <select id="comPaymentClsCd" name="comPaymentClsCd" onchange="comPayment();">
+                    <option id="selectDefaltGen" value="">선택</option>
+                <option id="BIL_001" value="1000" etc1="1000" etc2="1000">일일 회원(1시간권)</option>
+                <option id="BIL_002" value="2000" etc1="2000" etc2="2000">일일 회원(2시간권)</option>
                 </select>
                 </td>
             </tr>  
             <tr>
                 <th>매수</th>
                 <td>
-                    <select id="buy" name="buy">
-                        <option value="ticketbuy1">1개</option>
-                        <option value="ticketbuy2">2개</option>
-                        <option value="ticketbuy3">3개</option>
-                        <option value="ticketbuy4">4개</option>
-                        <option value="ticketbuy5">5개</option>
+                    <select id="headcount" name="headcount" onchange="comHead();">
+                        <option value="0">인원 수 선택</option>
+                        <option id="gropuCnt2" value="2">2명</option>
+                        <option id="gropuCnt3" value="3">3명</option>
+                        <option id="gropuCnt4" value="4">4명</option>
+                        <option id="gropuCnt5" value="5">5명</option>
                     </select>
                 </td>
             </tr>
@@ -218,10 +222,12 @@
             </tr>
             <tr>
                 <th>결제금액</th>
+                <td><input type="text" class="w80" id="TOT_AMOUNT" name="TOT_AMOUNT" value="0" readonly="readonly">
+        <span style="color:green">원</span></td>
             </tr>
         </tr>
     </table>
-   
+   </div>
     <div id="payagree">
         <table>
             <tr>
@@ -268,7 +274,7 @@
     </style>
     </style>
     </body>
-    <div>
+    <div id="total">
     <h3 id="foot">이용권 사용안내</h3>
     <table>
         <tr>
@@ -293,7 +299,19 @@
         #foot{
             color: red;
         }
+        #total{
+        	margin-left:400px;
+        }
     </style>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script>  	
+    	var p;
+	    function comPayment() {
+	        p = document.getElementById("comPaymentClsCd").value;
+	    }
+	    function comHead() {
+	        var o = document.getElementById("headcount").value;
+	        document.getElementById("TOT_AMOUNT").value=p*o;
+	    }
+    </script>
 </body>
 </html>

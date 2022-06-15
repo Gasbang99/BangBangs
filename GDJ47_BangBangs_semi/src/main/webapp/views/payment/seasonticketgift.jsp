@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ include file="/views/common/header.jsp" %>
+<%@ include file="/views/common/footer.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,6 +34,7 @@
     <title>정기권 선물하기</title>
 </head>
 <body>
+<div id="total">
     <div>
         <h1>정기권 선물하기</h1>
     </div>
@@ -63,7 +66,7 @@
     <br>
         <p style="font-weight: bold;">선물 받는 사람</p>
             
-    </div>
+    
     <br><br>
     <div id="comPaymentClsCd">
         <p style="font-weight: bold;">결제방식</p>
@@ -87,10 +90,11 @@
         </table>
     </div>
 </div>
+</div>
     <div id="paybox" style="margin: 10px 15px 0 15px;">
         <p>결제금액</p>
         <input type="text" class="w80" id="TOT_AMOUNT" name="TOT_AMOUNT" value="0" readonly="readonly">
-        <span>원</span>
+        <span style="color:green">원</span>
     </div>
     <style>
         span{
@@ -121,12 +125,19 @@
             height: 550px;
             line-height: 1.5;
             padding: 30px;
-            position: absolute;
-            right: 0;
+            position: relative;
+            right: 100;
             top: 0;
-            width: 35%;
+            width: 20%;
             box-sizing: border-box;
             margin: 10px 15px 0 15px;
+            float:right;
+            position:absolute;
+            left:1000px;
+            top:45px;
+        }
+        #total{
+        	margin-left:400px;
         }
     </style>
     <script>

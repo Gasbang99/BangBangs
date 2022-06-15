@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="/views/common/header.jsp" %>
+<%@ include file="/views/common/footer.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -33,26 +35,7 @@
     <title>단체권 구매하기</title>
 </head>
 <body>
-<div>
-    	<nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
-            <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="#page-top">GooDeebike</a>
-                <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    Menu
-                    <i class="fas fa-bars"></i>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="">메인화면</a></li>
-                        <li class="nav-item"><a class="nav-link" href="">공지사항</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#about">문의/FAQ</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#projects">회사소개</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#signup">대여소조회</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </div>
+<div id="total">
     <div>
         <h1>단체권 구매하기</h1>
     </div>
@@ -106,10 +89,11 @@
         </table>
     </div>
 </div>
+</div>
     <div id="paybox" style="margin: 10px 15px 0 15px;">
-        <p>결제금액</p>
+        <h3>결제금액</h3>
         <input type="text" class="w80" id="TOT_AMOUNT" name="TOT_AMOUNT" value="0" readonly="readonly">
-        <span>원</span>
+        <span style="color:green">원</span>
     </div>
     <style>
         span{
@@ -121,8 +105,7 @@
         }
         #comPaymentClsCd,#headcount{
             float: left;
-            background: #fff;
-           
+            background: #fff;          
             height: 32px;
             width: 55%;
         }
@@ -143,13 +126,16 @@
             position: relative;
             right: 100;
             top: 0;
-            width: 35%;
+            width: 20%;
             box-sizing: border-box;
             margin: 10px 15px 0 15px;
             float:right;
             position:absolute;
             left:1000px;
             top:45px;
+        }
+        #total{
+        	margin-left:400px;
         }
     </style>
     <script>
@@ -167,6 +153,9 @@
     
     </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+        <footer class="footer bg-black small text-center text-white-50">
+    <div class="container px-4 px-lg-5">Copyright &copy; Your Website 2022</div>
+  </footer>
 </body>
     
 </html>

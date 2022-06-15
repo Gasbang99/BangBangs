@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%@ include file="/views/common/header.jsp" %>
+<%@ include file="/views/common/footer.jsp" %>
 <html lang="en">
 <head>
     <head>
@@ -32,6 +34,7 @@
     <title>일일권 선물하기</title>
 </head>
 <body>
+<div id="total">
     <div>
         <h1>일일권 선물하기</h1>
     </div>
@@ -54,10 +57,8 @@
                 <option id="BIL_002" value="2000" etc1="2000" etc2="2000">일일 회원(2시간권)</option>
             </select>  
     </div>
-    <br>
+    <br><br>
         <p style="font-weight: bold;">선물 받는 사람</p>
-            
-    </div>
     <br><br>
     <div id="comPaymentClsCd">
         <p style="font-weight: bold;">결제방식</p>
@@ -81,10 +82,11 @@
         </table>
     </div>
 </div>
+</div>
     <div id="paybox" style="margin: 10px 15px 0 15px;">
         <p>결제금액</p>
         <input type="text" class="w80" id="TOT_AMOUNT" name="TOT_AMOUNT" value="0" readonly="readonly">
-        <span>원</span>
+        <span style="color:green">원</span>
     </div>
     <style>
         span{
@@ -96,8 +98,7 @@
         }
         #comPaymentClsCd{
             float: left;
-            background: #fff;
-           
+            background: #fff;        
             height: 32px;
             width: 55%;
         }
@@ -115,12 +116,19 @@
             height: 550px;
             line-height: 1.5;
             padding: 30px;
-            position: absolute;
-            right: 0;
+            position: relative;
+            right: 100;
             top: 0;
-            width: 35%;
+            width: 20%;
             box-sizing: border-box;
             margin: 10px 15px 0 15px;
+            float:right;
+            position:absolute;
+            left:1000px;
+            top:45px;
+        }
+        #total{
+        	margin-left:400px;
         }
     </style>
     <script>
