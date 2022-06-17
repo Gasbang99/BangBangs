@@ -7,6 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.bbs.model.service.MemberService;
+import com.bbs.model.vo.Member;
+
+
+
 /**
  * Servlet implementation class MemberDataServlet
  */
@@ -28,7 +33,18 @@ public class MemberDataServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
-		
+//		String userId=request.getParameter("userId");
+//		Member m= new MemberService().selectMemberById(userId);
+//		try {
+//			String email=m.getEmail();
+//			email=AESEncrypt.decrypt(email);
+//			m.setEmail(email);
+//			m.setPhone(AESEncrypt.decrypt(m.getPhone()));
+//			m.setAddress(AESEncrypt.decrypt(m.getAddress()));
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		request.setAttribute("member", m);
 		
 		
 		
