@@ -38,7 +38,7 @@
 		    position: relative;
 		    border-radius: 30px;
 		    text-align: center;
-		    font-size: 50px;
+		    font-size: 35px;
 		    
 		}
 		.input-group {
@@ -63,7 +63,9 @@
 		    cursor: pointer;
 		    display: block;
 		    margin: auto;
-		    background-color: skyblue;
+		    background: linear-gradient(125deg,#81ecec,#6c5ce7,#81ecec);
+			color:white;
+	  		font-weight: bold;
 		    border: 0;
 		    outline: none;
 		    border-radius: 30px;
@@ -113,12 +115,12 @@
 <body>
 	<div class="wrap">
 	    <div class="form-wrap">
-	        <div class="title-wrap">방방쓰</div>
+	        <div class="title-wrap"><h2>방방쓰</h2></div>
 	        <form id="login" action="" class="input-group">
 	            <input type="text" class="input-field" placeholder="아이디를 입력하세요" required>
 	            <input type="password" class="input-field" placeholder="비밀번호를 입력하세요" required>
 	            <input type="checkbox" class="checkbox"><span>로그인 상태 유지</span>
-	            <button class="submit">로그인</button>
+				<input type="submit" class="submit" value="L O G I N">
 	        </form>
 	        <div id="sub-wrap">
 	        	<ul class="find_wrap" id="find_wrap">
@@ -128,7 +130,8 @@
 	                <li><a target="_blank" href=""
 	                       class="find_text">아이디 찾기</a></li>
 	                <li>|</li>
-	                <li><a target="_blank" href="" class="find_text">회원가입</a></li>
+	                <li><a target="_blank" href="<%=request.getContextPath() %>/views/member/enrollmember.jsp"
+	                	   class="find_text">회원가입</a></li>
 	            </ul>
 	        </div>
 	    </div>
