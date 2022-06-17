@@ -79,7 +79,7 @@ private Properties prop=new Properties();
 		sql=sql.replace("$COL", type);
 		try {
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, type.equals("userName")?"%"+keyword+"%":keyword);
+			pstmt.setString(1, type.equals("memberName")?"%"+keyword+"%":keyword);
 			pstmt.setInt(2, (cPage-1)*numPerpage+1);
 			pstmt.setInt(3, cPage*numPerpage);
 			rs=pstmt.executeQuery();

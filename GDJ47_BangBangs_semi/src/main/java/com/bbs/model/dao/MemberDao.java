@@ -5,7 +5,6 @@ import static com.bbs.common.JDBCTemplate.close;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -85,16 +84,16 @@ public class MemberDao {
 		Member m=null;
 		try {
 			m=new Member();
-			m.setMember_id(rs.getString("member_id"));
-			m.setMember_name(rs.getString("member_name"));
+			m.setMemberId(rs.getString("memberId"));
+			m.setMemberName(rs.getString("memberName"));
 			m.setGender(rs.getString("gender"));
-			m.setAge(rs.getInt("age"));
+			m.setBirthday(rs.getString("birthday"));
 			m.setEmail(rs.getString("email"));
-			m.setPhone(rs.getString("phone"));
 			m.setAddress(rs.getString("address"));
-			m.setEnroll_date(rs.getDate("enroll_date"));
-			m.setMember_level(rs.getString("member_level"));
-			m.setTotal_mileage(rs.getInt("total_mileage"));
+			m.setPhone(rs.getString("phone"));
+			m.setEnrollDate(rs.getDate("enrollDate"));
+			m.setMemberLevel(rs.getString("memberLevel"));
+			m.setTotalMileage(rs.getInt("totalMileage"));
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}

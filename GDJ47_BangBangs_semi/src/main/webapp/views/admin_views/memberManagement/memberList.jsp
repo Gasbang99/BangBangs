@@ -64,16 +64,16 @@
       		<%}else{
       			for(Member m : list){%>
    				<tr>
-   					<td><%=m.getMember_id() %></td>
-   					<td><%=m.getMember_name() %></td>
+   					<td><%=m.getMemberId() %></td>
+   					<td><%=m.getMemberName() %></td>
    					<td><%=m.getGender() %></td>
-   					<td><%=m.getAge() %></td>
+   					<td><%=m.getBirthday() %></td>
    					<td><%=m.getEmail() %></td>
-   					<td><%=m.getPhone() %></td>
        				<td><%=m.getAddress() %></td>
-       				<td><%=m.getEnroll_date() %></td> 
-       				<td><%=m.getMember_level() %> </td>
-       				<td><%=m.getTotal_mileage() %></td>
+   					<td><%=m.getPhone() %></td>
+       				<td><%=m.getEnrollDate() %></td> 
+       				<td><%=m.getMemberLevel() %> </td>
+       				<td><%=m.getTotalMileage() %></td>
        			</tr>
    		<%	} 
    		 }%>
