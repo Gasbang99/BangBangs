@@ -8,58 +8,60 @@ import lombok.Data;
 
 public class Member {
 	
-	private String userId;
-	private String password;
-	private String userName;
+	private String member_id;
+	private String member_password;
+	private String member_name;
 	private String gender;
 	private int age;
 	private String email;
 	private String phone;
 	private String address;
-	private Date enrollDate;
-	private String memberLevel;
+	private Date enroll_date;
+	private String member_level;
+	private int total_mileage;
 	
 	public Member() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Member(String userId, String password, String userName, String gender, int age, String email, String phone,
-			String address, Date enrollDate, String memberLevel) {
+	public Member(String member_id, String member_password, String member_name, String gender, int age, String email,
+			String phone, String address, Date enroll_date, String member_level, int total_mileage) {
 		super();
-		this.userId = userId;
-		this.password = password;
-		this.userName = userName;
+		this.member_id = member_id;
+		this.member_password = member_password;
+		this.member_name = member_name;
 		this.gender = gender;
 		this.age = age;
 		this.email = email;
 		this.phone = phone;
 		this.address = address;
-		this.enrollDate = enrollDate;
-		this.memberLevel = memberLevel;
+		this.enroll_date = enroll_date;
+		this.member_level = member_level;
+		this.total_mileage = total_mileage;
 	}
 
-	public String getUserId() {
-		return userId;
+	public String getMember_id() {
+		return member_id;
 	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setMember_id(String member_id) {
+		this.member_id = member_id;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getMember_password() {
+		return member_password;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setMember_password(String member_password) {
+		this.member_password = member_password;
 	}
 
-	public String getUserName() {
-		return userName;
+	public String getMember_name() {
+		return member_name;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setMember_name(String member_name) {
+		this.member_name = member_name;
 	}
 
 	public String getGender() {
@@ -102,29 +104,36 @@ public class Member {
 		this.address = address;
 	}
 
-	public Date getEnrollDate() {
-		return enrollDate;
+	public Date getEnroll_date() {
+		return enroll_date;
 	}
 
-	public void setEnrollDate(Date enrollDate) {
-		this.enrollDate = enrollDate;
+	public void setEnroll_date(Date enroll_date) {
+		this.enroll_date = enroll_date;
 	}
 
-	public String getmemberLevel() {
-		return memberLevel;
+	public String getMember_level() {
+		return member_level;
 	}
 
-	public void setmemberLevel(String memberLevel) {
-		this.memberLevel = memberLevel;
+	public void setMember_level(String member_level) {
+		this.member_level = member_level;
+	}
+
+	public int getTotal_mileage() {
+		return total_mileage;
+	}
+
+	public void setTotal_mileage(int total_mileage) {
+		this.total_mileage = total_mileage;
 	}
 
 	@Override
 	public String toString() {
-		return "Member [userId=" + userId + ", password=" + password + ", userName=" + userName + ", gender=" + gender
-				+ ", age=" + age + ", email=" + email + ", phone=" + phone + ", address=" + address + ", enrollDate="
-				+ enrollDate + ", memberLevel=" + memberLevel + "]";
+		return "Member [member_id=" + member_id + ", member_password=" + member_password + ", member_name="
+				+ member_name + ", gender=" + gender + ", age=" + age + ", email=" + email + ", phone=" + phone
+				+ ", address=" + address + ", enroll_date=" + enroll_date + ", member_level=" + member_level
+				+ ", total_mileage=" + total_mileage + "]";
 	}
-	
-	
 
 }

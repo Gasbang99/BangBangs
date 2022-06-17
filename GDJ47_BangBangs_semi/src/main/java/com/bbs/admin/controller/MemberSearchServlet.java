@@ -32,48 +32,48 @@ public class MemberSearchServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String type=request.getParameter("searchType");
-		String keyword=request.getParameter("searchKeyword");
-
-		
 		int cPage;
-		int numPerpage=5;
-		try {
+		try{
 			cPage=Integer.parseInt(request.getParameter("cPage"));
 		}catch(NumberFormatException e) {
 			cPage=1;
 		}
-//		String page=request.getParameter("cPage");
-//		if(page==null) {
-//			cPage=1;
-//		}else {
-//			cPage=Integer.parseInt(page);
-//		}
+		int numPerpage=5;
 		
-		Map<String,Object> param=Map.of("type",type,"keyword",keyword,
-				"cPage",cPage,"numPerpage",numPerpage);
+		//DB에 저장되어있는 Member테이블의 모든데이터를 가져와야함.
+		List<Member> list=new AdminService().selectMemberList(cPage, numPerpage);
 		
-		List<Member> result=new AdminService().searchMemberList(type,keyword,cPage,numPerpage);
-		int totalData=new AdminService().searchMemberCount(type,keyword);
+		request.setAttribute("list", list);
+		
+		
+		//사용자가 원하는 페이지를 요청할 수 있게 페이지바를 만들어보자
+		//1. 전체 페이지수
+		int totalData=new AdminService().selectMemberCount();
 		int totalPage=(int)Math.ceil((double)totalData/numPerpage);
+		
+		//2. 출력할 페이지번호의 갯수 정하기
 		int pageBarSize=5;
+		
+		//3. 출력할 페이지번호 시작, 끝 정하기
 		int pageNo=((cPage-1)/pageBarSize)*pageBarSize+1;
 		int pageEnd=pageNo+pageBarSize-1;
 		
+		
+		//4. pageBar생성하기
 		String pageBar="";
 		if(pageNo==1) {
 			pageBar+="<span>[이전]</span>";
 		}else {
-			pageBar+="<a href='"+request.getRequestURL()
-				+"?cPage="+(pageNo-1)+"&searchType="+type+"&searchKeyword="+keyword+"'>[이전]</a>";
+			pageBar+="<a href='"+request.getContextPath()
+					+"/admin/memberList.do?cPage="+(pageNo-1)+"'>[이전]</a>";
 		}
 		
 		while(!(pageNo>pageEnd||pageNo>totalPage)) {
-			if(pageNo==cPage) {
-				pageBar+="<span>"+pageNo+"</span>";
+			if(cPage==pageNo) {
+				pageBar+="<span>"+pageNo+"<span>";
 			}else {
-				pageBar+="<a href='"+request.getRequestURL()
-						+"?cPage="+(pageNo)+"&searchType="+type+"&searchKeyword="+keyword+"'>"+pageNo+"</a>";
+				pageBar+="<a href='"+request.getContextPath()
+				+"/admin/memberList.do?cPage="+pageNo+"'>"+pageNo+"</a>";
 			}
 			pageNo++;
 		}
@@ -81,13 +81,18 @@ public class MemberSearchServlet extends HttpServlet {
 		if(pageNo>totalPage) {
 			pageBar+="<span>[다음]</span>";
 		}else {
-			pageBar+="<a href='"+request.getRequestURL()
-			+"?cPage="+(pageNo)+"&searchType="+type+"&searchKeyword="+keyword+"'>[다음]</a>";
+			pageBar+="<a href='"+request.getContextPath()
+			+"/admin/memberList.do?cPage="+pageNo+"'>[다음]</a>";
 		}
-		request.setAttribute("pageBar", pageBar);
-		request.setAttribute("list", result);
 		
-		request.getRequestDispatcher("/views/member/memberList.jsp")
+		request.setAttribute("pageBar", pageBar);
+		
+		
+		
+		
+		
+		
+		request.getRequestDispatcher("/views/admin_views/memberManagement/memberList.jsp")
 		.forward(request, response);
 	}
 

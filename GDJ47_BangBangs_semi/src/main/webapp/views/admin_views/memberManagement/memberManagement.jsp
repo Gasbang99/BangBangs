@@ -3,7 +3,7 @@
 <%@ page import="java.util.List" %> 
 <%@ include file="/views/admin_views/common/header.jsp" %>
 
-<%@ include file="/views/admin_views/common/navigationBar.jsp" %>
+<%@ include file="/views/admin_views/common/navigationBar2.jsp" %>
 	
 <%
 	List<Member> list=(List<Member>)request.getAttribute("list");

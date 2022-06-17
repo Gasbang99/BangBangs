@@ -33,8 +33,10 @@ private Properties prop=new Properties();
 		List<Member> list=new ArrayList();
 		try {
 			pstmt=conn.prepareStatement(prop.getProperty("selectMemberList"));
-			pstmt.setInt(1, (cPage-1)*numPerpage+1);
-			pstmt.setInt(2, cPage*numPerpage);
+			
+			 pstmt.setInt(1, (cPage-1)*numPerpage+1);
+			 pstmt.setInt(2, cPage*numPerpage);
+			 
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
 //				Member m=MemberDao.getMember(rs);
