@@ -1,4 +1,4 @@
-package com.bbs.controller;
+package com.bbs.board.controller;
 
 import java.io.IOException;
 import java.util.List;
@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.board.model.service.BoardService;
-import com.board.model.vo.Board;
+import com.bbs.board.model.service.BoardService;
+import com.bbs.model.vo.IbBoard;
 
 /**
  * Servlet implementation class BoardListServlet
@@ -31,8 +31,6 @@ public class BoardListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//1.DB에 저장된 board데이터를 출력
-				//2. 각 페이지에 맞게 출력하기
 				int cPage;
 				int numPerpage;
 				try {
@@ -46,7 +44,7 @@ public class BoardListServlet extends HttpServlet {
 				}catch(NumberFormatException e) {
 					numPerpage=5;
 				}
-				List<Board> boards=new BoardService().selectBoardList(cPage,numPerpage);
+				List<IbBoard> boards=new BoardService().selectBoardList(cPage,numPerpage);
 				int totalBoard=new BoardService().selectBoardCount();
 				int totalPage=(int)Math.ceil((double)totalBoard/numPerpage);
 				
@@ -84,6 +82,7 @@ public class BoardListServlet extends HttpServlet {
 				request.setAttribute("pageBar", pageBar);
 				request.setAttribute("boards", boards);
 				request.getRequestDispatcher("/views/board/boardList.jsp").forward(request, response);
+				System.out.println(boards);
 	}
 
 	/**

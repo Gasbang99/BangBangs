@@ -1,6 +1,11 @@
 <!doctype html>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html lang="en">
+<%@ page import="java.util.List,com.bbs.model.vo.IbBoard" %>
+<%
+List<IbBoard> boards=(List<IbBoard>)request.getAttribute("boards");
+String pageBar=(String)request.getAttribute("pageBar");
+%>
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -43,128 +48,44 @@
               <th scope="col">제목</th>
               <th scope="col">파일</th>
               <th scope="col">작성일</th>
-              <th scope="col">조회수</th>
+              <th scope="col">카테고리</th>
             </tr>
           </thead>
           <tbody>
-           <!--  for문적용 -->
-            <tr scope="row">
+          <%if(boards!=null){ 
+			   for(IbBoard b : boards){%>
+             <tr scope="row">
               <th scope="row">
                 <label class="control control--checkbox">
                   <input type="checkbox"/>
                   <div class="control__indicator"></div>
                 </label>
               </th>
-              <td> 1111</td>
-              <td><a href="#">김용성</a></td>
               <td>
-              <a href="<%=request.getContextPath()%>/board/boardView.do>">문의합니다</a>
-                <small class="d-block">바퀴가 고장났어요</small>
+                <%=b.getIbPostNum() %>
               </td>
-              <td> <img src="<%=request.getContextPath()%>/images/file.png"
-				 width="20"></td>
-              <td>2022/6/14</td>
-              <td>0</td>
+              <td><%=b.getMemberId() %></td>
+              <td>
+                <a href="#"><%=b.getIbTitle() %></a>
+                <a href="<%=request.getContextPath()%>/board/boardView.do?no=<%=b.getIbPostNum()%>"><small class="d-block">click</small></a> 
+              </td>
+              <td><%if(b.getIbBoardOriginalFilename()!=null){ %>
+				 <img src="<%=request.getContextPath()%>/images/file.png"
+				 width="20">
+				<%}else{ %>
+				 첨푸파일없음
+				<%} %></td>
+              <td><%=b.getIbEnrollDate() %></td>
+              <td><%=b.getCategory() %></td>
             </tr>
             <tr class="spacer"><td colspan="100"></td></tr>
             <tr class="active">
-              <th scope="row">
-                <label class="control control--checkbox">
-                  <input type="checkbox" checked="" />
-                  <div class="control__indicator"></div>
-                </label>
-              </th>
-               <!--  for문적용 -->
-               
-               
-              <td>null</td>
-              <td><a href="#">null</a></td>
-              <td>
-               null
-                <small class="d-block">null</small>
-              </td>
-              <td>null</td>
-              <td>null</td>
-              <td>null</td>
-            </tr>
-            <tr class="spacer"><td colspan="100"></td></tr>
+            <%}
+            }else{ %>
             <tr>
-              <th scope="row">
-                <label class="control control--checkbox">
-                  <input type="checkbox"/>
-                  <div class="control__indicator"></div>
-                </label>
-              </th>
-              
-              <td>null</td>
-              <td><a href="#">null</a></td>
-              <td>
-                null
-                <small class="d-block">null</small>
-              </td>
-              <td>null</td>
-              <td>null</td>
-              <td>null</td>
-            </tr>
-            <tr class="spacer"><td colspan="100"></td></tr>
-            <tr>
-              <th scope="row">
-                <label class="control control--checkbox">
-                  <input type="checkbox"/>
-                  <div class="control__indicator"></div>
-                </label>
-              </th>
-              
-              <td>null</td>
-              <td><a href="#">null</a></td>
-              <td>
-               null
-                <small class="d-block">null</small>
-              </td>
-              <td>null</td>
-              <td>null</td>
-              <td>null</td>
-            </tr>
-            
-             <tr class="spacer"><td colspan="100"></td></tr>
-            <tr>
-              <th scope="row">
-                <label class="control control--checkbox">
-                  <input type="checkbox"/>
-                  <div class="control__indicator"></div>
-                </label>
-              </th>
-              
-              <td>null</td>
-              <td><a href="#">null</a></td>
-              <td>
-               null
-                <small class="d-block">null</small>
-              </td>
-              <td>null</td>
-              <td>null</td>
-              <td>null</td>
-            </tr>
-            
-             <tr class="spacer"><td colspan="100"></td></tr>
-            <tr>
-              <th scope="row">
-                <label class="control control--checkbox">
-                  <input type="checkbox"/>
-                  <div class="control__indicator"></div>
-                </label>
-              </th>
-              
-              <td>null</td>
-              <td><a href="#">null</a></td>
-              <td>
-               null
-                <small class="d-block">null</small>
-              </td>
-              <td>null</td>
-              <td>null</td>
-              <td>null</td>
-            </tr>
+			<td colspan='7'>조회된 결과가 없습니다.</td>
+			</tr>
+            <%} %>
           </tbody>
               <tr>
 		    <td colspan="7" style="text-align:right">
@@ -196,11 +117,14 @@
         			<button type="submit" class="btn btn-primary">찾기</button>
         		</form>
        </section>
-
+	
     </div>
 
+		<div id="pageBar">
+		<%=pageBar %>
+		</div>
   </div>
-   
+   	
     <script src="<%=request.getContextPath()%>/js/jquery-3.3.1.min.js"></script>
     <script src="<%=request.getContextPath()%>/js/popper.min.js"></script>
     <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
@@ -224,5 +148,7 @@
     .btn btn-primary{
      
     }
+    div#pageBar{margin-top:10px; text-align:center;}
+	div#pageBar span.cPage{color: #0066ff;}
   </style>
 </html>

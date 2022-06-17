@@ -8,6 +8,6 @@
 </head>
 <body>
 <a href="<%=request.getContextPath()%>/index.do">aa</a>
-
+<a href="<%=request.getContextPath()%>/board/boardList.do">문의게시판</a>
 </body>
 </html>
