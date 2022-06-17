@@ -2,9 +2,13 @@ package com.bbs.model.vo;
 
 import java.sql.Date;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
 @Builder
 public class Member {
@@ -19,4 +23,6 @@ public class Member {
    private Date enrollDate;
    private String memberLevel;
    private int totalMileage;
+   
+   
 }
