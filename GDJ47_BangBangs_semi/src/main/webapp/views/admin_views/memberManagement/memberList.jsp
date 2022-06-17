@@ -1,9 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-	<%@ include file="/views/admin_views/common/header.jsp" %>
+<%@ include file="/views/admin_views/common/header.jsp" %>
+<%
+	List<Member> list=(List<Member>)request.getAttribute("list");
+	String searchType=request.getParameter("searchType");
+	String keyword=request.getParameter("searchKeyword");
+%>
+<%@ include file="/views/admin_views/common/header.jsp" %>
 
-	<%@ include file="/views/admin_views/common/navigationBar.jsp" %>
+<%@ include file="/views/admin_views/common/navigationBar2.jsp" %>
 	
+
+<style type="text/css">
+	section#memberList-container {text-align:center;}	
+	section#memberList-container table#tbl-member {width:70%; border:1px solid gray; border-collapse:collapse;}
+	section#memberList-container table#tbl-member th, table#tbl-member td {border:1px solid gray; padding:5px; font-size:10px; }
+ 	div#search-container {margin:0 0 10px 0; padding:3px; align: center;}
+    div#search-userId{display:inline-block;}
+    div#search-userName{display:none;}
+    div#search-gender{display:none;}
+    div#numPerpage-container{float:right;}
+    form#numperPageFrm{display:inline;} 
+    #memberlist-container{display:flex;}
+    div.center{align-items: center;}
+    .select-searchbar{justify-content: center;}
+    
+</style>
+
 	<div>
 	<div id="numPerpage-container">
         	페이지당 회원수 : 
@@ -41,16 +64,16 @@
       		<%}else{
       			for(Member m : list){%>
    				<tr>
-   					<td><%=m.getMember_id() %></td>
-   					<td><%=m.getMember_name() %></td>
+   					<td><%=m.getMemberId() %></td>
+   					<td><%=m.getMemberName() %></td>
    					<td><%=m.getGender() %></td>
-   					<td><%=m.getAge() %></td>
+   					<td><%=m.getBirthday() %></td>
    					<td><%=m.getEmail() %></td>
-   					<td><%=m.getPhone() %></td>
        				<td><%=m.getAddress() %></td>
-       				<td><%=m.getEnroll_date() %></td> 
-       				<td><%=m.getMember_level() %> </td>
-       				<td><%=m.getTotal_mileage() %></td>
+   					<td><%=m.getPhone() %></td>
+       				<td><%=m.getEnrollDate() %></td> 
+       				<td><%=m.getMemberLevel() %> </td>
+       				<td><%=m.getTotalMileage() %></td>
        			</tr>
    		<%	} 
    		 }%>
@@ -106,8 +129,9 @@
 			});
 			$("#searchType").change();
 		})
+		
+		
 	</script>
+        	
 	
-
-	<%@ include file="/views/admin_views/common/footer.jsp" %>
-	
+<%@ include file="/views/admin_views/common/footer.jsp" %>

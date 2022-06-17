@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="/views/common/header.jsp" %>
+<%@ include file="/views/common/footer.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,6 +18,7 @@
         <script type="text/javascript" src="/js/jquery-confirm.js"></script>
         <script type="text/javascript" src="/js/comm.js"></script>
         <script type="text/javascript" src="/js/common_spb.js"></script>
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         
         <link rel="stylesheet" href="/css/style_kr_v2.css?ver=0412" type="text/css">
         <link rel="stylesheet" href="/css/common.css" type="text/css">
@@ -32,6 +35,7 @@
     <title>일일권 구매하기</title>
 </head>
 <body>
+<div id="total">
     <div>
         <h1>일일권 구매하기</h1>
     </div>
@@ -77,10 +81,11 @@
         </table>
     </div>
 </div>
+</div>
     <div id="paybox" style="margin: 10px 15px 0 15px;">
         <p>결제금액</p>
         <input type="text" class="w80" id="TOT_AMOUNT" name="TOT_AMOUNT" value="0" readonly="readonly">
-        <span>원</span>
+        <span style="color:green">원</span>
     </div>
     <style>
         span{
@@ -111,12 +116,19 @@
             height: 550px;
             line-height: 1.5;
             padding: 30px;
-            position: absolute;
-            right: 0;
+            position: relative;
+            right: 100;
             top: 0;
-            width: 35%;
+            width: 20%;
             box-sizing: border-box;
             margin: 10px 15px 0 15px;
+            float:right;
+            position:absolute;
+            left:1000px;
+            top:45px;
+        }
+        #total{
+        	margin-left:400px;
         }
     </style>
     <script>
@@ -125,6 +137,10 @@
         document.getElementById("TOT_AMOUNT").value=p;
     }
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+        <footer class="footer bg-black small text-center text-white-50">
+    <div class="container px-4 px-lg-5">Copyright &copy; Your Website 2022</div>
+  </footer>
 </body>
     
 </html>
