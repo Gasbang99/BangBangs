@@ -3,39 +3,40 @@
 <%@ include file="/views/common/header.jsp" %>
 
 	<div>
-		<div id="navline">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">이용권 구매하기</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
-            <ul class="navbar-nav">
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  이용권구분
-                </a>
-                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                  <li><a class="dropdown-item" href="http://localhost:9090/GDJ47_BangBangs_semi/views/payment/seasonticket.jsp">정기권</a></li>
-                  <li><a class="dropdown-item" href="http://localhost:9090/GDJ47_BangBangs_semi/views/payment/onedayticket.jsp">일일권</a></li>
-                  <li><a class="dropdown-item" href="http://localhost:9090/GDJ47_BangBangs_semi/views/payment/groupticket.jsp">단체권</a></li>
-                  <li><a class="dropdown-item" href="http://localhost:9090/GDJ47_BangBangs_semi/views/payment/seasonticketgift.jsp">정기권선물하기</a></li>
-                  <li><a class="dropdown-item" href="http://localhost:9090/GDJ47_BangBangs_semi/views/payment/onedayticketgift.jsp">일일권선물하기</a></li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-     </div>
+		
 	</div>
+		<nav class="nav nav-pills nav-fill">	  
+		  <a class="nav-link active" aria-current="page" href="http://localhost:9090/GDJ47_BangBangs_semi/views/payment/seasonticket.jsp">정기권</a>
+		  <a class="nav-link" href="#">일일권</a>
+		  <a class="nav-link" href="#">단체권</a>
+		  <a class="nav-link" href="#">Disabled</a>
+		</nav>
 	 <script src="js/scripts.js"></script>
 	 <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
     </script>
 
   <style>
+  	$nav-link-padding-y:                .5rem;
+	$nav-link-padding-x:                1rem;
+	$nav-link-font-size:                null;
+	$nav-link-font-weight:              null;
+	$nav-link-color:                    green;
+	$nav-link-hover-color:              $link-hover-color;
+	$nav-link-transition:               color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out;
+	$nav-link-disabled-color:           $gray-600;
+	
+	$nav-tabs-border-color:             $gray-300;
+	$nav-tabs-border-width:             $border-width;
+	$nav-tabs-border-radius:            $border-radius;
+	$nav-tabs-link-hover-border-color:  $gray-200 $gray-200 $nav-tabs-border-color;
+	$nav-tabs-link-active-color:        $gray-700;
+	$nav-tabs-link-active-bg:           $body-bg;
+	$nav-tabs-link-active-border-color: $gray-300 $gray-300 $nav-tabs-link-active-bg;
+	
+	$nav-pills-border-radius:           $border-radius;
+	$nav-pills-link-active-color:       $component-active-color;
+	$nav-pills-link-active-bg:          $component-active-bg;
     #navline{
         height: auto;
         min-height: 100%;
