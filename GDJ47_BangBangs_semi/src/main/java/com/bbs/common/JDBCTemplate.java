@@ -19,7 +19,7 @@ public class JDBCTemplate {
 			prop.load(new FileReader(path));
 			
 			Class.forName(prop.getProperty("driver"));
-			conn = DriverManager.getConnection(prop.getProperty("url"),prop.getProperty("user"),prop.getProperty("pwd"));
+			conn = DriverManager.getConnection(prop.getProperty("url"),prop.getProperty("user"),prop.getProperty("pw"));
 			conn.setAutoCommit(false);
 		}catch(ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
