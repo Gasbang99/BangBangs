@@ -7,21 +7,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.bbs.model.service.MemberService;
-import com.bbs.model.vo.Member;
-
-
 /**
- * Servlet implementation class ChangeMemberDataServlet
+ * Servlet implementation class ResighMemberServlet
  */
-@WebServlet("/changememberdata.do")
-public class ChangeMemberDataServlet extends HttpServlet {
+@WebServlet("/resignmember.do")
+public class ResighMemberServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ChangeMemberDataServlet() {
+    public ResighMemberServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,15 +26,7 @@ public class ChangeMemberDataServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String userId=request.getParameter("userId");
-		Member m= new MemberService().selectMemberById(userId);
-		
-		request.setAttribute("member", m);
-		
-		
-		request.getRequestDispatcher("/views/mypage/memberData/changeMemberData.jsp")
-		.forward(request, response);
+		request.getRequestDispatcher("/views/mypage/memberData/resign.jsp").forward(request, response);
 	}
 
 	/**
