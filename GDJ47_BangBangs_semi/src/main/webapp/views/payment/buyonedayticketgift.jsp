@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <div>
-        <h1>일일권 구매하기</h1>
-</div>
-<div style="margin-left:30px;margin-top:50px;">
+        <h1>일일권 선물하기</h1>
+    </div>
+    <div style="margin-left:30px;margin-top:50px;">
         <h3>이용권 사용안내</h3>
-</div>  
+    </div>  
     <ul style="margin-left:30px;">
         <li>1회 1매씩 구매가 가능합니다</li>
         <li>기본대여시간은 <span>1시간권(60분),2시간권(120분)</span>입니다</li>
@@ -13,7 +13,7 @@
         <span>예시)기본 초과 1분~5분:200원,6분~10분:400원</span>
         <li>추가요금은 이용권 결제수단으로 자동결제됩니다</li>
     </ul>
-    
+
     <div id="selecttype">
         <p style="font-weight: bold;">&nbsp;일일권종류선택</p>
            <select id="comPaymentClsCd" name="comPaymentClsCd" class="fl" style="width: 55%" onchange="comPayment();">
@@ -23,6 +23,11 @@
             </select> 
             <p>&nbsp;</p> 
     </div>
+    <br>
+        <p style="font-weight: bold;">선물 받는 사람</p>
+        <input type="number">전화번호
+    
+    <br><br>
     <div id="comPaymentClsCd">
         <p style="font-weight: bold;">&nbsp;결제방식</p>
         <table>
@@ -64,5 +69,3 @@
 		  <button class="btn" type="button">결제하기</button>		  
 		</div>
     </div>
-</body>
-</html>
