@@ -1,6 +1,6 @@
 package com.bbs.model.service;
 
-import static com.bbs.common.JDBCTemplate.close;
+import static com.bbs.common.JDBCTemplate.*;
 import static com.bbs.common.JDBCTemplate.getConnection;
 
 import java.sql.Connection;
@@ -28,6 +28,24 @@ public class MemberService {
 	public int insertMember(Member m) {
 		Connection conn = getConnection();
 		int result = dao.insertMember(conn, m);
+		close(conn);
+		return result;
+	}
+
+	public int updateMember(Member m) {
+		Connection conn=getConnection();
+		int result=dao.updateMember(conn, m);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result;
+	}
+
+	public int deleteMember(String memberId) {
+		Connection conn=getConnection();
+		int result=dao.deleteMember(conn, memberId);
+		if(result>0) commit(conn);
+		else rollback(conn);
 		close(conn);
 		return result;
 	}

@@ -28,20 +28,18 @@
     <div id="subMenu">
 		<ul class="nav nav-tabs">
 	        <li class="nav-item">
-	            <a class="nav-link active" id="purchaseHistory" href="<%=request.getContextPath()%>/purchasedata.do">결제내역</a>
+	            <a class="nav-link" id="purchaseHistory" href="<%=request.getContextPath()%>/purchasedata.do">결제내역</a>
 	        </li>
 	        <li class="nav-item">
-	            <a class="nav-link" id="refundHistory" href="<%=request.getContextPath()%>/refundHistory.do">환불내역</a>
+	            <a class="nav-link active" id="refundHistory" href="<%=request.getContextPath()%>/refundHistory.do">환불내역</a>
 	        </li>
 		</ul>
 		<div id="subMenu-detail">
 			<table>
     			<tr>
-			        <th>결제상품</th>
+			        <th>상품이름</th>
 			        <th>금액</th>
-			        <th>결제날짜</th>
-			        <th>결제수단</th>
-			        <th>환불</th>
+			        <th>환불날짜</th>
     			</tr>
     			<%if(!ibBoards.isEmpty()) {
         			for(IbBoard b : ibBoards){%>
@@ -54,8 +52,7 @@
 		                </a>
 		            </td>
 		            <td><%=b.getIbEnrollDate() %></td>
-		            <td><%=b.getIbContent() %></td>
-		            <td><form action="<%=request.getContextPath()%>/"></form></td>
+		     
         		</tr>
 			    <%}
 			     }else{ %>
