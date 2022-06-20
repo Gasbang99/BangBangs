@@ -16,11 +16,11 @@
 <%@ include file="/views/common/header.jsp" %>
         <!-- Masthead-->
        
-<<<<<<< HEAD
+
         <header class="masthead"><h1 class="mx-auto my-0 text-uppercase"><img src="https://www.popco.net/zboard/data/photo_gallery/2018/10/06/15038507495bb8218e2f876.jpg" style="width:100%; height:auto;"></h1>
                         <style>
             <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
-=======
+
         <header>
             <div id="qwer" class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
 >>>>>>> branch 'BangBangs' of https://github.com/Gasbang99/BangBangs.git
