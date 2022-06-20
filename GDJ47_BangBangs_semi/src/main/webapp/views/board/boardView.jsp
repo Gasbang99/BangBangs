@@ -5,7 +5,7 @@
  IbBoard b=(IbBoard)request.getAttribute("board");
  
 %> 
-<!DOCTYPE html>
+<%@ include file="/views/common/header.jsp"%>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -81,7 +81,8 @@
                 <td colspan="2">
                 <input type="submit" class="btn btn-primary" 
                 onclick="location.assign('<%=request.getContextPath() %>/board/updateboard.do?num=<%=b.getIbPostNum()%>')" value="수정하기">
-                <input type="reset" class="btn btn-danger" value="삭제하기">
+                <input type="reset" class="btn btn-danger" 
+                onclick="location.assign('<%=request.getContextPath() %>/board/deleteboard.do?num=<%=b.getIbPostNum()%>')" value="삭제하기">
                 </td>
             </tr>
         </table>
@@ -97,8 +98,8 @@
     <tbody>
         <tr>
       	<td><textarea type="text" class="form-control" placeholder="글 내용을 작성하세요" name="content" rows="3" cols="20" ></textarea></td>
-      				
-      	            <input type="hidden" name="writer" value="<%=b.getMemberId()%>">
+      			
+      	            <input type="hidden" name="writer" value="">
    		    	    <input type="hidden" name="pNum" value="<%=b.getIbPostNum()%>"> 
       </tr>
     </tbody>
@@ -123,3 +124,4 @@
 </style>
 </body>
 </html>
+<%@ include file="/views/common/footer.jsp"%>

@@ -134,7 +134,7 @@ public class BoardDao {
 			pstmt.setString(2, b.getIbContent());
 			pstmt.setString(3, b.getIbBoardOriginalFilename());
 			pstmt.setString(4, b.getIbBoardRenamedFilename());
-			pstmt.setString(5, b.getMemberId());
+			pstmt.setInt(5, b.getIbPostNum());
 			result=pstmt.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -143,6 +143,23 @@ public class BoardDao {
 		}
 		return result;
 	}
+	public int deleteBoard(Connection conn,int boardNo) {
+		PreparedStatement pstmt= null;
+		ResultSet rs=null;
+		int result = 0;
+		try {
+			pstmt= conn.prepareStatement(prop.getProperty("deleteBoard"));
+			pstmt.setInt(1, boardNo);
+			rs=pstmt.executeQuery();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return result;
+	}
+	
 //	public List<IbBoardComment> selectBoardCommentList(Connection conn,int boardNo){
 //		PreparedStatement pstmt =null;
 //	    ResultSet rs = null;

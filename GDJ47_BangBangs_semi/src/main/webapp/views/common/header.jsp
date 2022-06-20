@@ -68,7 +68,7 @@
                     <ul class="navbar-nav ms-auto"  style="font-family:East Sea Dokdo">
                         <li class="nav-item"><a class="nav-link" href="http://localhost:8080/GDJ47_BangBangs_semi/index.jsp">메인화면</a></li>
                         <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/member.do">공지사항</a></li>
-                        <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/member.do">문의/FAQ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/board/boardList.do">문의/FAQ</a></li>
                         <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/member.do">이용권구매</a></li>
                         <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/member.do">대여소조회</a></li>
                     </ul>

@@ -4,7 +4,7 @@
 <%
 IbBoard b = (IbBoard)request.getAttribute("board");
 %>
-<!DOCTYPE html>
+<%@ include file="/views/common/header.jsp"%>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -33,6 +33,7 @@ IbBoard b = (IbBoard)request.getAttribute("board");
         <table class="table table-boardered">
             <tr>
                 <th>작성자</th>
+                <input type="hidden" name="num" value="<%=b.getIbPostNum()%>">
                 <td>
 
                 <input type="text" class="form-control" name="boardWriter" value="<%=b.getMemberId()%>" readonly>
@@ -80,3 +81,4 @@ IbBoard b = (IbBoard)request.getAttribute("board");
 </style>
 </body>
 </html>
+<%@ include file="/views/common/footer.jsp"%>

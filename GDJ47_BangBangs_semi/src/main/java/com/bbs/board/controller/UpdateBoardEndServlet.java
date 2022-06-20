@@ -48,6 +48,7 @@ public class UpdateBoardEndServlet extends HttpServlet {
 		
 		IbBoard b=IbBoard.builder()
 				.ibTitle(mr.getParameter("boardTitle"))
+				.ibPostNum(Integer.parseInt(mr.getParameter("num")))
 				.memberId(mr.getParameter("boardWriter"))
 				.IbBoardOriginalFilename(mr.getOriginalFileName("upfile"))
 				.IbBoardRenamedFilename(mr.getFilesystemName("upfile"))
@@ -60,10 +61,10 @@ public class UpdateBoardEndServlet extends HttpServlet {
 		
 		if(result>0) {
 			msg="게시글이 수정되었습니다.";
-			loc="/board/boardView.do";
+			loc="/board/boardView.do?no="+b.getIbPostNum();
 		}else {
 			msg="게시글 수정실패!";
-			loc="/board/updateboard.do";
+			loc="/board/updateboard.do?num="+b.getIbPostNum();
 		}
 		request.setAttribute("msg", msg);
 		request.setAttribute("loc", loc);

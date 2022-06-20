@@ -60,6 +60,14 @@ public class BoardService {
 		close(conn);
 		return result;
 	}
+	public int deleteBoard(int boardNo) {
+		Connection conn=getConnection();
+		int result=dao.deleteBoard(conn,boardNo);
+		if(result>0)commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result;
+	}
 //	public List<IbBoardComment> selectBoardCommentList(int boardNo){
 //		Connection conn=getConnection();
 //		List<IbBoardComment> result=dao.selectBoardCommentList(conn,boardNo);

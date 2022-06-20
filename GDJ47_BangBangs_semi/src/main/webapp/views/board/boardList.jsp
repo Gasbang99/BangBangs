@@ -6,6 +6,7 @@
 List<IbBoard> boards=(List<IbBoard>)request.getAttribute("boards");
 String pageBar=(String)request.getAttribute("pageBar");
 %>
+<%@ include file="/views/common/header.jsp"%>
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -169,3 +170,4 @@ String pageBar=(String)request.getAttribute("pageBar");
 	div#pageBar span.cPage{color: #0066ff;}
   </style>
 </html>
+<%@ include file="/views/common/footer.jsp"%>
