@@ -7,12 +7,12 @@
 		<nav class="nav nav-pills nav-fill">	  
 			  <a class="nav-link active" id="btn1" aria-current="page" href="#">정기권</a>
 			  <a class="nav-link" id="btn2">일일권</a>
-			  <a class="nav-link" id="btn3">단체권</a>
-			  <a class="nav-link" id="btn4">정기권 선물하기</a>
-			  <a class="nav-link" id="btn5">일일권 선물하기</a>
+			  <a class="nav-link" id="btn3">정기권 선물하기</a>
+			  <a class="nav-link" id="btn4">일일권 선물하기</a>
 		</nav>
 	</div>
     <div id="ppap"></div>
+    <div id="ppap2"></div>
 </div>
     <%@ include file="/views/common/footer.jsp" %>
     
@@ -47,7 +47,7 @@
 			url:"<%=request.getContextPath()%>/seasonticket.do",
 			dataType:"html",
 			success:data=>{
-				$("#ppap").html(data);
+				$("#ppap2").html(data);
 			}
 		});
 	});

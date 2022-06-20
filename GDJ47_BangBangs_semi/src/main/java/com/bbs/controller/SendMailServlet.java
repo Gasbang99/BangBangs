@@ -1,23 +1,26 @@
-package com.bbs.payment.controller;
+package com.bbs.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.bbs.common.sendmail.SendMail;
+
 /**
- * Servlet implementation class OneDayTicketServlet
+ * Servlet implementation class SendMailServlet
  */
-@WebServlet("/onedayticket.do")
-public class OneDayTicketServlet extends HttpServlet {
+@WebServlet("/sendmail.do")
+public class SendMailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public OneDayTicketServlet() {
+    public SendMailServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,7 +30,19 @@ public class OneDayTicketServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/views/payment/buyonedayticket.jsp").forward(request, response);
+		
+		String mailAddress = request.getParameter("mailAddress");
+		String crtfcNo = "";
+		
+		if(mailAddress.contains("gmail.")) {
+			crtfcNo = SendMail.gmailSend(mailAddress);
+		}else if(mailAddress.contains("naver.")) {
+			crtfcNo = SendMail.naverMailSend(mailAddress);
+		}
+		
+		request.setAttribute("crtfcNo", crtfcNo);
+		
+		request.getRequestDispatcher("/views/member/enrollmember.jsp").forward(request, response);
 	}
 
 	/**

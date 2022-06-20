@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class OneDayTicketServlet
+ * Servlet implementation class MemberServlet
  */
-@WebServlet("/onedayticket.do")
-public class OneDayTicketServlet extends HttpServlet {
+@WebServlet("/member.do")
+public class MemberServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public OneDayTicketServlet() {
+    public MemberServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,7 +27,7 @@ public class OneDayTicketServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/views/payment/buyonedayticket.jsp").forward(request, response);
+		request.getRequestDispatcher("/views/payment/member.jsp").forward(request, response);
 	}
 
 	/**
