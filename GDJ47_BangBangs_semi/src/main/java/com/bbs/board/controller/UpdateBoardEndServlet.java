@@ -2,7 +2,6 @@ package com.bbs.board.controller;
 
 import java.io.File;
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,16 +16,16 @@ import com.bbs.model.vo.IbBoard;
 import com.oreilly.servlet.MultipartRequest;
 
 /**
- * Servlet implementation class BoardWriteServlet
+ * Servlet implementation class UpdateBoardEndServlet
  */
-@WebServlet("/board/boardWriteEnd.do")
-public class BoardWriteEndServlet extends HttpServlet {
+@WebServlet("/board/boardUpdateEnd.do")
+public class UpdateBoardEndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardWriteEndServlet() {
+    public UpdateBoardEndServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,7 +38,6 @@ public class BoardWriteEndServlet extends HttpServlet {
 			 request.setAttribute("msg", "공지사항 작성오류 [form:enctype] 관리자에게 문의하세요! :(");
 			 request.setAttribute("loc", "/board/boardWrite.do");
 			 request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
-//			throws new LoginCheckException("enctype에러");
 		}else {
 			String root=getServletContext().getRealPath("/upload/board");
 			String path=root;
@@ -57,22 +55,21 @@ public class BoardWriteEndServlet extends HttpServlet {
 				.category(mr.getParameter("boardCategory"))
 				.build();
 		
-		int result=new BoardService().insertBoard(b);
+		int result=new BoardService().updateMember(b);
 		String msg="",loc="";
 		
 		if(result>0) {
-			msg="게시글이 등록되었습니다.";
-			loc="/board/boardList.do";
+			msg="게시글이 수정되었습니다.";
+			loc="/board/boardView.do";
 		}else {
-			msg="게시글 등록실패!";
-			loc="/board/boardWrite.do";
+			msg="게시글 수정실패!";
+			loc="/board/updateboard.do";
 		}
 		request.setAttribute("msg", msg);
 		request.setAttribute("loc", loc);
 		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 	}
 	}
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

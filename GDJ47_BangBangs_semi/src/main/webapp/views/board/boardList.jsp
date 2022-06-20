@@ -103,19 +103,36 @@ String pageBar=(String)request.getAttribute("pageBar");
                 <div id="search-container">
         	검색어 
         	<select id="searchType">
-        		<option value="userId">번호</option>
+        		<option value="number">번호</option>
         		<option value="userName">작성자</option>
-        		<option value="gender">제목</option>
+        		<option value="title">제목</option>
         	</select>
         	<div id="search-userId">
-        		<form action="">
+        		<form action="<%=request.getContextPath()%>/admin/searchMember">
         			<input type="hidden" name="searchType" value="userId" >
         			<input type="text" name="searchKeyword" size="25" style=height:22px;
-        			placeholder="검색할 번호를 입력하세요" list="ids">
+        			placeholder="검색할 작성자를 입력하세요" list="ids">
         			<datalist id="ids">
         			</datalist>
         			<button type="submit" class="btn btn-primary">찾기</button>
         		</form>
+        			<script>
+        			$("input[placeholder*=작성자]").keyup(e=>{
+        				$.ajax({
+        					url:"<%=request.getContextPath()%>/autoComplete.do",
+        					data:{"keyword":e.target.value},
+        					success:data=>{
+        						$("#ids").html("");
+        						/* console.log(data); */
+        						data.forEach(v=>{
+        							const op=$("<option>").attr("value",v).text(v);
+        							$("#ids").append(op);
+        						});
+        					}
+        				});
+        			
+        			});
+        		</script>
        </section>
 	
     </div>
