@@ -1,6 +1,6 @@
 package com.bbs.model.dao;
 
-import static com.bbs.common.JDBCTemplate.close;
+import static com.bbs.common.JDBCTemplate.*;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -62,6 +62,32 @@ public class MemberDao {
 			close(rs);
 			close(pstmt);
 		}return m;
+	}
+	
+	public int insertMember(Connection conn, Member m) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("insertMember"));
+			pstmt.setString(1, m.getMemberId());
+			pstmt.setString(2, m.getMemberPassword());
+			pstmt.setString(3, m.getMemberName());
+			pstmt.setString(4, m.getGender());
+			pstmt.setString(5, m.getBirthday());
+			pstmt.setString(6, m.getEmail());
+			pstmt.setString(7, m.getAddress());
+			pstmt.setString(8, m.getPhone());
+			result = pstmt.executeUpdate();
+			
+			if(result>0) commit(conn);
+			else rollback(conn);
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
 	}
 	
 	public int updatePassword(Connection conn, String userId, String password) {

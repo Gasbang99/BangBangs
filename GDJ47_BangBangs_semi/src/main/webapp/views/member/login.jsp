@@ -116,9 +116,9 @@
 	<div class="wrap">
 	    <div class="form-wrap">
 	        <div class="title-wrap"><h2>방방쓰</h2></div>
-	        <form id="login" action="" class="input-group">
-	            <input type="text" class="input-field" placeholder="아이디를 입력하세요" required>
-	            <input type="password" class="input-field" placeholder="비밀번호를 입력하세요" required>
+	        <form id="login" action="<%= request.getContextPath() %>/loginend.do" method="post" class="input-group">
+	            <input name="id" type="text" class="input-field" placeholder="아이디를 입력하세요" required>
+	            <input name="password" type="password" class="input-field" placeholder="비밀번호를 입력하세요" required>
 	            <input type="checkbox" class="checkbox"><span>로그인 상태 유지</span>
 				<input type="submit" class="submit" value="L O G I N">
 	        </form>
@@ -130,7 +130,7 @@
 	                <li><a target="_blank" href=""
 	                       class="find_text">아이디 찾기</a></li>
 	                <li>|</li>
-	                <li><a target="_blank" href="<%=request.getContextPath() %>/views/member/enrollmember.jsp"
+	                <li><a target="_blank" href="<%=request.getContextPath() %>/enrollmember.do"
 	                	   class="find_text">회원가입</a></li>
 	            </ul>
 	        </div>
