@@ -23,7 +23,7 @@
 		}
 		.form-wrap {
 		    width: 380px;
-		    height: 480px;
+		    height: 500px;
 		    position: relative;
 		    margin: 6% auto;
 		    background: #fff;
@@ -70,8 +70,22 @@
 		    outline: none;
 		    border-radius: 30px;
 		}
+		.submit1 {
+		    width: 100%;
+		    padding: 10px 30px;
+		    cursor: pointer;
+		    display: block;
+		    margin: auto;
+		    background: gray;
+			color:white;
+	  		font-weight: bold;
+		    border: 0;
+		    outline: none;
+		    border-radius: 30px;
+		}
 		.checkbox {
 		    margin: 30px 10px 30px 0;
+		    
 		}
 		span {
 		    color: #777;
@@ -119,11 +133,12 @@
 	        <form id="login" action="<%= request.getContextPath() %>/loginend.do" method="post" class="input-group">
 	            <input name="id" type="text" class="input-field" placeholder="아이디를 입력하세요" required>
 	            <input name="password" type="password" class="input-field" placeholder="비밀번호를 입력하세요" required>
-	            <input type="checkbox" class="checkbox"><span>로그인 상태 유지</span>
-				<input type="submit" class="submit" value="L O G I N">
+	            <label><input type="checkbox" class="checkbox">로그인 상태 유지</label>
+				<div><input type="submit" class="submit" value="L O G I N"></div>	
+				<div style="margin-top:5px"><input type="button" id="nonmember" class="submit1" value="비회원로그인"></div>		
 	        </form>
-	        <div id="sub-wrap">
-	        	<ul class="find_wrap" id="find_wrap">
+	        <div id="sub-wrap" style="margin-top:100px">
+	        	<ul class="find_wrap" id="find_wrap" style="margin-top:30px">
 	                <li><a target="_blank" href=""
 	                       class="find_text">비밀번호 찾기</a></li>
 	                <li>|</li>
@@ -138,7 +153,9 @@
 	</div>
 	
 	<script>
-	   
+	   $("#nonmember").click(e=>{
+		   location.assign("<%=request.getContextPath() %>/nonmember.do");
+	   })
 	</script>
 </body>
 </html>

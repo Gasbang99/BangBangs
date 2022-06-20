@@ -23,6 +23,7 @@
          <style src="/css/custom.scss"></style>
     
     <style>
+    
             .container5{
         display: inline-block;
        
@@ -53,24 +54,34 @@
         #mainNav a{
         
         }
+        #mainNav .nav-link {
+	    transition: none;
+	    padding: 2rem 1.5rem;
+	    color: black;
+		}
+		#mainNav .navbar-brand {
+	    padding: 0.5rem 0;
+	    color: black;
+		}
         </style>
 </head>
 <body id="page-top">
 	<div>
     	<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="#page-top">BangBangs</a>
+                <a class="navbar-brand" href="<%=request.getContextPath()%>/mainscreen.do">BangBangs</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ms-auto"  style="font-family:East Sea Dokdo">
-                        <li class="nav-item"><a class="nav-link" href="http://localhost:8080/GDJ47_BangBangs_semi/index.jsp">메인화면</a></li>
-                        <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/member.do">공지사항</a></li>
-                        <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/member.do">문의/FAQ</a></li>
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/notice.do">공지사항</a></li>
+                        <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/board/boardList.do">문의/FAQ</a></li>
                         <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/member.do">이용권구매</a></li>
-                        <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/member.do">대여소조회</a></li>
+                        <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/searchrentalshop.do">대여소조회</a></li>
+                        <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/login.do">로그인</a></li>
+                        <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/enrollmember.do">회원가입</a></li>
                     </ul>
                 </div>
             </div>
