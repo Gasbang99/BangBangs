@@ -63,6 +63,9 @@
 	    padding: 0.5rem 0;
 	    color: black;
 		}
+		.nav-link:hover{
+		background-color:black;
+		}
         </style>
 </head>
 <body id="page-top">
