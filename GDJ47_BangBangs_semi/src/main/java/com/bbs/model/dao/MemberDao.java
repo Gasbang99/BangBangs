@@ -54,7 +54,7 @@ public class MemberDao {
 		Member m=null;
 		try {
 			pstmt=conn.prepareStatement(prop.getProperty("selectMemberById"));
-			pstmt.setString(1, userId);
+//			pstmt.setString(1, userId);
 			rs=pstmt.executeQuery();
 			if(rs.next()) m=getMember(rs);
 		}catch(SQLException e) {
@@ -111,16 +111,16 @@ public class MemberDao {
 		Member m=null;
 		try {
 			m=new Member();
-			m.setMemberId(rs.getString("memberId"));
-			m.setMemberName(rs.getString("memberName"));
+			m.setMemberId(rs.getString("member_Id"));
+			m.setMemberName(rs.getString("member_Name"));
 			m.setGender(rs.getString("gender"));
 			m.setBirthday(rs.getString("birthday"));
 			m.setEmail(rs.getString("email"));
 			m.setAddress(rs.getString("address"));
 			m.setPhone(rs.getString("phone"));
-			m.setEnrollDate(rs.getDate("enrollDate"));
-			m.setMemberLevel(rs.getString("memberLevel"));
-			m.setTotalMileage(rs.getInt("totalMileage"));
+			m.setEnrollDate(rs.getDate("enroll_Date"));
+			m.setMemberLevel(rs.getString("member_Level"));
+			m.setTotalMileage(rs.getInt("total_Mileage"));
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}

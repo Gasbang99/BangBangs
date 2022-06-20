@@ -16,8 +16,8 @@
 <%@ include file="/views/common/header.jsp" %>
         <!-- Masthead-->
        
-        <header class="masthead">
-            <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
+        <header>
+            <div id="qwer" class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
                 <div class="d-flex justify-content-center">
                     <div class="text-center">
                     
