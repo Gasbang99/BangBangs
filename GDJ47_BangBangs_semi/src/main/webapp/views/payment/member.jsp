@@ -30,6 +30,9 @@
 			}
 		});
 	$("#btn1").click(e=>{
+		
+		
+		
     	$("#btn1").attr("class","nav-link active");
         $("#btn2").attr("class","nav-link")
         $("#btn3").attr("class","nav-link")
