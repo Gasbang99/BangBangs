@@ -7,19 +7,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang3.RandomStringUtils;
-
 /**
- * Servlet implementation class CrtfcNoServlet
+ * Servlet implementation class MainScreenServlet
  */
-@WebServlet("/crtfcNo.do")
-public class CrtfcNoServlet extends HttpServlet {
+@WebServlet("/mainscreen.do")
+public class MainScreenServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CrtfcNoServlet() {
+    public MainScreenServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,10 +27,7 @@ public class CrtfcNoServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-		String crtfcNo = RandomStringUtils.randomNumeric(6);
-		request.setAttribute("crtfcNo", crtfcNo);
-		request.getRequestDispatcher("/views/member/enrollmember.jsp").forward(request, response);
+		request.getRequestDispatcher("<%=request.getContextPath()%>").forward(request, response);
 	}
 
 	/**

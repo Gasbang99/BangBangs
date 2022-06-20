@@ -16,62 +16,19 @@
 <%@ include file="/views/common/header.jsp" %>
         <!-- Masthead-->
        
-        <header class="masthead">
-            <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
-                <div class="d-flex justify-content-center">
-                    <div class="text-center">
-                    
-                       
-                        <h1 class="mx-auto my-0 text-uppercase"><img src="https://www.popco.net/zboard/data/photo_gallery/2018/10/06/15038507495bb8218e2f876.jpg" style="width:1500px"></h1>
+<<<<<<< HEAD
+        <header class="masthead"><h1 class="mx-auto my-0 text-uppercase"><img src="https://www.popco.net/zboard/data/photo_gallery/2018/10/06/15038507495bb8218e2f876.jpg" style="width:100%; height:auto;"></h1>
                         <style>
+            <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
+=======
+        <header>
+            <div id="qwer" class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
+>>>>>>> branch 'BangBangs' of https://github.com/Gasbang99/BangBangs.git
+                <div class="d-flex justify-content-center">
+                    <div class="text-center">                
+                        
                        
                         </style>
-                        <div class="login-container position-absolute top-10 end-10">
-							<% if(loginMember==null){ %>
-								<form id="loginform" action="<%= request.getContextPath() %>/login.do" method="post">
-									<table>
-										<tr>
-											<td>
-												<input type="text" name="userId" id="userId" placeholder="아이디" value="<%=saveId!=null?saveId:""%>">
-											</td>
-											<td></td>
-										</tr>
-										<tr>
-											<td>
-												<input type="password" name="password" id="password" placeholder="패스워드">
-											</td>
-											<td>
-												<input type="submit" value="로그인">
-											</td>
-										</tr>
-										<tr>
-											<td colspan="2">
-												<input type="checkbox" name="saveId" id="saveId" <%=saveId!=null?"checked":"" %>>
-												<label for="saveId">아이디 저장</label>
-												&nbsp;&nbsp;
-												<input type="button" value="회원가입" onclick="location.assign('<%=request.getContextPath()%>/member/enrollMember.do')">
-											</td>
-										</tr>
-									</table>
-								</form>
-							<%}else{ %>
-								<table id="logged-in">
-									<tr>
-										<td colspan="2">
-											<%-- <%=loginMember.getUserName() %>님, 환영합니다. --%>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<input type="button" value="내 정보 보기" onclick="location.assign('<%=request.getContextPath()%>/memberView.do?userId=<%-- <%=loginMember.getUserId()%> --%>');">
-										</td>
-										<td>
-											<input type="button" value="로그아웃" onclick="location.assign('<%=request.getContextPath()%>/logout.do')">
-										</td>
-									</tr>
-								</table>
-							<%} %>
-						</div>
                         <h2 class="text-white-50 mx-auto mt-2 mb-5"></h2>
                         
                     </div>
@@ -83,22 +40,22 @@
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-lg-8">
-                        <h2 class="text-white mb-4">Welcome, customer</h2>
+                        <h2 class="text-white mb-4" style=" z-index: 500;">Welcome, customer</h2>
                         <p class="text-white-50">
                             <div>
-                                <div class="container5" style="width:60%; border-radius: 2em">
+                                <div class="container5" id="inquiry" style="width:60%; border-radius: 2em">
                                 <a href="문의하기.html" target="_blank"><h2>문의하기</h2></a>
                                 <p>궁금한 점이 있으세요?분야별 담당자들이 도와드리겠습니다.</p>
                                 </div>
-                                <div class="container5" style="width:60%; border-radius: 2em">
-                                <a href="고장신고.html" target="_blank"><h2>고장신고</h2></a>
+                                <div class="container5" id="brokenreport" style="width:60%; border-radius: 2em">
+                                <a href="<%=request.getContextPath() %>/brokenreport.do" target="_blank"><h2>고장신고</h2></a>
                                 <p>궁금한 점이 있으세요?분야별 담당자들이 도와드리겠습니다.
                                 </div>
                             </div>
                         </p>
                     </div>
                 </div>
-                <img class="img-fluid" src="assets/img/cus.jpg" >
+                <img class="img-fluid" src="images/cus.jpg" >
             </div>
         </section>
         <!-- Projects-->
@@ -106,7 +63,7 @@
             <div class="container px-4 px-lg-5">
                 <!-- Featured Project Row-->
                 <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
-                    <div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0" src="assets/img/bg-masthead.jpg" alt="..." /></div>
+                    <div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0" src="https://media-exp1.licdn.com/dms/image/C4D1BAQG15cidXS1yLg/company-background_10000/0/1581631238070?e=2147483647&v=beta&t=71xXTRyxGRuNzSv-VLrWpzWSALQRPKpS5N6c5Zq_kQ4" alt="..." /></div>
                     <div class="col-xl-4 col-lg-5">
                         <div class="featured-text text-center text-lg-left">
                             <h4>Introduce</h4>
@@ -116,7 +73,7 @@
                 </div>
                 <!-- Project One Row-->
                 <div class="row gx-0 mb-5 mb-lg-0 justify-content-center">
-                    <div class="col-lg-6"><img class="img-fluid" src="assets/img/demo-image-01.jpg" alt="..." /></div>
+                    <div class="col-lg-6"><img class="img-fluid" src="images/demo-image-01.jpg" alt="..." /></div>
                     <div class="col-lg-6">
                         <div class="bg-black text-center h-100 project">
                             <div class="d-flex h-100">
@@ -131,7 +88,7 @@
                 </div>
                 <!-- Project Two Row-->
                 <div class="row gx-0 justify-content-center">
-                    <div class="col-lg-6"><img class="img-fluid" src="assets/img/demo-image-02.jpg" alt="..." /></div>
+                    <div class="col-lg-6"><img class="img-fluid" src="images/demo-image-02.jpg" alt="..." /></div>
                     <div class="col-lg-6 order-lg-first">
                         <div class="bg-black text-center h-100 project">
                             <div class="d-flex h-100">
@@ -233,4 +190,18 @@
                 </div>
             </div>
         </section>
+         <script>
+            $("#inquiry").click(e=>{
+     		   location.assign("<%=request.getContextPath() %>/board/boardList.do");
+     	   	})
+     	   	$("#brokenreport").click(e=>{
+		   		location.assign("<%=request.getContextPath() %>/brokenreport.do");
+	   		})
+            </script>
+            <style>
+            	.container5:hover{
+            	background-color:white;
+            	cursor: pointer;
+            	}
+            </style>
         <%@ include file="/views/common/footer.jsp" %>

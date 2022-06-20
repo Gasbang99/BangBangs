@@ -430,9 +430,8 @@
 			})
 			
 			$("#sendBtn").click(e=>{
-				location.assign("<%=request.getContextPath()%>/sendmail.do?mailAddress="+$("#email").val());
-				<%-- location.assign("<%=request.getContextPath()%>/crtfcNo.do");
-				alert("<%=crtfcNo%>"); --%>
+				<%-- location.assign("<%=request.getContextPath()%>/sendmail.do?mailAddress="+$("#email").val()); --%>
+				
 			})
 			
 			$("#idCkBtn").click(e=>{

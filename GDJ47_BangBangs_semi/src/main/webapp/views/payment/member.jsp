@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp" %>
-
+<div style="height:100px"></div>
 <div id="total">
 	<div id="voucher">
 		<nav class="nav nav-pills nav-fill">	  
@@ -30,13 +30,10 @@
 			}
 		});
 	$("#btn1").click(e=>{
-		
-		
-		
     	$("#btn1").attr("class","nav-link active");
         $("#btn2").attr("class","nav-link")
         $("#btn3").attr("class","nav-link")
-        $("#btn3").attr("class","nav-link")
+        $("#btn4").attr("class","nav-link")
 		$.ajax({
 			url:"<%=request.getContextPath()%>/seasonticket.do",
 			dataType:"html",
@@ -49,7 +46,7 @@
         $("#btn1").attr("class","nav-link")
         $("#btn2").attr("class","nav-link active")
         $("#btn3").attr("class","nav-link")
-        $("#btn3").attr("class","nav-link")
+        $("#btn4").attr("class","nav-link")
 		$.ajax({
 			url:"<%=request.getContextPath()%>/onedayticket.do",
 			dataType:"html",

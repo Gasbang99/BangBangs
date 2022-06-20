@@ -1,4 +1,4 @@
-package com.mypage.controller;
+package com.bbs.payment.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,21 +7,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.bbs.model.service.MemberService;
-import com.bbs.model.vo.Member;
-
-
 /**
- * Servlet implementation class ChangeMemberDataServlet
+ * Servlet implementation class NonmemberServlet
  */
-@WebServlet("/changememberdata.do")
-public class ChangeMemberDataServlet extends HttpServlet {
+@WebServlet("/nonmember.do")
+public class NonmemberServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ChangeMemberDataServlet() {
+    public NonmemberServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,15 +26,8 @@ public class ChangeMemberDataServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String userId=request.getParameter("userId");
-		Member m= new MemberService().selectMemberById(userId);
-		
-		request.setAttribute("member", m);
-		
-		request.getRequestDispatcher("/views/mypage/memberData/changeMemberData.jsp")
-		.forward(request, response);
-	}
+		// TODO Auto-generated method stub
+		request.getRequestDispatcher("/views/payment/nonmember.jsp").forward(request, response);
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
