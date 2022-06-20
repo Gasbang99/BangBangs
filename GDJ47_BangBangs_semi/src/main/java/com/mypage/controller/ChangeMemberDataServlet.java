@@ -36,7 +36,6 @@ public class ChangeMemberDataServlet extends HttpServlet {
 		
 		request.setAttribute("member", m);
 		
-		
 		request.getRequestDispatcher("/views/mypage/memberData/changeMemberData.jsp")
 		.forward(request, response);
 	}
