@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <div>
-        <h1>일일권 구매하기</h1>
-</div>
-<div style="margin-left:30px;margin-top:50px;">
+        <h1>정기권 선물하기</h1>
+    </div>
+    <div style="margin-left:30px;margin-top:50px;">
         <h3>이용권 사용안내</h3>
-</div>  
+    </div>  
     <ul style="margin-left:30px;">
         <li>1회 1매씩 구매가 가능합니다</li>
         <li>기본대여시간은 <span>1시간권(60분),2시간권(120분)</span>입니다</li>
@@ -13,16 +13,27 @@
         <span>예시)기본 초과 1분~5분:200원,6분~10분:400원</span>
         <li>추가요금은 이용권 결제수단으로 자동결제됩니다</li>
     </ul>
-    
+
     <div id="selecttype">
-        <p style="font-weight: bold;">&nbsp;일일권종류선택</p>
+        <p style="font-weight: bold;">&nbsp;정기권종류선택</p>
            <select id="comPaymentClsCd" name="comPaymentClsCd" class="fl" style="width: 55%" onchange="comPayment();">
                 <option id="selectDefaltGen" value="">선택</option>
-                <option id="BIL_001" value="1000" etc1="1000" etc2="1000">일일 회원(1시간권)</option>
-                <option id="BIL_002" value="2000" etc1="2000" etc2="2000">일일 회원(2시간권)</option>
-            </select> 
-            <p>&nbsp;</p> 
+                <option id="BIL_001" value="3000" etc1="3000" etc2="3000">7일(1시간권)</option>
+                <option id="BIL_002" value="5000" etc1="5000" etc2="5000">30일(1시간권)</option>
+                <option id="BIL_004" value="15000" etc1="15000" etc2="15000">180일(1시간권)</option>
+                <option id="BIL_005" value="30000" title="Y" etc1="30000" etc2="30000">365일(1시간권)</option>
+                <option id="BIL_011" value="4000" etc1="4000" etc2="4000">7일(2시간권)</option>
+                <option id="BIL_012" value="7000" etc1="7000" etc2="7000">30일(2시간권)</option>
+                <option id="BIL_014" value="20000" etc1="20000" etc2="20000">180일(2시간권)</option>
+                <option id="BIL_015" value="40000" title="Y" etc1="40000" etc2="40000">365일(2시간권)</option>
+            </select>  
+            <p>&nbsp;</p>
     </div>
+    <br>
+        <p style="font-weight: bold;">선물 받는 사람</p>
+        <input type="number">전화번호
+    
+    <br><br>
     <div id="comPaymentClsCd">
         <p style="font-weight: bold;">&nbsp;결제방식</p>
         <table>
@@ -64,5 +75,3 @@
 		  <button class="btn" type="button">결제하기</button>		  
 		</div>
     </div>
-</body>
-</html>

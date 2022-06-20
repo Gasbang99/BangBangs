@@ -1,4 +1,4 @@
-package com.bbs.payment.controller;
+package com.mypage.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class OneDayTicketServlet
+ * Servlet implementation class ResighMemberServlet
  */
-@WebServlet("/onedayticket.do")
-public class OneDayTicketServlet extends HttpServlet {
+@WebServlet("/resignmember.do")
+public class ResighMemberServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public OneDayTicketServlet() {
+    public ResighMemberServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,8 +26,7 @@ public class OneDayTicketServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/views/payment/buyonedayticket.jsp").forward(request, response);
+		request.getRequestDispatcher("/views/mypage/memberData/resign.jsp").forward(request, response);
 	}
 
 	/**

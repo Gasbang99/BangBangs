@@ -1,11 +1,12 @@
 package com.bbs.model.service;
 
+import static com.bbs.common.JDBCTemplate.close;
+import static com.bbs.common.JDBCTemplate.getConnection;
+
 import java.sql.Connection;
 
 import com.bbs.model.dao.MemberDao;
 import com.bbs.model.vo.Member;
-
-import static com.bbs.common.JDBCTemplate.*;
 
 public class MemberService {
 	private MemberDao dao = new MemberDao();
@@ -30,5 +31,4 @@ public class MemberService {
 		close(conn);
 		return result;
 	}
-	
 }
