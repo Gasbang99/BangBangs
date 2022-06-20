@@ -79,8 +79,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
 
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="http://localhost:8080/GDJ47_BangBangs_semi/index.jsp">메인화면</a></li>
+                    
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/notice.do">공지사항</a></li>
                         <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/board/boardList.do">문의/FAQ</a></li>
