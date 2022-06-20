@@ -1,7 +1,6 @@
 package com.bbs.board.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,20 +9,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bbs.board.model.service.BoardService;
-import com.bbs.model.vo.IbBoard;
 import com.bbs.model.vo.IbBoardComment;
 
 /**
- * Servlet implementation class BoardViewServlet
+ * Servlet implementation class BoardCommentWrtieServlet
  */
-@WebServlet("/board/boardView.do")
-public class BoardViewServlet extends HttpServlet {
+@WebServlet("/board/insertBoardComment.do")
+public class BoardCommentWrtieServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardViewServlet() {
+    public BoardCommentWrtieServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,18 +30,22 @@ public class BoardViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int boardNo=Integer.parseInt(request.getParameter("no"));
+		String content=request.getParameter("content");
+		String writer=request.getParameter("writer");
+		int pNum=Integer.parseInt(request.getParameter("pNum"));
 		
-		IbBoard b = new BoardService().selectBoard(boardNo);
+		IbBoardComment ibc=IbBoardComment.builder()
+				.IbCommentContent(content)
+				.IbCommentWriter(writer)
+				.IbPostNum(pNum)
+				.build();
 		
-		request.setAttribute("board", b);
+		int result=new BoardService().insertBoardComment(ibc);
+		String msg=result>0?"댓글등록성공":"댓글등록실패";
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", "/board/boardView.do");
 		
-		
-
-		
-		request.getRequestDispatcher("/views/board/boardView.jsp")
-		.forward(request, response);
-		
+		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 	}
 
 	/**

@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ page import="com.bbs.model.vo.IbBoard,java.util.List"%>       
+<%
+IbBoard b = (IbBoard)request.getAttribute("board");
+%>
 <%@ include file="/views/common/header.jsp"%>
 <html>
 <head>
@@ -24,13 +27,18 @@
     <div class="col-sm-3"></div>
      
     <div class="col-sm-6">
-    <h2 class="mb-5">문의사항 등록</h2>
-    <form action='<%=request.getContextPath()%>/board/boardWriteEnd.do'
+    <h2 class="mb-5">문의사항 수정하기</h2>
+    <form action='<%=request.getContextPath()%>/board/boardUpdateEnd.do'
 		method="post" enctype="multipart/form-data" >
         <table class="table table-boardered">
             <tr>
                 <th>작성자</th>
-                <td><input type="text" class="form-control" name="boardWriter" required></td>        
+                <input type="hidden" name="num" value="<%=b.getIbPostNum()%>">
+                <td>
+
+                <input type="text" class="form-control" name="boardWriter" value="<%=b.getMemberId()%>" readonly>
+              
+                </td>        
             </tr>
             <tr>
                 <th>제목</th>
@@ -47,16 +55,7 @@
 					 <textarea cols="55" rows="10" name="boardContent"></textarea>
 					</td>
 				</tr>
-            <tr>
-                <th>카테고리</th>
-                <td>
-		  <select class="form-control" name="boardCategory">
-    		<option>고장</option>
-    		<option>문의</option>
-    		<option>기타</option>
-  		</select>
-                </td>    
-            </tr>
+           
   
             <tr>
                 <td colspan="2">

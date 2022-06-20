@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.bbs.model.vo.Board,java.util.List,com.bbs.model.vo.BoardComment" %>    
+<%@ page import="com.bbs.model.vo.IbBoard,java.util.List"%>    
 <%
- Board b=(Board)request.getAttribute("board");
- List<BoardComment> comments=(List<BoardComment>)request.getAttribute("comments");
+ IbBoard b=(IbBoard)request.getAttribute("board");
+ 
 %> 
-<!DOCTYPE html>
+<%@ include file="/views/common/header.jsp"%>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -29,49 +29,64 @@
      
     <div class="col-sm-6">
     <h2 class="mb-5">문의사항</h2>
-    <form action='<%=request.getContextPath()%>/board/boardWriteEnd.do'
-		method="post" enctype="multipart/form-data" >
+    <!-- 수정,삭제 -->
+    	
         <table class="table table-boardered">
             <tr>
                 <th>글번호</th>
-				<td><%=b.getBoardNo() %></td>       
+				<td><%=b.getIbPostNum() %>
+					
+				</td>       
             </tr>
             <tr>
                 <th>제목</th>
-                <td><%=b.getBoardTitle() %></td>      
+                <td><%=b.getIbTitle() %>
+                   
+                </td>      
             </tr>
              
             <tr>
                <th>작성자</th>
-				<td><%=b.getBoardWriter() %></td>      
+				<td><%=b.getMemberId() %>
+					
+				</td>      
             </tr>
-            <tr>
+           <tr>
 				<th>첨부파일</th>
 				<td>
-				 <%if(b.getBoardOriginalFilename()!=null){ %>
-				 <a href="<%=request.getContextPath()%>/fileDownload.do?oriName=<%=b.getBoardOriginalFilename()%>&reName=<%=b.getBoardRenamedFilename()%>">
-				  <img src="<%=request.getContextPath()%>/images/file.png"
+				 <%if(b.getIbBoardOriginalFilename()!=null){ %>
+				 <a href="<%=request.getContextPath()%>/fileDownload.do?oriName=<%=b.getIbBoardOriginalFilename()%>&reName=<%=b.getIbBoardRenamedFilename() %>">
+				   <img src="<%=request.getContextPath()%>/images/file.png"
 				  width="20">
-				   <%=b.getBoardOriginalFilename() %>
+				   <%=b.getIbBoardOriginalFilename() %>
+				  
+				 
 				  </a>
 				 <%}else{ %>
 				  첨부파일없음
 				 <%} %>
+				
 				</td>
+			</tr>
             <tr>
                 <th>내 용</th>
-				<td><%=b.getBoardContent() %></td>
+				<td><%=b.getIbContent() %>
+				
+				</td>
 		    
             </tr>
   
             <tr>
+            <%--글작성자/관리자인경우 수정삭제 가능 로직 --%>
                 <td colspan="2">
-                <input type="submit" class="btn btn-primary" value="수정하기">
-                <input type="reset" class="btn btn-danger" value="삭제하기">
+                <input type="submit" class="btn btn-primary" 
+                onclick="location.assign('<%=request.getContextPath() %>/board/updateboard.do?num=<%=b.getIbPostNum()%>')" value="수정하기">
+                <input type="reset" class="btn btn-danger" 
+                onclick="location.assign('<%=request.getContextPath() %>/board/deleteboard.do?num=<%=b.getIbPostNum()%>')" value="삭제하기">
                 </td>
             </tr>
         </table>
-    </form>
+ 	
     </div>
         </div>
     </div>
@@ -79,14 +94,13 @@
 <!-- Comments Form -->
 <div class="container">
  <table class="table table-hover">
-
+<form action="<%=request.getContextPath()%>/board/insertBoardComment.do" method="post">
     <tbody>
-    <form action="<%=request.getContextPath()%>/board/insertBoardComment.do" method="post">
         <tr>
-      	<td><textarea type="text" class="form-control" placeholder="글 내용을 작성하세요" name="contentDetail" rows="3" cols="20" ></textarea></td>
+      	<td><textarea type="text" class="form-control" placeholder="글 내용을 작성하세요" name="content" rows="3" cols="20" ></textarea></td>
+      			
       	            <input type="hidden" name="writer" value="">
-   		    	    <input type="hidden" name="boardRef" value="<%=b.getBoardNo()%>">
-   		    	    <input type="hidden" name="boardCommentRef" value="0">
+   		    	    <input type="hidden" name="pNum" value="<%=b.getIbPostNum()%>"> 
       </tr>
     </tbody>
    </table>
@@ -102,6 +116,7 @@
    input[type=checkbox]{
    margin-left:20px;
    }
+   textarea{resizeable:none;}
     table#tbl-comment textarea{margin: 4px 0 0 0;}
     table#tbl-comment button.btn-insert2{width:60px; height:23px; color:white; background:#3300ff; position:relative; top:-5px; left:10px;}
     </style>
@@ -109,3 +124,4 @@
 </style>
 </body>
 </html>
+<%@ include file="/views/common/footer.jsp"%>

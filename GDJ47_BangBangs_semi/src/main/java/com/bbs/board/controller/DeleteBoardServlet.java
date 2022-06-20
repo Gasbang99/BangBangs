@@ -1,8 +1,6 @@
 package com.bbs.board.controller;
 
 import java.io.IOException;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,19 +9,18 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.bbs.board.model.service.BoardService;
 import com.bbs.model.vo.IbBoard;
-import com.bbs.model.vo.IbBoardComment;
 
 /**
- * Servlet implementation class BoardViewServlet
+ * Servlet implementation class DeleteBoardServlet
  */
-@WebServlet("/board/boardView.do")
-public class BoardViewServlet extends HttpServlet {
+@WebServlet("/board/deleteboard.do")
+public class DeleteBoardServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardViewServlet() {
+    public DeleteBoardServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,17 +29,25 @@ public class BoardViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int boardNo=Integer.parseInt(request.getParameter("no"));
+		int boardNo=Integer.parseInt(request.getParameter("num"));
 		
-		IbBoard b = new BoardService().selectBoard(boardNo);
+		int result = new BoardService().deleteBoard(boardNo);
 		
-		request.setAttribute("board", b);
-		
-		
-
-		
-		request.getRequestDispatcher("/views/board/boardView.jsp")
-		.forward(request, response);
+		String msg="",loc="";
+		if(result>0) {
+			msg="게시글이 삭제되었습니다.";
+			
+		}else {
+			msg="게시글 수정실패!";
+			
+		}
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", loc);
+		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
+//		request.setAttribute("board", b);
+//		request.getRequestDispatcher("/views/board/boardList.jsp").forward(request, response);
+		//삭제할때 새로운 화면창넘겨야하니까 sendRedirect로 하고 +로 연결?
+		response.sendRedirect(request.getContextPath()+"/board/boardList.do");
 		
 	}
 
