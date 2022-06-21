@@ -49,4 +49,11 @@ public class MemberService {
 		close(conn);
 		return result;
 	}
+	
+	public Member findMemberId(String name, String mailAddress) {
+		Connection conn = getConnection();
+		Member m = dao.findMemberId(conn, name, mailAddress);
+		close(conn);
+		return m;
+	}
 }

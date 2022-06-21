@@ -60,10 +60,10 @@
 	          }
 	          else{
 	          	$.ajax({
-						url : "<%=request.getContextPath()%>/sendmail.do?mailAddress="+$("#email").val()+"&name="+$("#name").val(),
+						url : "<%=request.getContextPath()%>/sendmail.do?mailAddress="+$("#email").val(),
 						dataType : "json",
 						success : data=>{
-							alert("아이디 찾기\n입력한 정보와 일치하는 아이디입니다.\n방방쓰 ID : "+data);
+							$("#crtfcNoCk").val(data);
 						},
 						error : (r,d)=>{
 							console.log(r);
@@ -82,10 +82,10 @@
 					$("#crtfcNoMsg").text("본인확인이 완료되었습니다!");
                     $("#crtfcNoMsg").css("color","green");
                     $.ajax({
-						url : "<%=request.getContextPath()%>/findidend.do?mailAddress="+$("#email").val(),
+						url : "<%=request.getContextPath()%>/findidend.do?mailAddress="+$("#email").val()+"&name="+$("#name").val(),
 						dataType : "json",
 						success : data=>{
-							$("#crtfcNoCk").val(data);
+							open("<%=request.getContextPath()%>/findidmsg.do?id="+data, "", "width=300,height=200");
 						},
 						error : (r,d)=>{
 							console.log(r);
@@ -97,6 +97,10 @@
                     $("#crtfcNoMsg").css("color","red");
 				}
 			})
+			$("#loginBtn").click(e=>{
+				location.assign("<%=request.getContextPath()%>/login.do");
+			})
+			
 	  })
 	  </script>
 	  
