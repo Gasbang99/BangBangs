@@ -35,7 +35,7 @@
         <input type="number" style="margin-left:40px">
     
     <br><br>
-    <div id="comPaymentClsCd1">
+    <div id="comPaymentClsCd2">
         <p style="font-weight: bold;">&nbsp;결제방식</p>
         <table>
             <tr>

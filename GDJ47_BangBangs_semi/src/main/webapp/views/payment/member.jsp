@@ -14,8 +14,7 @@
     <div id="ppap"></div>
 </div>
     <%@ include file="/views/common/footer.jsp" %>    
-    <script>
-    	
+    <script>   	
     	$.ajax({
 			url : "<%=request.getContextPath()%>/possessionmileage.do?id=<%=loginMember.getMemberId()%>",
 			dataType : "json",
@@ -31,7 +30,9 @@
 	    function comPayment() {
 	        var p = document.getElementById("comPaymentClsCd").value;
 	        document.getElementById("TOT_AMOUNT1").value=p;
-	    }
+	        var i = document.getElementById("TOT_AMOUNT2").value;
+	        document.getElementById("TOT_AMOUNT3").value=p-i;
+	    }   	
 	    function comPayment1() {
 	        var i = document.getElementById("mileage1").value;
 	        var m = $("#posseMile").val();
@@ -120,8 +121,16 @@
     		border: 1px solid #000;
     		box-sizing: border-box;
     		box-shadow: 5px 3px 3px #ccc;    	
-            width: 400px;
+            width: 500px;
         	height:100px;
+        	margin-left: 40px;
+    	}
+    	#selecttype1{
+    		border: 1px solid #000;
+    		box-sizing: border-box;
+    		box-shadow: 5px 3px 3px #ccc;    	
+            width: 500px;
+        	height:200px;
         	margin-left: 40px;
     	}
     	#totalprice{
@@ -180,7 +189,7 @@
     	#voucher{
     		display:flex;
     	}   	
-    	#AmountOfPayment{
+    	#AmountOfPayment,#mileage2{
     		font-weight:bolder;
     	}
     	#TOT_AMOUNT1{
@@ -220,9 +229,19 @@
             border: 1px solid #000;
     		box-sizing: border-box;
     		box-shadow: 5px 3px 3px #ccc;    	
-            width: 400px;
+            width: 500px;
         	height:auto;  
-        	margin-top:30px;     	
+        	margin-top:30px;   
+        	margin-left:40px;  	
+        }
+        #comPaymentClsCd2{
+            background: #fff;          
+            border: 1px solid #000;
+    		box-sizing: border-box;
+    		box-shadow: 5px 3px 3px #ccc;    	
+            width: 500px;
+        	height:auto;  
+        	margin-top:30px;   
         }
         #seasonticket{
             border: solid 1px black;
