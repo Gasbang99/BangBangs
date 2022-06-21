@@ -19,6 +19,16 @@
         var p = document.getElementById("comPaymentClsCd").value;
         document.getElementById("TOT_AMOUNT1").value=p;
     }
+    function comPayment1() {
+        var i = document.getElementById("mileage1").value;
+        if(i>1000){
+        	alert("nope")
+        	$.ajax()
+        }
+        document.getElementById("TOT_AMOUNT2").value=-i;
+        var p = document.getElementById("comPaymentClsCd").value;
+    	document.getElementById("TOT_AMOUNT3").value=p-i;
+    }
     </script>
     <script>
     	$("#btn1").attr("class","nav-link active");
@@ -216,7 +226,7 @@
 	    margin: 10px 15px 0 15px;
 	    float: right;
 	    position: absolute;
-	    left: 1500px;
+	    left: 1200px;
 	    margin: 150px 15px 0 20px;
 		}
         #total{
