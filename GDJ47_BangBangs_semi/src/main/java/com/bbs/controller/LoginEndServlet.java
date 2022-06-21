@@ -55,14 +55,24 @@ public class LoginEndServlet extends HttpServlet {
 		
 		Member m = new MemberService().searchMember(userId, password);
 		
+		String msg = "", loc = "";
+		
 		if(m!=null) {
 			// 유지할 수 있는 데이터로 저장
 			// HttpSession에 데이터를 저장
 			HttpSession session = request.getSession();
 			session.setAttribute("loginMember", m);
+			msg = "환영합니다!";
+			loc = "/";
+		}else {
+			msg = "아이디, 비밀번호를 확인하세요.";
+			loc = "/login.do";
 		}
 		
-		response.sendRedirect(request.getContextPath());
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", loc);
+		
+		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 	}
 
 	/**
