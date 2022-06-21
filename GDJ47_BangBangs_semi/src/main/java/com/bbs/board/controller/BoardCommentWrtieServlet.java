@@ -43,7 +43,7 @@ public class BoardCommentWrtieServlet extends HttpServlet {
 		int result=new BoardService().insertBoardComment(ibc);
 		String msg=result>0?"댓글등록성공":"댓글등록실패";
 		request.setAttribute("msg", msg);
-		request.setAttribute("loc", "/board/boardView.do");
+		request.setAttribute("loc","/board/boardView.do?no="+pNum);
 		
 		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 	}
