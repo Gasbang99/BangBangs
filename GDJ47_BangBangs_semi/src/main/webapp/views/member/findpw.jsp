@@ -61,7 +61,7 @@
 	          }
 	          else{
 	          	$.ajax({
-						url : "<%=request.getContextPath()%>/sendmail.do?mailAddress="+$("#email").val(),
+						url : "<%=request.getContextPath()%>/findend.do?mailAddress="+$("#email").val(),
 						dataType : "json",
 						success : data=>{
 							$("#crtfcNoCk").val(data);
