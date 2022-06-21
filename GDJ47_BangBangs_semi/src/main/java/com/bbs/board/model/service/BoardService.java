@@ -74,9 +74,9 @@ public class BoardService {
 		close(conn);
 		return result;
 	}
-	public List<Member> searchMemberList(String type,String keyword){
+	public List<IbBoard> searchIbBoardList(String type,String keyword){
 		Connection conn=getConnection();
-		List<Member> result = dao.searchMemberList(conn,type,keyword);
+		List<IbBoard> result = dao.searchIbBoardList(conn,type,keyword);
 		close(conn);
 		return result;
 	}

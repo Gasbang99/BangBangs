@@ -10,19 +10,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bbs.board.model.service.BoardService;
-import com.bbs.model.vo.Member;
+import com.bbs.model.vo.IbBoard;
 
 /**
  * Servlet implementation class BoardSearchMember
  */
-@WebServlet("/board/searchMember")
-public class BoardSearchMember extends HttpServlet {
+@WebServlet("/board/searchIb")
+public class BoardSearchIb extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardSearchMember() {
+    public BoardSearchIb() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,11 +34,11 @@ public class BoardSearchMember extends HttpServlet {
 		String type = request.getParameter("searchType");
 		String keyword=request.getParameter("searchKeyword");
 		
-		List<Member> result = new BoardService().searchMemberList(type,keyword);
+		List<IbBoard> result = new BoardService().searchIbBoardList(type,keyword);
 		
 		request.setAttribute("list", result);
 		
-		request.getRequestDispatcher("/views/member/boardList.jsp").forward(request, response);
+		request.getRequestDispatcher("/views/board/boardList.jsp").forward(request, response);
 	}
 
 	/**
