@@ -12,17 +12,17 @@ public class IbBoardService {
 	private IbBoardDao dao=new IbBoardDao();
 	
 
-	public List<IbBoard> selectIbBoardListById(String userId, int cPage, int numPerpage) {
+	public List<IbBoard> selectIbBoardListById(String memberId, int cPage, int numPerpage) {
 		Connection conn=getConnection();
-		List<IbBoard> result=dao.selectIbBoardListById(conn,userId,cPage,numPerpage);
+		List<IbBoard> result=dao.selectIbBoardListById(conn,memberId,cPage,numPerpage);
 		close(conn);
 		return result;
 	}
 
 
-	public int selectIbBoardCountById(String userId) {
+	public int selectIbBoardCountById(String memberId) {
 		Connection conn=getConnection();
-		int result=dao.selectIbBoardCountById(conn, userId);
+		int result=dao.selectIbBoardCountById(conn, memberId);
 		close(conn);
 		return result;
 	}

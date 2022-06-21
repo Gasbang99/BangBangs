@@ -100,44 +100,41 @@ String pageBar=(String)request.getAttribute("pageBar");
         </table>
       </div>
      <section id="memberList-container">
-      
-                <div id="search-container">
-        	검색어 
+       <div id="search-container">
+        	검색 :
         	<select id="searchType">
-        		<option value="number">번호</option>
-        		<option value="userName">작성자</option>
-        		<option value="title">제목</option>
+        		<option value="userId" >작성자</option>
+        		<option value="userName" >제목</option>
+        		<option value="gender" >카테고리</option>
         	</select>
         	<div id="search-userId">
-        		<form action="<%=request.getContextPath()%>/board/searchMember">
-        			<input type="hidden" name="searchType" value="memberId" >
-        			<input type="text" name="searchKeyword" size="25" style=height:22px;
-        			placeholder="검색할 작성자를 입력하세요" list="ids">
-        			<datalist id="ids">
-        			</datalist>
+        		<form action="<%=request.getContextPath()%>/board/searchIb">
+        			<input type="hidden" name="searchType" value="userId" >
+        			<input type="text" name="searchKeyword" size="25" 
+        			placeholder="검색할 작성자를 입력하세요" >
         			<button type="submit" class="btn btn-primary">찾기</button>
         		</form>
-        			<script>
-        			$("input[placeholder*=작성자]").keyup(e=>{
-        				$.ajax({
-        					url:"<%=request.getContextPath()%>/autoComplete.do",
-        					data:{"keyword":e.target.value},
-        					success:data=>{
-        						$("#ids").html("");
-        						/* console.log(data); */
-        						data.forEach(v=>{
-        							const op=$("<option>").attr("value",v).text(v);
-        							$("#ids").append(op);
-        						});
-        					}
-        				});
-        			
-        			});
-        		</script>
-       </section>
-	
-    </div>
-
+        	</div>
+        	<div id="search-userName">
+        		<form action="<%=request.getContextPath()%>/admin/searchMember">
+        			<input type="hidden" name="searchType" value="userName">
+        			<input type="text" name="searchKeyword" size="25" 
+        			placeholder="검색할 이름을 입력하세요">
+        			<button type="submit">검색</button>
+        		</form>
+        	</div>
+        	<div id="search-gender">
+        		<form action="<%=request.getContextPath()%>/admin/searchMember">
+        			<input type="hidden" name="searchType" value="gender">
+        			<label><input type="radio" name="searchKeyword" value="M" >남</label>
+        			<label><input type="radio" name="searchKeyword" value="F" >여</label>
+        			<button type="submit">검색</button>
+        		</form>
+        	</div>
+        	
+        	</div>
+ 				</section>
+            </div>
 		<div id="pageBar">
 		<%=pageBar %>
 		</div>
@@ -154,7 +151,7 @@ String pageBar=(String)request.getAttribute("pageBar");
     section#memberList-container table#tbl-member {width:100%; border:1px solid gray;}
     section#memberList-container table#tbl-member th, table#tbl-member td {border:1px solid gray; padding:10px; }
         div#search-container {margin:0 0 10px 0; padding:3px;}
-    div#search-userId{display:inline-block;}
+  div#search-userId{display:inline-block;}
     div#search-userName{display:none;}
     div#search-gender{display:none;}
     div#numPerpage-container{float:right;}
@@ -168,6 +165,20 @@ String pageBar=(String)request.getAttribute("pageBar");
     }
     div#pageBar{margin-top:10px; text-align:center;}
 	div#pageBar span.cPage{color: #0066ff;}
+	
   </style>
 </html>
+  <script>
+    	$(()=>{
+    		$("#searchType").change(e=>{
+    			/* alert("type이 변경됨"); */
+    			const type=$(e.target).val();
+    			console.log(type);
+    			$("#search-container>div[id!=search-]").hide();
+    			$("#search-"+type).css("display","inline-block");
+    		});
+    		//select바꿀때 input창에 똑같이 나오는것
+    		$("#searchType").change();
+    	})
+    </script>
 <%@ include file="/views/common/footer.jsp"%>

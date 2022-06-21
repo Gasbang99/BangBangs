@@ -33,21 +33,22 @@ public class DeleteBoardServlet extends HttpServlet {
 		
 		int result = new BoardService().deleteBoard(boardNo);
 		
-		String msg="",loc="";
-		if(result>0) {
-			msg="게시글이 삭제되었습니다.";
-//			loc="/board/boardList.do?no="+boardNo;
-			response.sendRedirect(request.getContextPath()+"/board/boardList.do");
-		}else {
-			msg="게시글 수정실패!";
-			loc="/board/boardView.do?no="+boardNo;
+//		String msg="",loc="";
+//		if(result>0) {
+//			msg="게시글이 삭제되었습니다.";
+////			loc="/board/boardList.do?no="+boardNo;
+//			response.sendRedirect(request.getContextPath()+"/board/boardList.do");
+//		}else {
+//			msg="게시글 수정실패!";
+//			loc="/board/boardView.do?no="+boardNo;
 			
-		}
-		request.setAttribute("msg", msg);
-		request.setAttribute("loc", loc);
-		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
+//		}
+//		request.setAttribute("msg", msg);
+//		request.setAttribute("loc", loc);
+//		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 //		request.setAttribute("board", b);
 //		request.getRequestDispatcher("/views/board/boardList.jsp").forward(request, response);
+		response.sendRedirect(request.getContextPath()+"/board/boardList.do");
 		//삭제할때 새로운 화면창넘겨야하니까 sendRedirect로 하고 +로 연결?
 		
 		

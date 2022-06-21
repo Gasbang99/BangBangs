@@ -179,17 +179,17 @@ public class BoardDao {
 		}
 		return result;
 	}
-	public List<Member> searchMemberList(Connection conn,String type,String keyword){
+	public List<IbBoard> searchIbBoardList(Connection conn,String type,String keyword){
 		PreparedStatement pstmt = null;
 		ResultSet rs =null;
-		List<Member> result = new ArrayList();
-		String sql=prop.getProperty("searchMemberList");
+		List<IbBoard> result = new ArrayList();
+		String sql=prop.getProperty("searchIbBoardList");
 		sql=sql.replace("$COL", type);
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, type.equals("member_id")?"%"+keyword+"%":keyword);
 			rs = pstmt.executeQuery();
-			while(rs.next())result.add(getMember(rs));
+			while(rs.next())result.add(getIbBoard(rs));
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
