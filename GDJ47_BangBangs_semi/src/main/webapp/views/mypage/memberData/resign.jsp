@@ -34,7 +34,7 @@
 	        </li>
 		</ul>
 		<div id="subMenu-detail">
-			<form action="<%=request.getContextPath()%>/resignProgress.do">
+			<form action="<%=request.getContextPath()%>/resignProgress.do" class="position-absolute top-50 start-50 translate-middle">
 				<input type="hidden" name="member_id"value="<%=loginMember.getMemberId()%>">
 				<input type="submit" value="탈퇴하기">
 			</form>
@@ -55,10 +55,10 @@
         body {
             padding-left: 300px;
             padding-right: 300px;
-            border:1px solid red;
+            /* border:1px solid red; */
         }
         #subMenu {
-        	border:1px solid red;
+        	/* border:1px solid red; */
         }
     </style>
     <script type="text/javascript">
