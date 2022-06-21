@@ -4,11 +4,9 @@
 <% 	IbBoard ibBoards=(IbBoard)request.getAttribute("ibBoard"); 
 	String pageBar=(String)request.getAttribute("pageBar");%>
 	
-	<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
     <%@ page import="com.bbs.model.vo.Member" %>
 <%
-	Member m=(Member)request.getAttribute("member");
+	
 %>
 <%@ include file="/views/common/header.jsp" %>
     <ul id="mypageHeaderNav" class="nav nav-pills  justify-content-center">
@@ -26,18 +24,18 @@
     <div id="subMenu">
 		<ul class="nav nav-tabs">
 	        <li class="nav-item">
-	            <a class="nav-link" id="change" href="<%=request.getContextPath()%>/memberdata.do">회원정보수정</a>
+	            <a class="nav-link" id="change" href="<%=request.getContextPath()%>/memberdata.do?memberId=<%=loginMember.getMemberId()%>">회원정보수정</a>
 	        </li>
 	        <li class="nav-item">
-	            <a class="nav-link" id="inquiry" href="<%=request.getContextPath()%>/inquirydata.do">문의내용</a>
+	            <a class="nav-link" id="inquiry" href="<%=request.getContextPath()%>/inquirydata.do?memberId=<%=loginMember.getMemberId()%>">문의내용</a>
 	        </li>
 	        <li class="nav-item">
-	            <a class="nav-link active" id="resign" href="<%=request.getContextPath()%>/resignmember.do">회원탈퇴</a>
+	            <a class="nav-link active" id="resign" href="<%=request.getContextPath()%>/resignmember.do?memberId=<%=loginMember.getMemberId()%>">회원탈퇴</a>
 	        </li>
 		</ul>
 		<div id="subMenu-detail">
 			<form action="<%=request.getContextPath()%>/resignProgress.do">
-				<input type="hidden" value="<%=m.getMemberId()%>">
+				<input type="hidden" name="member_id"value="<%=loginMember.getMemberId()%>">
 				<input type="submit" value="탈퇴하기">
 			</form>
 		</div>

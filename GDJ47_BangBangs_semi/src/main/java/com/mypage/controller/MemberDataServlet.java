@@ -33,8 +33,8 @@ public class MemberDataServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
-		String userId=request.getParameter("userId");
-		Member m= new MemberService().selectMemberById(userId);
+		String memberId=request.getParameter("memberId");
+		Member m= new MemberService().selectMemberById(memberId);
 		
 		request.setAttribute("member", m);	
 		
