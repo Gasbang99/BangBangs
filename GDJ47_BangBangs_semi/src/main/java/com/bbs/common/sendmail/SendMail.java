@@ -1,5 +1,7 @@
 package com.bbs.common.sendmail;
 
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -12,6 +14,8 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import org.apache.commons.lang3.RandomStringUtils;
+
+import com.bbs.common.JDBCTemplate;
 
 public class SendMail {
 	//출처: https://ktko.tistory.com/entry/JAVA-SMTP와-Mail-발송하기Google-Naver [KTKO 개발 블로그와 여행 일기:티스토리]
@@ -62,9 +66,16 @@ public class SendMail {
     }
 	
 	public static String naverMailSend(String naverAddress) {
-        String host = "smtp.naver.com";
+		String host = "smtp.naver.com";
         String user = "lojyve8@naver.com"; // 네이버일 경우 네이버 계정, gmail경우 gmail 계정
-        String password = "thswldid4fkdgo*";// 패스워드
+		Properties prop = new Properties();
+		String path = JDBCTemplate.class.getResource("/np.properties").getPath();
+		try {
+			prop.load(new FileReader(path));
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
+		String password = prop.getProperty("pwd");// 패스워드
 
         // SMTP 서버 정보를 설정한다.
         Properties props = new Properties();

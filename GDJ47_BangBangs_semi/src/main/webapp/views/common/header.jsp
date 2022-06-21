@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.bbs.model.vo.Member" %>
+<%
+	Member loginMember = (Member)session.getAttribute("loginMember");
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +11,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Grayscale - Start Bootstrap Theme</title>
+        <title>BangBangs</title>
+        <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
@@ -86,8 +91,13 @@
                         <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/board/boardList.do">문의/FAQ</a></li>
                         <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/member.do">이용권구매</a></li>
                         <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/searchrentalshop.do">대여소조회</a></li>
-                        <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/login.do">로그인</a></li>
-                        <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/enrollmember.do">회원가입</a></li>
+                        <% if(loginMember==null){ %>
+	                        <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/login.do">로그인</a></li>
+	                        <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/enrollmember.do">회원가입</a></li>
+                        <%}else{ %>
+                        	<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>">마이페이지</a></li>
+	                        <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/logout.do">로그아웃</a></li>
+                        <%} %>
                     </ul>
                 </div>
             </div>

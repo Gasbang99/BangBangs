@@ -54,7 +54,7 @@ public class MemberDao {
 		Member m=null;
 		try {
 			pstmt=conn.prepareStatement(prop.getProperty("selectMemberById"));
-//			pstmt.setString(1, userId);
+			pstmt.setString(1, userId);
 			rs=pstmt.executeQuery();
 			if(rs.next()) m=getMember(rs);
 		}catch(SQLException e) {

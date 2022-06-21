@@ -1,27 +1,24 @@
 package com.bbs.controller;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.bbs.common.sendmail.SendMail;
-import com.google.gson.Gson;
+import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class SendMailServlet
+ * Servlet implementation class LogoutServlet
  */
-@WebServlet("/sendmail.do")
-public class SendMailServlet extends HttpServlet {
+@WebServlet("/logout.do")
+public class LogoutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SendMailServlet() {
+    public LogoutServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,15 +29,9 @@ public class SendMailServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		String mailAddress = request.getParameter("mailAddress");
-		
-		String crtfcNo = SendMail.naverMailSend(mailAddress);
-		
-		Gson gson = new Gson();
-		
-		response.setContentType("application/json;charset=utf-8");
-		
-		gson.toJson(crtfcNo, response.getWriter());
+		HttpSession session = request.getSession(false);
+		if(session!=null) session.invalidate();
+		response.sendRedirect(request.getContextPath());
 	}
 
 	/**
