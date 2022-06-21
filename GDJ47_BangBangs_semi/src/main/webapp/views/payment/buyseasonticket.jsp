@@ -1,9 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.bbs.model.vo.Member" %>
-<%
-   Member loginMember = (Member)session.getAttribute("loginMember");
-%>
 <div><br><br>
         <h1>정기권 구매하기</h1><hr>
 </div>
@@ -34,15 +30,16 @@
             <p>&nbsp;</p>
 </div><br>
 	<div id="selecttype">
-        <p style="font-weight: bold;">&nbsp;마일리지</p>
-        <input type="number" min="0" max="1000" id="mileage1" style="margin-left:40px" onkeyup="comPayment1();" > 
+        <p style="font-weight: bold;">&nbsp;보유 마일리지 <input type="number" id="posseMile" readonly="readonly"></p>
+        <input type="number" id="mileage1" placeholder="마일리지 사용" style="margin-left:40px" onkeyup="comPayment1();" >
         <br><br>
+    </div>
 	<style>
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
+	input[type="number"]::-webkit-outer-spin-button,
+	input[type="number"]::-webkit-inner-spin-button {
+	    -webkit-appearance: none;
+	    margin: 0;
+	}
 </style>
 <div id="comPaymentClsCd1">
         <p style="font-weight: bold;">&nbsp;결제방식</p>
