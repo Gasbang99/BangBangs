@@ -16,7 +16,7 @@ import com.google.gson.Gson;
 /**
  * Servlet implementation class RentalShopManagementServlet
  */
-@WebServlet("/searchrentalshop.do")
+@WebServlet("/ajaxsearchrentalshop.do")
 public class RentalShopManagementServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -39,15 +39,12 @@ public class RentalShopManagementServlet extends HttpServlet {
 			System.out.println(r);
 		}
 		
+		Gson gson = new Gson();
+		
 		response.setContentType("application/json;charset=utf-8");
 		
-		String data=new Gson().toJson(list);
+		gson.toJson(list, response.getWriter());
 		
-		System.out.println(data);
-		response.getWriter().print(data);
-		
-		request.getRequestDispatcher("/views/admin_views/rentalShopManagement/rentalShopMap.jsp")
-		.forward(request, response);
 	}
 
 	/**

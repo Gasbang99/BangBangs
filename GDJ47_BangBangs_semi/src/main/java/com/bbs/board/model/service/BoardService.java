@@ -74,9 +74,15 @@ public class BoardService {
 		close(conn);
 		return result;
 	}
-	public List<IbBoard> searchIbBoardList(String type,String keyword){
+	public List<IbBoard> searchIbBoardList(String type,String keyword,int cPage,int numPerpage){
 		Connection conn=getConnection();
-		List<IbBoard> result = dao.searchIbBoardList(conn,type,keyword);
+		List<IbBoard> result = dao.searchIbBoardList(conn,type,keyword,cPage,numPerpage);
+		close(conn);
+		return result;
+	}
+	public int searchIbBoardCount(String type,String keyword) {
+		Connection conn=getConnection();
+		int result=dao.searchIbBoardCount(conn,type,keyword);
 		close(conn);
 		return result;
 	}
