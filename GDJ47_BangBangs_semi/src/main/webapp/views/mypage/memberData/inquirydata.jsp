@@ -83,10 +83,10 @@
         body {
             padding-left: 300px;
             padding-right: 300px;
-            border:1px solid red;
+            /* border:1px solid red; */
         }
         #subMenu {
-        	border:1px solid red;
+        	/* border:1px solid red; */
         }
     </style>
     <script type="text/javascript">
