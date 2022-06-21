@@ -9,10 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.bbs.model.vo.IbBoard;
+import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
+
 import com.bbs.board.model.service.BoardService;
+import com.bbs.common.MyFileRenamedPolicy;
+import com.bbs.model.vo.IbBoard;
 import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 /**
  * Servlet implementation class BoardWriteServlet
@@ -33,12 +35,18 @@ public class BoardWriteEndServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String root=getServletContext().getRealPath("/upload/");
-		String path=root+"/board";
-		File f=new File(path);
-		if(!f.exists()) f.mkdirs();
-		MultipartRequest mr=new MultipartRequest(request,path,(1023*1024*10),"UTF-8",
-				new DefaultFileRenamePolicy());
+		if(!ServletFileUpload.isMultipartContent(request)) {
+			 request.setAttribute("msg", "공지사항 작성오류 [form:enctype] 관리자에게 문의하세요! :(");
+			 request.setAttribute("loc", "/board/boardWrite.do");
+			 request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
+//			throws new LoginCheckException("enctype에러");
+		}else {
+			String root=getServletContext().getRealPath("/upload/board");
+			String path=root;
+			File f=new File(path);
+			if(!f.exists()) f.mkdirs();
+			MultipartRequest mr=new MultipartRequest(request,path,(1023*1024*10),"UTF-8",
+					new MyFileRenamedPolicy());
 		
 		IbBoard b=IbBoard.builder()
 				.ibTitle(mr.getParameter("boardTitle"))
@@ -62,6 +70,7 @@ public class BoardWriteEndServlet extends HttpServlet {
 		request.setAttribute("msg", msg);
 		request.setAttribute("loc", loc);
 		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
+	}
 	}
 
 	/**

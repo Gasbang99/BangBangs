@@ -1,10 +1,11 @@
 package com.bbs.model.dao;
 
-import static com.bbs.common.JDBCTemplate.close;
+import static com.bbs.common.JDBCTemplate.*;
 
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -64,6 +65,32 @@ public class MemberDao {
 		}return m;
 	}
 	
+	public int insertMember(Connection conn, Member m) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("insertMember"));
+			pstmt.setString(1, m.getMemberId());
+			pstmt.setString(2, m.getMemberPassword());
+			pstmt.setString(3, m.getMemberName());
+			pstmt.setString(4, m.getGender());
+			pstmt.setString(5, m.getBirthday());
+			pstmt.setString(6, m.getEmail());
+			pstmt.setString(7, m.getAddress());
+			pstmt.setString(8, m.getPhone());
+			result = pstmt.executeUpdate();
+			
+			if(result>0) commit(conn);
+			else rollback(conn);
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
 	public int updatePassword(Connection conn, String userId, String password) {
 		PreparedStatement pstmt=null;
 		int result=0;
@@ -84,19 +111,54 @@ public class MemberDao {
 		Member m=null;
 		try {
 			m=new Member();
-			m.setMemberId(rs.getString("memberId"));
-			m.setMemberName(rs.getString("memberName"));
+			m.setMemberId(rs.getString("member_Id"));
+			m.setMemberName(rs.getString("member_Name"));
 			m.setGender(rs.getString("gender"));
 			m.setBirthday(rs.getString("birthday"));
 			m.setEmail(rs.getString("email"));
 			m.setAddress(rs.getString("address"));
 			m.setPhone(rs.getString("phone"));
-			m.setEnrollDate(rs.getDate("enrollDate"));
-			m.setMemberLevel(rs.getString("memberLevel"));
-			m.setTotalMileage(rs.getInt("totalMileage"));
+			m.setEnrollDate(rs.getDate("enroll_Date"));
+			m.setMemberLevel(rs.getString("member_Level"));
+			m.setTotalMileage(rs.getInt("total_Mileage"));
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
 		return m;
+	}
+
+	public int updateMember(Connection conn, Member m) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("updateMember"));
+			pstmt.setString(1, m.getMemberName());
+			pstmt.setString(2, m.getGender());
+			pstmt.setString(3, m.getBirthday());
+			pstmt.setString(4, m.getEmail());
+			pstmt.setString(5, m.getPhone());
+			pstmt.setString(6, m.getAddress());
+			pstmt.setString(7, m.getMemberId());
+
+			result=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}return result;
+	}
+
+	public int deleteMember(Connection conn, String memberId) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("deleteMember"));
+			pstmt.setString(1,memberId);
+			result=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}return result;
 	}
 }

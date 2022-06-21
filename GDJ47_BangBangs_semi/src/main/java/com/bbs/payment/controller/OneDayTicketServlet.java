@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class OneDayTicketServlet
  */
-@WebServlet("/buyonedayticket.do")
+@WebServlet("/onedayticket.do")
 public class OneDayTicketServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

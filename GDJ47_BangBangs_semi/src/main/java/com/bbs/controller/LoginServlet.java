@@ -1,6 +1,7 @@
 package com.bbs.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,8 +21,6 @@ public class LoginServlet extends HttpServlet {
     public LoginServlet() {
         super();
         // TODO Auto-generated constructor stub
-        
-        
     }
 
 	/**
@@ -30,13 +29,7 @@ public class LoginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		// 클라이언트가 보낸 userId, password 값을 가져온다.
-		String userId = request.getParameter("userId");
-		String password = request.getParameter("password");
-		
-		
-		
-		
+		request.getRequestDispatcher("/views/member/login.jsp").forward(request,response);
 	}
 
 	/**

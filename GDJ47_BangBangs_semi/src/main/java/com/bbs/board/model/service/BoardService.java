@@ -1,15 +1,18 @@
 package com.bbs.board.model.service;
 
 import static com.bbs.common.JDBCTemplate.close;
+import static com.bbs.common.JDBCTemplate.commit;
 import static com.bbs.common.JDBCTemplate.getConnection;
-import static com.bbs.common.JDBCTemplate.*;
-
+import static com.bbs.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.List;
 
 import com.bbs.board.model.dao.BoardDao;
 import com.bbs.model.vo.IbBoard;
+import com.bbs.model.vo.IbBoardComment;
+import com.bbs.model.vo.Member;
+;
 public class BoardService {
 	
 	private BoardDao dao=new BoardDao();
@@ -35,15 +38,51 @@ public class BoardService {
 		close(conn);
 		return result;
 	}
-//	public IbBoard selectBoard(int boardNo) {
+	public IbBoard selectBoard(int boardNo) {
+		Connection conn=getConnection();
+		IbBoard b = dao.selectBoard(conn,boardNo);
+		close(conn);
+		return b;
+	}
+	public int insertBoardComment(IbBoardComment ibc) {
+		Connection conn=getConnection();
+		int result=dao.insertBoardComment(conn,ibc);
+		if(result>0)commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result;
+      }
+	public int updateMember(IbBoard b) {
+		Connection conn=getConnection();
+		int result=dao.updateMember(conn,b);
+		if(result>0)commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result;
+	}
+	public int deleteBoard(int boardNo) {
+		Connection conn=getConnection();
+		int result=dao.deleteBoard(conn,boardNo);
+		if(result>0)commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result;
+	}
+	public List<String> searchMemberId(String keyword){
+		Connection conn=getConnection();
+		List<String> result=dao.searchMemberId(conn,keyword);
+		close(conn);
+		return result;
+	}
+	public List<Member> searchMemberList(String type,String keyword){
+		Connection conn=getConnection();
+		List<Member> result = dao.searchMemberList(conn,type,keyword);
+		close(conn);
+		return result;
+	}
+//	public List<IbBoardComment> selectBoardCommentList(int boardNo){
 //		Connection conn=getConnection();
-//		IbBoard b = dao.selectBoard(conn,boardNo);
-//		close(conn);
-//		return b;
-//	}
-//	public List<BoardComment> selectBoardCommentList(int boardNo){
-//		Connection conn=getConnection();
-//		List<BoardComment> result=dao.selectBoardCommentList(conn,boardNo);
+//		List<IbBoardComment> result=dao.selectBoardCommentList(conn,boardNo);
 //		close(conn);
 //		return result;
 //	}

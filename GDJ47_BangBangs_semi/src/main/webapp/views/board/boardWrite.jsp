@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+
+<%@ include file="/views/common/header.jsp"%>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -29,7 +30,7 @@
         <table class="table table-boardered">
             <tr>
                 <th>작성자</th>
-                <td><input type="text" name="boardWriter" name="id" required></td>        
+                <td><input type="text" class="form-control" name="boardWriter" required></td>        
             </tr>
             <tr>
                 <th>제목</th>
@@ -77,9 +78,8 @@
       text-align: center;
       font-weight: bold;
     }
-   input[type=checkbox]{
-   margin-left:20px;
-   }
+  
 </style>
 </body>
 </html>
+<%@ include file="/views/common/footer.jsp"%>

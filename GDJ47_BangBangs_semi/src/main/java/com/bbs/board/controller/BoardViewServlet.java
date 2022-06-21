@@ -10,9 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bbs.board.model.service.BoardService;
-import com.bbs.model.vo.Board;
-import com.bbs.model.vo.BoardComment;
 import com.bbs.model.vo.IbBoard;
+import com.bbs.model.vo.IbBoardComment;
 
 /**
  * Servlet implementation class BoardViewServlet
@@ -35,14 +34,12 @@ public class BoardViewServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int boardNo=Integer.parseInt(request.getParameter("no"));
 		
-//		IbBoard b = new BoardService().selectBoard(boardNo);
-//		
-//		request.setAttribute("board", new BoardService().selectBoard(boardNo,isRead));
-//		
-//		
-//		List<BoardComment> commentList=new BoardService().selectBoardCommentList(boardNo);
-//		request.setAttribute("comments", commentList);
-				
+		IbBoard b = new BoardService().selectBoard(boardNo);
+		
+		request.setAttribute("board", b);
+		
+		
+
 		
 		request.getRequestDispatcher("/views/board/boardView.jsp")
 		.forward(request, response);
