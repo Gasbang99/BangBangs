@@ -29,7 +29,7 @@
         <input type="number" style="margin-left:40px">
     
     <br><br>
-    <div id="comPaymentClsCd2">
+    <div id="comPaymentClsCd1">
         <p style="font-weight: bold;">&nbsp;결제방식</p>
         <table>
             <tr>

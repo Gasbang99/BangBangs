@@ -34,6 +34,7 @@
 	        </li>
 		</ul>
 		<div id="subMenu-detail">
+<<<<<<< HEAD
 			<form action="<%=request.getContextPath()%>/resignProgress.do">
 				<input type="hidden" name="member_id"value="<%=loginMember.getMemberId()%>">
 				<input type="submit" value="탈퇴하기">
@@ -59,6 +60,33 @@
         }
         #subMenu {
         	border:1px solid red;
+=======
+			<form action="<%=request.getContextPath()%>/resignProgress.do" class="position-absolute top-50 start-50 translate-middle">
+				<input type="hidden" name="member_id"value="<%=loginMember.getMemberId()%>">
+				<input type="submit" value="탈퇴하기">
+			</form>
+		</div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <style>
+        #mypageHeaderNav{
+        	padding-top:100px;
+            padding-left: 100px;
+            padding-right: 100px;
+        }
+        #mypageHeaderNav span{
+            font-size: 30px;
+        }
+        body {
+            padding-left: 300px;
+            padding-right: 300px;
+            /* border:1px solid red; */
+        }
+        #subMenu {
+        	/* border:1px solid red; */
+>>>>>>> branch 'BangBangs' of https://github.com/Gasbang99/BangBangs.git
         }
     </style>
     <script type="text/javascript">

@@ -84,6 +84,7 @@ public class InquiryDataServlet extends HttpServlet {
 			pageBar+="<a href="+request.getRequestURL()
 			+"?cPage="+(pageNo)
 			+"&numPerpage="+numPerpage+">[다음]</a>";
+
 		}
 		System.out.println(pageBar);
 		request.setAttribute("pageBar", pageBar);

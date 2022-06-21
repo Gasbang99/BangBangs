@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * Servlet implementation class MemberServlet
  */
@@ -27,7 +29,14 @@ public class MemberServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/views/payment/member.jsp").forward(request, response);
+		
+		HttpSession session = request.getSession();
+		if(session.getAttribute("loginMember")!=null) {
+			request.getRequestDispatcher("/views/payment/member.jsp").forward(request, response);			
+		}else {
+			request.getRequestDispatcher("/views/member/login.jsp").forward(request, response);
+		}
+
 	}
 
 	/**

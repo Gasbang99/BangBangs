@@ -35,7 +35,11 @@
         <input type="number" style="margin-left:40px">
     
     <br><br>
+<<<<<<< HEAD
     <div id="comPaymentClsCd2">
+=======
+    <div id="comPaymentClsCd1">
+>>>>>>> branch 'BangBangs' of https://github.com/Gasbang99/BangBangs.git
         <p style="font-weight: bold;">&nbsp;결제방식</p>
         <table>
             <tr>

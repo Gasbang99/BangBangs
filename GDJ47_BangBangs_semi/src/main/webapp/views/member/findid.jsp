@@ -60,6 +60,7 @@
 	          }
 	          else{
 	          	$.ajax({
+<<<<<<< HEAD
 						url : "<%=request.getContextPath()%>/sendmail.do?mailAddress="+$("#email").val()+"&name="+$("#name").val(),
 						dataType : "json",
 						success : data=>{
@@ -97,6 +98,49 @@
                     $("#crtfcNoMsg").css("color","red");
 				}
 			})
+=======
+						url : "<%=request.getContextPath()%>/sendmail.do?mailAddress="+$("#email").val(),
+						dataType : "json",
+						success : data=>{
+							$("#crtfcNoCk").val(data);
+						},
+						error : (r,d)=>{
+							console.log(r);
+							console.log(d);
+						}
+					})
+					$("#emailMsg").text("인증번호를 발송했습니다. 이메일을 확인하세요.");
+	              $("#emailMsg").css("color","green");
+	          }
+			})
+			
+			$("#crtfcNoBtn").click(e=>{
+				const crtfcNo1 = $("#crtfcNo").val();
+				const crtfcNo2 = $("#crtfcNoCk").val();
+				if(crtfcNo1==crtfcNo2){
+					$("#crtfcNoMsg").text("본인확인이 완료되었습니다!");
+                    $("#crtfcNoMsg").css("color","green");
+                    $.ajax({
+						url : "<%=request.getContextPath()%>/findidend.do?mailAddress="+$("#email").val()+"&name="+$("#name").val(),
+						dataType : "json",
+						success : data=>{
+							open("<%=request.getContextPath()%>/findidmsg.do?id="+data, "", "width=300,height=200");
+						},
+						error : (r,d)=>{
+							console.log(r);
+							console.log(d);
+						}
+					})
+				}else{
+					$("#crtfcNoMsg").text("인증번호가 맞지 않습니다.");
+                    $("#crtfcNoMsg").css("color","red");
+				}
+			})
+			$("#loginBtn").click(e=>{
+				location.assign("<%=request.getContextPath()%>/login.do");
+			})
+			
+>>>>>>> branch 'BangBangs' of https://github.com/Gasbang99/BangBangs.git
 	  })
 	  </script>
 	  
