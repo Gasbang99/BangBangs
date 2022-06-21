@@ -1,31 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.bbs.model.vo.Member" %>
-<%
-	Member loginMember = (Member)session.getAttribute("loginMember");
-	Cookie[] cookies = request.getCookies();
-	String saveId = null;
-	if(cookies!=null){
-		for(Cookie c : cookies){
-			if(c.getName().equals("saveId")){
-				saveId = c.getValue();
-			}
-		}
-	}
-%>
 <%@ include file="/views/common/header.jsp" %>
         <!-- Masthead-->
        
 
         <header class="masthead"><h1 class="mx-auto my-0 text-uppercase"><img src="https://www.popco.net/zboard/data/photo_gallery/2018/10/06/15038507495bb8218e2f876.jpg" style="width:100%; height:auto;"></h1>
-                        <style>
-            <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
+                <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
                 <div class="d-flex justify-content-center">
-                    <div class="text-center">                
-                        
-                       
-                        </style>
-                        <h2 class="text-white-50 mx-auto mt-2 mb-5"></h2>
+              	<div class="text-center">             
+                <h2 class="text-white-50 mx-auto mt-2 mb-5"></h2>
                         
                     </div>
                 </div>
@@ -63,7 +46,7 @@
                     <div class="col-xl-4 col-lg-5">
                         <div class="featured-text text-center text-lg-left">
                             <h4>Introduce</h4>
-                            <p class="text-black-50 mb-0">어서오세요 GooDeebike 입니다.</p>
+                            <p class="text-black-50 mb-0">어서오세요 방방쓰 입니다.</p>
                         </div>
                     </div>
                 </div>
