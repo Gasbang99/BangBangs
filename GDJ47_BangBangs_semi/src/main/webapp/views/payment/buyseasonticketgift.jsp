@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<div>
-        <h1>정기권 선물하기</h1>
+<div><br><br>
+        <h1>정기권 선물하기</h1><hr>
     </div>
     <div style="margin-left:30px;margin-top:50px;">
         <h3>이용권 사용안내</h3>
@@ -30,11 +30,12 @@
             <p>&nbsp;</p>
     </div>
     <br>
-        <p style="font-weight: bold;">선물 받는 사람</p>
-        <input type="number">전화번호
+        <div id="selecttype">
+        <p style="font-weight: bold;">&nbsp;선물받는 분의 전화번호</p>
+        <input type="number" style="margin-left:40px">
     
     <br><br>
-    <div id="comPaymentClsCd">
+    <div id="comPaymentClsCd1">
         <p style="font-weight: bold;">&nbsp;결제방식</p>
         <table>
             <tr>

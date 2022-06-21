@@ -6,23 +6,22 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.bbs.model.service.MemberService;
 import com.bbs.model.vo.Member;
 
-
-
 /**
- * Servlet implementation class MemberDataServlet
+ * Servlet implementation class ResignProgressservlet
  */
-@WebServlet("/memberdata.do")
-public class MemberDataServlet extends HttpServlet {
+@WebServlet("/resignprogress.do")
+public class ResignProgressservlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberDataServlet() {
+    public ResignProgressservlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,13 +32,25 @@ public class MemberDataServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
-		String userId=request.getParameter("userId");
-		Member m= new MemberService().selectMemberById(userId);
+		String memberId=request.getParameter("member_id");
 		
-		request.setAttribute("member", m);	
+		int result=new MemberService().deleteMember(memberId);
 		
+		String msg="",loc="";
 		
-		request.getRequestDispatcher("/views/mypage/memberData/mypage_memberData.jsp").forward(request, response);
+		loc="/mainscreen.do";
+		if(result>0) {
+			msg="탈퇴되었습니다";
+			HttpSession session=request.getSession();
+			session.setAttribute("loginMember", "");
+		}else {
+			msg="탈퇴를 실패했습니다";			
+		}
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", loc);
+		
+		request.getRequestDispatcher("/views/common/msg.jsp")
+		.forward(request, response);
 	}
 
 	/**
