@@ -109,7 +109,7 @@
                                 <div class="col-auto"><button class="btn btn-primary disabled" id="submitButton" type="submit">Notify Me!</button></div>
                             </div>
                             <div class="invalid-feedback mt-2" data-sb-feedback="emailAddress:required">An email is required.</div>
-                            <div class="invalid-feedback mt-2" data-sb-feedback="emailAddress:email">Email is not valid.</div>
+                            <div class="invalid-feed\back mt-2" data-sb-feedback="emailAddress:email">Email is not valid.</div>
                             <!-- Submit success message-->
                             <!---->
                             <!-- This is what your users will see when the form-->
@@ -190,3 +190,4 @@
                }
             </style>
         <%@ include file="/views/common/footer.jsp" %>
+        <a href="<%=request.getContextPath() %>/brokenreport.do" target="_blank"><h2>멤버리스트</h2></a> <!-- 테스트문구 지워도됨 -->

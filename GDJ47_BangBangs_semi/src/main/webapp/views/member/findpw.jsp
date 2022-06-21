@@ -87,6 +87,10 @@
                     $("#crtfcNoMsg").css("color","red");
 				}
 			})
+			
+			$("#loginBtn").click(e=>{
+				location.assign("<%=request.getContextPath()%>/login.do");
+			})
 	  })
 	  </script>
 	  

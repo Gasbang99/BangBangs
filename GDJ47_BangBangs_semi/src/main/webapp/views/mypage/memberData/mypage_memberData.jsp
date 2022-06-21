@@ -33,7 +33,7 @@
 
 		<div id="subMenu-detail">
 		<form action="<%=request.getContextPath()%>/changememberdata.do">
-			<div style="text-align:center;">
+			<div style="text-align:center;" class="position-absolute top-50 start-50 translate-middle">
 				<table>
 				    <tr>
 				        <td>아이디</td>
@@ -136,10 +136,10 @@
         body {
             padding-left: 300px;
             padding-right: 300px;
-            border:1px solid red;
+            /* border:1px solid red; */
         }
         #subMenu {
-        	border:1px solid red;
+        	/* border:1px solid red; */
         }
     </style>
     <script type="text/javascript">

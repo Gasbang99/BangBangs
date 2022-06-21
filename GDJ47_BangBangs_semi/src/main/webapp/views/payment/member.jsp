@@ -15,7 +15,6 @@
 </div>
     <%@ include file="/views/common/footer.jsp" %>    
     <script>
-    	
     	$.ajax({
 			url : "<%=request.getContextPath()%>/possessionmileage.do?id=<%=loginMember.getMemberId()%>",
 			dataType : "json",
