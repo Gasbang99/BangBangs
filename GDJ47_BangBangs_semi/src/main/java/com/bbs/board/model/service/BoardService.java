@@ -5,13 +5,13 @@ import static com.bbs.common.JDBCTemplate.commit;
 import static com.bbs.common.JDBCTemplate.getConnection;
 import static com.bbs.common.JDBCTemplate.rollback;
 
-
 import java.sql.Connection;
 import java.util.List;
 
 import com.bbs.board.model.dao.BoardDao;
 import com.bbs.model.vo.IbBoard;
 import com.bbs.model.vo.IbBoardComment;
+import com.bbs.model.vo.Member;
 ;
 public class BoardService {
 	
@@ -65,6 +65,18 @@ public class BoardService {
 		int result=dao.deleteBoard(conn,boardNo);
 		if(result>0)commit(conn);
 		else rollback(conn);
+		close(conn);
+		return result;
+	}
+	public List<String> searchMemberId(String keyword){
+		Connection conn=getConnection();
+		List<String> result=dao.searchMemberId(conn,keyword);
+		close(conn);
+		return result;
+	}
+	public List<Member> searchMemberList(String type,String keyword){
+		Connection conn=getConnection();
+		List<Member> result = dao.searchMemberList(conn,type,keyword);
 		close(conn);
 		return result;
 	}

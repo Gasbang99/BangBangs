@@ -109,8 +109,8 @@ String pageBar=(String)request.getAttribute("pageBar");
         		<option value="title">제목</option>
         	</select>
         	<div id="search-userId">
-        		<form action="<%=request.getContextPath()%>/admin/searchMember">
-        			<input type="hidden" name="searchType" value="userId" >
+        		<form action="<%=request.getContextPath()%>/board/searchMember">
+        			<input type="hidden" name="searchType" value="memberId" >
         			<input type="text" name="searchKeyword" size="25" style=height:22px;
         			placeholder="검색할 작성자를 입력하세요" list="ids">
         			<datalist id="ids">

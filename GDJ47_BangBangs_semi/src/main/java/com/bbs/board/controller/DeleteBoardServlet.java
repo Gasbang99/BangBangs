@@ -36,9 +36,11 @@ public class DeleteBoardServlet extends HttpServlet {
 		String msg="",loc="";
 		if(result>0) {
 			msg="게시글이 삭제되었습니다.";
-			
+//			loc="/board/boardList.do?no="+boardNo;
+			response.sendRedirect(request.getContextPath()+"/board/boardList.do");
 		}else {
 			msg="게시글 수정실패!";
+			loc="/board/boardView.do?no="+boardNo;
 			
 		}
 		request.setAttribute("msg", msg);
@@ -47,7 +49,8 @@ public class DeleteBoardServlet extends HttpServlet {
 //		request.setAttribute("board", b);
 //		request.getRequestDispatcher("/views/board/boardList.jsp").forward(request, response);
 		//삭제할때 새로운 화면창넘겨야하니까 sendRedirect로 하고 +로 연결?
-		response.sendRedirect(request.getContextPath()+"/board/boardList.do");
+		
+		
 		
 	}
 

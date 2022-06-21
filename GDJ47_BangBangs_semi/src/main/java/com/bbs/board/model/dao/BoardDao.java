@@ -2,7 +2,6 @@ package com.bbs.board.model.dao;
 
 import static com.bbs.common.JDBCTemplate.close;
 
-
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
@@ -13,8 +12,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import com.bbs.model.dao.MemberDao;
 import com.bbs.model.vo.IbBoard;
 import com.bbs.model.vo.IbBoardComment;
+import com.bbs.model.vo.Member;
 
 
 
@@ -159,7 +160,59 @@ public class BoardDao {
 		}
 		return result;
 	}
-	
+	public List<String> searchMemberId(Connection conn,String keyword){
+		PreparedStatement pstmt = null;
+		ResultSet rs =null;
+		List<String> result=new ArrayList();
+		
+		try {
+			pstmt=conn.prepareStatement("SELECT MEMBER_ID FROM MEMBER WHERE MEMBER_ID LIKE '%"+keyword+"%'");
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				result.add(rs.getString(1));
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return result;
+	}
+	public List<Member> searchMemberList(Connection conn,String type,String keyword){
+		PreparedStatement pstmt = null;
+		ResultSet rs =null;
+		List<Member> result = new ArrayList();
+		String sql=prop.getProperty("searchMemberList");
+		sql=sql.replace("$COL", type);
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, type.equals("member_id")?"%"+keyword+"%":keyword);
+			rs = pstmt.executeQuery();
+			while(rs.next())result.add(getMember(rs));
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return result;
+	}
+	private Member getMember(ResultSet rs) throws SQLException{
+		return Member.builder()
+				.memberId(rs.getString("member_id"))
+				.memberPassword(rs.getString("member_password"))
+				.memberName(rs.getString("member_name"))
+				.gender(rs.getString("gender"))
+				.birthday(rs.getString("birthday"))
+				.email(rs.getString("email"))
+				.address(rs.getString("address"))
+				.phone(rs.getString("phone"))
+				.enrollDate(rs.getDate("enroll_date"))
+				.memberLevel(rs.getString("member_level"))
+				.totalMileage(rs.getInt("total_mileage"))
+				.build();
+	}
 //	public List<IbBoardComment> selectBoardCommentList(Connection conn,int boardNo){
 //		PreparedStatement pstmt =null;
 //	    ResultSet rs = null;
