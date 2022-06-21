@@ -33,25 +33,28 @@ public class InquiryDataServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String userId=request.getParameter("userId");
+		String memberId=request.getParameter("memberId");
 		
 		int cPage;
-		int numPerpage;
+		
 		try {
 			cPage=Integer.parseInt(request.getParameter("cPage"));
 		}catch(NumberFormatException e) {
 			cPage=1;
 		}
-		try {
-			numPerpage=Integer.parseInt(request.getParameter("numPerPage"));
-		}catch(NumberFormatException e) {
-			numPerpage=5;
-		}
-		List<IbBoard> ibBoards=new IbBoardService().selectIbBoardListById(userId, cPage, numPerpage);
-		int totalBoard=new IbBoardService().selectIbBoardCountById(userId);
+		System.out.println(cPage);
+	
+		int	numPerpage=5;
+	
+		System.out.println(numPerpage);
+		System.out.println(memberId);
+		List<IbBoard> ibBoards=new IbBoardService().selectIbBoardListById(memberId, cPage, numPerpage);
+		System.out.println(ibBoards);
+		int totalBoard=new IbBoardService().selectIbBoardCountById(memberId);
 		int totalPage=(int)Math.ceil((double)totalBoard/numPerpage);
-		
+		System.out.println(totalBoard);
 		int pageBarSize=5;
+		
 		int pageNo=((cPage-1)/pageBarSize)*pageBarSize+1;
 		int pageEnd=pageNo+pageBarSize-1;
 		
@@ -67,7 +70,7 @@ public class InquiryDataServlet extends HttpServlet {
 		while(!(pageNo>pageEnd||pageNo>totalPage)) {
 			if(cPage==pageNo) {
 				pageBar+="<span>"+pageNo+"</span>";
-			}else {
+			} else {
 				pageBar+="<a href="+request.getRequestURL()
 				+"?cPage="+(pageNo)
 				+"&numPerpage="+numPerpage+">"+pageNo+"</a>";
@@ -82,7 +85,7 @@ public class InquiryDataServlet extends HttpServlet {
 			+"?cPage="+(pageNo)
 			+"&numPerpage="+numPerpage+">[다음]</a>";
 		}
-		
+		System.out.println(pageBar);
 		request.setAttribute("pageBar", pageBar);
 		request.setAttribute("ibBoards", ibBoards);
 		

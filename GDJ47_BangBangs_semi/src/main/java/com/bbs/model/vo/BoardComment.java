@@ -2,8 +2,6 @@ package com.bbs.model.vo;
 
 import java.sql.Date;
 
-import com.bbs.model.vo.BoardComment;
-
 import lombok.Builder;
 import lombok.Data;
 

@@ -62,11 +62,11 @@ public class EnrollMemberEndServlet extends HttpServlet {
 		
 		String msg = "", loc = "";
 		if(result>0) {
-			msg = "회원가입을 축하드립니다!";
+			msg = "회원가입을 축하드립니다! 로그인 해주세요.";
 			loc = "/";
 		}else {
 			msg = "회원가입에 실패했습니다. 다시 시도하세요.";
-			loc = "/member/enrollMember.do";
+			loc = "/enrollmember.do";
 		}
 		request.setAttribute("msg", msg);
 		request.setAttribute("loc", loc);
