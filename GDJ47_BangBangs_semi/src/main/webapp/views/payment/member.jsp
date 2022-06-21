@@ -15,6 +15,9 @@
 </div>
     <%@ include file="/views/common/footer.jsp" %>    
     <script>
+    	if(<%=loginMember%>!=null){
+    		
+    	}
     	
     	$.ajax({
 			url : "<%=request.getContextPath()%>/possessionmileage.do?id=<%=loginMember.getMemberId()%>",
