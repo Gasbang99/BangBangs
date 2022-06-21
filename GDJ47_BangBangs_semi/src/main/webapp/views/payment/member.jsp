@@ -15,10 +15,40 @@
 </div>
     <%@ include file="/views/common/footer.jsp" %>    
     <script>
-    function comPayment() {
-        var p = document.getElementById("comPaymentClsCd").value;
-        document.getElementById("TOT_AMOUNT1").value=p;
-    }
+    	
+    	$.ajax({
+			url : "<%=request.getContextPath()%>/possessionmileage.do?id=<%=loginMember.getMemberId()%>",
+			dataType : "json",
+			success : data=>{
+				$("#posseMile").val(data);
+			},
+			error : (r,d)=>{
+				console.log(r);
+				console.log(d);
+			}
+		})
+    	
+	    function comPayment() {
+	        var p = document.getElementById("comPaymentClsCd").value;
+	        document.getElementById("TOT_AMOUNT1").value=p;
+	    }
+	    function comPayment1() {
+	        var i = document.getElementById("mileage1").value;
+	        var m = $("#posseMile").val();
+	        console.log(m);
+	        console.log(i);
+	        if(parseInt(i)>parseInt(m) || i>1000){
+	        	alert("마일리지는 보유 마일리지에서 100단위로 최대 1000 마일리지까지 사용할 수 있습니다.");
+	        	if(m>1000){
+	        		$("#mileage1").val(1000);	        		
+	        	}else{
+	        		$("#mileage1").val(Math.floor(m/100)*100);
+	        	}
+	        }
+	        document.getElementById("TOT_AMOUNT2").value=-i;
+	        var p = document.getElementById("comPaymentClsCd").value;
+	    	document.getElementById("TOT_AMOUNT3").value=p-i;
+	    }
     </script>
     <script>
     	$("#btn1").attr("class","nav-link active");
@@ -216,7 +246,7 @@
 	    margin: 10px 15px 0 15px;
 	    float: right;
 	    position: absolute;
-	    left: 1500px;
+	    left: 1200px;
 	    margin: 150px 15px 0 20px;
 		}
         #total{

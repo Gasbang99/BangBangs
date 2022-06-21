@@ -28,8 +28,20 @@
                 <option id="BIL_015" value="40000" title="Y" etc1="40000" etc2="40000">365일(2시간권)</option>
             </select>  
             <p>&nbsp;</p>
-</div>
-<div id="comPaymentClsCd">
+</div><br>
+	<div id="selecttype">
+        <p style="font-weight: bold;">&nbsp;보유 마일리지 <input type="number" id="posseMile" readonly="readonly"></p>
+        <input type="number" id="mileage1" placeholder="마일리지 사용" style="margin-left:40px" onkeyup="comPayment1();" >
+        <br><br>
+    </div>
+	<style>
+	input[type="number"]::-webkit-outer-spin-button,
+	input[type="number"]::-webkit-inner-spin-button {
+	    -webkit-appearance: none;
+	    margin: 0;
+	}
+</style>
+<div id="comPaymentClsCd1">
         <p style="font-weight: bold;">&nbsp;결제방식</p>
         <table>
             <tr>
@@ -58,12 +70,12 @@
         <input type="text" class="w80" id="TOT_AMOUNT1" name="TOT_AMOUNT" value="0" readonly="readonly">
         <span style="color:black">원</span></p>
         
-        <p id="mileage">마일리지
+        <p id="mileage2">마일리지
         <input type="text" class="w80" id="TOT_AMOUNT2" name="TOT_AMOUNT" value="0" readonly="readonly">
         <span style="color:black">원</span></p>
         
         <p id="totalprice">총 금액&nbsp;&nbsp;
-        <input type="text" class="w80" id="TOT_AMOUNT3" name="TOT_AMOUNT" value="0" readonly="readonly">
+        <input type="text" class="w80" id="TOT_AMOUNT3" name="TOT_AMOUNT" value="0" readonly="readonly" >
         <span style="color:black">원</span></p>
         
        	<label><input type="checkbox" id="agree">추가요금자동결제,환불규정, 이용약관에 동의하며 결제를 진행합니다.(이용권 사용안내)<br></label>
