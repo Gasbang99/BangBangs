@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -35,6 +36,22 @@ public class LoginEndServlet extends HttpServlet {
 		
 		String userId = request.getParameter("id");
 		String password = request.getParameter("password");
+		
+		// 아이디를 저장하기
+		String saveId = request.getParameter("saveId");
+		System.out.println(saveId);
+		// saveId값을 기준으로 null값이면 아이디를 저장하지 않고
+		// on이면 아이디를 저장해서 출력해줘야 함.
+		// id값을 유지할 수 있는 저장공간에 저장! -> cookie를 이용하자
+		if(saveId!=null) {
+			Cookie c = new Cookie("saveId",userId);
+			c.setMaxAge(24*60*60*7);
+			response.addCookie(c);
+		}else {
+			Cookie c = new Cookie("saveId","");
+			c.setMaxAge(0);
+			response.addCookie(c);
+		}
 		
 		Member m = new MemberService().searchMember(userId, password);
 		

@@ -92,6 +92,7 @@
     		box-shadow: 5px 3px 3px #ccc;    	
             width: 400px;
         	height:100px;
+        	margin-left: 40px;
     	}
     	#totalprice{
     		style=text-align:left;
@@ -181,34 +182,43 @@
     		box-shadow: 5px 3px 3px #ccc;    	
             width: 400px;
         	height:auto;  
+        	margin-left: 40px;
         	margin-top:10px;     	
+        }
+        #comPaymentClsCd1{
+            background: #fff;          
+            border: 1px solid #000;
+    		box-sizing: border-box;
+    		box-shadow: 5px 3px 3px #ccc;    	
+            width: 400px;
+        	height:auto;  
+        	margin-top:30px;     	
         }
         #seasonticket{
             border: solid 1px black;
         }
-        #paybox{
-            font-family: 'notokr-regular', sans-serif;
-            -webkit-text-size-adjust: none;
-            text-align: left;
-            color: #333;
-            font-size: 100%;
-            background-color: #fff;
-            border: 4px #000 solid;
-            height: 550px;
-            line-height: 1.5;
-            padding: 30px;
-            position: relative;
-            right: 100;
-            top: 0;
-            width: 400px;
-            box-sizing: border-box;
-            margin: 10px 15px 0 15px;
-            float:right;
-            position:absolute;
-            left:850px;
-            top:220px;
-            margin: 150px 15px 0 20px
-        }
+        #paybox {
+	    font-family: 'notokr-regular', sans-serif;
+	    -webkit-text-size-adjust: none;
+	    text-align: left;
+	    color: #333;
+	    font-size: 100%;
+	    background-color: #fff;
+	    border: 4px #000 solid;
+	    height: 550px;
+	    line-height: 1.5;
+	    padding: 30px;
+	    position: relative;
+	    right: 100;
+	    top: 150px;
+	    width: 500px;
+	    box-sizing: border-box;
+	    margin: 10px 15px 0 15px;
+	    float: right;
+	    position: absolute;
+	    left: 1500px;
+	    margin: 150px 15px 0 20px;
+		}
         #total{
         	margin-left:400px;
         	height:1000px;

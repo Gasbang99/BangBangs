@@ -37,6 +37,7 @@ public class EnrollMemberEndServlet extends HttpServlet {
 		String userName = request.getParameter("name");
 		String birthYear = request.getParameter("birthYear");
 		String birthMonth = request.getParameter("birthMonth");
+		if(birthMonth.length()==1) birthMonth = 0+birthMonth;
 		String birthDay = request.getParameter("birthDay");
 		String gender = request.getParameter("gender");
 		String postcode = request.getParameter("postcode");
@@ -52,7 +53,7 @@ public class EnrollMemberEndServlet extends HttpServlet {
 				.memberName(userName)
 				.birthday(birthYear+"/"+birthMonth+"/"+birthDay)
 				.gender(gender)
-				.address("("+postcode+")"+address+" "+detailAddress+" "+extraAddress)
+				.address("("+postcode+")"+address+" "+detailAddress+extraAddress)
 				.email(email)
 				.phone(phone)
 				.build();

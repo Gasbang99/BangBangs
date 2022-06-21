@@ -16,7 +16,7 @@ public class PasswordEncrypt extends HttpServletRequestWrapper {
 	
 	@Override
 	public String getParameter(String name) {
-		if(name.equals("loginPw")||name.equals("loginPw_new")) {
+		if(name.equals("password")||name.equals("password_new")) {
 			return getSHA512(super.getParameter(name));
 		}
 		return super.getParameter(name);

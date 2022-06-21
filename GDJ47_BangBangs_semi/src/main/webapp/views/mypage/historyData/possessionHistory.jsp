@@ -1,9 +1,10 @@
 
+
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="com.bbs.model.vo.IbBoard" %>
 <% 	IbBoard ibBoards=(IbBoard)request.getAttribute("ibBoard"); 
-	
 	String pageBar=(String)request.getAttribute("pageBar");%>
 	
 	<%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -15,33 +16,36 @@
 <%@ include file="/views/common/header.jsp" %>
     <ul id="mypageHeaderNav" class="nav nav-pills  justify-content-center">
         <li class="nav-item ">
-            <a class="nav-link active" id="memberData" href="<%=request.getContextPath()%>/memberdata.do"><span>회원 정보</span></a>
+            <a class="nav-link" id="memberData" href="<%=request.getContextPath()%>/memberdata.do"><span>회원 정보</span></a>
         </li>
         <li class="nav-item ">
             <a class="nav-link " id="purchaseData" href="<%=request.getContextPath()%>/purchasedata.do"><span>결제 정보</span></a>
         </li>
         <li class="nav-item ">
-            <a class="nav-link " id="historyData" href="<%=request.getContextPath()%>historydata.do"><span>이용정보</span></a>
+            <a class="nav-link active" id="historyData" href="<%=request.getContextPath()%>/historydata.do"><span>이용정보</span></a>
         </li>
     </ul>
 
     <div id="subMenu">
 		<ul class="nav nav-tabs">
 	        <li class="nav-item">
-	            <a class="nav-link active" id="purchaseHistory" href="<%=request.getContextPath()%>/purchasedata.do">결제내역</a>
+	            <a class="nav-link" id="rentalHistory" href="<%=request.getContextPath()%>/historydata.do">대여반납이력</a>
 	        </li>
 	        <li class="nav-item">
-	            <a class="nav-link" id="refundHistory" href="<%=request.getContextPath()%>/refundHistory.do">환불내역</a>
+	            <a class="nav-link active" id="psTicket" href="<%=request.getContextPath()%>/possessionHistory.do">이용권 보유내역</a>
 	        </li>
-		</ul>
+	        <li class="nav-item">
+	            <a class="nav-link" id="mileageHistory" href="<%=request.getContextPath()%>/mileage.do">마일리지</a>
+	        </li>
+	    </ul>
 		<div id="subMenu-detail">
 			<table>
     			<tr>
-			        <th>결제상품</th>
-			        <th>금액</th>
-			        <th>결제날짜</th>
-			        <th>결제수단</th>
-			        <th>환불</th>
+			        <th>자전거번호</th>
+			        <th>대여날짜</th>
+			        <th>대여대여소</th>
+			        <th>반납날짜</th>
+			        <th>반납대여소</th>
     			</tr>
     			<%if(!ibBoards.isEmpty()) {
         			for(IbBoard b : ibBoards){%>
@@ -55,7 +59,7 @@
 		            </td>
 		            <td><%=b.getIbEnrollDate() %></td>
 		            <td><%=b.getIbContent() %></td>
-		            <td><form action="<%=request.getContextPath()%>/"></form></td>
+		            <td><%=b.getIbContent() %></td>
         		</tr>
 			    <%}
 			     }else{ %>
@@ -96,4 +100,3 @@
 	</script>
 </body>
 </html>
-        

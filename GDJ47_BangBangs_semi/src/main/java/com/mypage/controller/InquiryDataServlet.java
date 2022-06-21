@@ -47,7 +47,7 @@ public class InquiryDataServlet extends HttpServlet {
 		}catch(NumberFormatException e) {
 			numPerpage=5;
 		}
-		List<IbBoard> boards=new IbBoardService().selectIbBoardListById(userId, cPage, numPerpage);
+		List<IbBoard> ibBoards=new IbBoardService().selectIbBoardListById(userId, cPage, numPerpage);
 		int totalBoard=new IbBoardService().selectIbBoardCountById(userId);
 		int totalPage=(int)Math.ceil((double)totalBoard/numPerpage);
 		
@@ -84,7 +84,7 @@ public class InquiryDataServlet extends HttpServlet {
 		}
 		
 		request.setAttribute("pageBar", pageBar);
-		request.setAttribute("boards", boards);
+		request.setAttribute("ibBoards", ibBoards);
 		
 		
 		request.getRequestDispatcher("/views/mypage/memberData/inquirydata.jsp").forward(request, response);

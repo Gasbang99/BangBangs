@@ -5,8 +5,8 @@
     <script src="js/scripts.js"></script>
     <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 	<footer class="footer bg-black small text-center text-white-50">
-    <div class="container px-4 px-lg-5">Copyright &copy; Your Website 2022</div>
-  </footer>
+	    <div class="container px-4 px-lg-5">Copyright &copy; Your Website 2022</div>
+	  </footer>
   </body>
   </html>
   <style>
@@ -25,8 +25,8 @@
     }
     .footer {
       position: absolute;
-      left: 0;
       bottom: 0;
+      left: 0;
       width: 100%;
       padding: 15px 0;
       text-align: center;

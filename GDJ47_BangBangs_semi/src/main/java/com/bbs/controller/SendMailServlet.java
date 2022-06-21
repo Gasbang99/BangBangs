@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bbs.common.sendmail.SendMail;
+import com.google.gson.Gson;
 
 /**
  * Servlet implementation class SendMailServlet
@@ -32,17 +33,14 @@ public class SendMailServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		String mailAddress = request.getParameter("mailAddress");
-		String crtfcNo = "";
 		
-		if(mailAddress.contains("gmail.")) {
-			crtfcNo = SendMail.gmailSend(mailAddress);
-		}else if(mailAddress.contains("naver.")) {
-			crtfcNo = SendMail.naverMailSend(mailAddress);
-		}
+		String crtfcNo = SendMail.naverMailSend(mailAddress);
 		
-		request.setAttribute("crtfcNo", crtfcNo);
+		Gson gson = new Gson();
 		
-		request.getRequestDispatcher("/views/member/enrollmember.jsp").forward(request, response);
+		response.setContentType("application/json;charset=utf-8");
+		
+		gson.toJson(crtfcNo, response.getWriter());
 	}
 
 	/**

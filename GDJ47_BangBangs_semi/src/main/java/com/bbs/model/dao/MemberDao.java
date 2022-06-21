@@ -54,7 +54,7 @@ public class MemberDao {
 		Member m=null;
 		try {
 			pstmt=conn.prepareStatement(prop.getProperty("selectMemberById"));
-//			pstmt.setString(1, userId);
+			pstmt.setString(1, userId);
 			rs=pstmt.executeQuery();
 			if(rs.next()) m=getMember(rs);
 		}catch(SQLException e) {
@@ -125,5 +125,40 @@ public class MemberDao {
 			e.printStackTrace();
 		}
 		return m;
+	}
+
+	public int updateMember(Connection conn, Member m) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("updateMember"));
+			pstmt.setString(1, m.getMemberName());
+			pstmt.setString(2, m.getGender());
+			pstmt.setString(3, m.getBirthday());
+			pstmt.setString(4, m.getEmail());
+			pstmt.setString(5, m.getPhone());
+			pstmt.setString(6, m.getAddress());
+			pstmt.setString(7, m.getMemberId());
+
+			result=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}return result;
+	}
+
+	public int deleteMember(Connection conn, String memberId) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("deleteMember"));
+			pstmt.setString(1,memberId);
+			result=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}return result;
 	}
 }

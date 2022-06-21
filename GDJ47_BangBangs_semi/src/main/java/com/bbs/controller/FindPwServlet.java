@@ -1,4 +1,4 @@
-package com.mypage.controller;
+package com.bbs.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,22 +7,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.bbs.model.service.MemberService;
-import com.bbs.model.vo.Member;
-
-
-
 /**
- * Servlet implementation class MemberDataServlet
+ * Servlet implementation class FindPwServlet
  */
-@WebServlet("/memberdata.do")
-public class MemberDataServlet extends HttpServlet {
+@WebServlet("/findpw.do")
+public class FindPwServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberDataServlet() {
+    public FindPwServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,15 +26,9 @@ public class MemberDataServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		
-		
-		String userId=request.getParameter("userId");
-		Member m= new MemberService().selectMemberById(userId);
-		
-		request.setAttribute("member", m);	
-		
-		
-		request.getRequestDispatcher("/views/mypage/memberData/mypage_memberData.jsp").forward(request, response);
+		request.getRequestDispatcher("/views/member/findpw.jsp").forward(request,response);
 	}
 
 	/**

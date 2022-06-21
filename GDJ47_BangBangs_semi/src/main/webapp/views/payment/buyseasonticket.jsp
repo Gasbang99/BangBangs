@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<div>
-        <h1>정기권 구매하기</h1>
+<div><br><br>
+        <h1>정기권 구매하기</h1><hr>
 </div>
 <div style="margin-left:30px;margin-top:50px;">
         <h3>이용권 사용안내</h3>

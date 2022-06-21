@@ -27,7 +27,9 @@ public class MainScreenServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-//		request.getRequestDispatcher("<%=request.getContextPath()%>").forward(request, response);
+
+		request.getRequestDispatcher("/index.jsp").forward(request, response);
+
 	}
 
 	/**
