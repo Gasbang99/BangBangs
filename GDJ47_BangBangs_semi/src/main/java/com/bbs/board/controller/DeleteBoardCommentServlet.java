@@ -1,8 +1,6 @@
 package com.bbs.board.controller;
 
 import java.io.IOException;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,21 +8,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bbs.board.model.service.BoardService;
-import com.bbs.model.vo.IbBoard;
-import com.bbs.model.vo.IbBoardComment;
-
 
 /**
- * Servlet implementation class BoardViewServlet
+ * Servlet implementation class DeleteBoardCommentServlet
  */
-@WebServlet("/board/boardView.do")
-public class BoardViewServlet extends HttpServlet {
+@WebServlet("/board/deleteboardComment.do")
+public class DeleteBoardCommentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardViewServlet() {
+    public DeleteBoardCommentServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,20 +28,23 @@ public class BoardViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int boardNo=Integer.parseInt(request.getParameter("no"));
+		int boardNo=Integer.parseInt(request.getParameter("num"));
 		
-		IbBoard b = new BoardService().selectBoard(boardNo);
+		int result = new BoardService().deleteBoardComment(boardNo);
 		
-		request.setAttribute("board", b);
-		
-		
-				//댓글 정보를 가져와야함.
-		List<IbBoardComment> commentList=new BoardService().selectIbBoardCommentList(boardNo);
-		request.setAttribute("comments", commentList);
-		
-		request.getRequestDispatcher("/views/board/boardView.jsp")
-		.forward(request, response);
-		
+		String msg="",loc="";
+		if(result>0) {
+			msg="댓글이 삭제되었습니다.";
+			loc="/board/boardList.do";
+
+		}else {
+			msg="댓글 삭제실패!";
+			loc="/board/boardView.do?no="+boardNo;
+			
+		}
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", loc);
+		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 	}
 
 	/**

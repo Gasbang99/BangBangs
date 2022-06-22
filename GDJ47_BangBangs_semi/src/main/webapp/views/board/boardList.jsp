@@ -10,6 +10,15 @@ String keyword=request.getParameter("searchKeyword");
 %>
 <%@ include file="/views/common/header.jsp"%>
   <head>
+   <meta charset="utf-8" />
+        <!-- Favicon-->
+       
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="<%=request.getContextPath()%>/css/styles.css" rel="stylesheet" />
+        
+        
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -28,14 +37,64 @@ String keyword=request.getParameter("searchKeyword");
     <title>게시판</title>
   </head>
   <body>
-  
-
-  <div class="content">
-
+ <div class="content">
     <div class="container">
-      <h2 class="mb-5">문의사항 게시판</h2>
-      <div class="table-responsive custom-table-responsive">
-
+ 
+      <!-- <h2 class="mb-5">문의사항 게시판</h2> -->
+      <div class="table-responsive custom-table-responsive"  style="background-color:white; padding: 20px; border-radius: 4px;">
+<!-- Header-->
+       <header class="bg-dark py-5">
+            <div class="container px-5">
+                <div class="row gx-5 justify-content-center">
+                    <div class="col-lg-6">
+                        <div class="text-center my-5">
+                            <h1 class="display-5 fw-bolder text-white mb-2">BangBangs 고객지원</h1>
+                            <p class="lead text-white-50 mb-4">Welcome to the inquiry board</p>
+                            <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+                                <a class="btn btn-primary btn-lg px-4 me-sm-3" href="#features">click</a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Features section-->
+        <section class="py-5 border-bottom" id="features">
+            <div class="container px-5 my-5">
+                <div class="row gx-5">
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-collection"></i></div>
+                        <h2 class="h4 fw-bolder">빠르고 정확한 상담</h2>
+                        <p>궁금한 점을 빠르고 정확하게 상담드려요.</p>
+                        <a class="text-decoration-none" href="#!">
+                           
+                        </a>
+                    </div>
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-building"></i></div>
+                        <h2 class="h4 fw-bolder">기다릴 필요 없는 접수 처리</h2>
+                        <p>여기는 문의사항 게시판 입니다.<br>공지 사항으로 이동</p>
+                        <a class="text-decoration-none" href="<%=request.getContextPath()%>/notice/noticeList.do">
+                            click
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-toggles2"></i></div>
+                        <h2 class="h4 fw-bolder">편리한 상담</h2>
+                        <p>상담 가능 시간 : (월~토) 오전 8시 ~ 26시</p>
+                        <a class="text-decoration-none" href="#!">
+                           
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+       
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+        
+        
         <table class="table custom-table">
           <thead>
             <tr>  
@@ -73,10 +132,11 @@ String keyword=request.getParameter("searchKeyword");
                 <a href="<%=request.getContextPath()%>/board/boardView.do?no=<%=b.getIbPostNum()%>"><small class="d-block">click</small></a> 
               </td>
               <td><%if(b.getIbBoardOriginalFilename()!=null){ %>
-				 <img src="<%=request.getContextPath()%>/images/file.png"
-				 width="20">
+				 <img src="<%=request.getContextPath()%>/images/ok.png"
+				 width="40">
 				<%}else{ %>
-				 첨푸파일없음
+				  <img src="<%=request.getContextPath()%>/images/no.png"
+				 width="40">
 				<%} %></td>
               <td><%=b.getIbEnrollDate() %></td>
               <td><%=b.getCategory() %></td>

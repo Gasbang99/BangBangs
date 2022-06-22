@@ -86,10 +86,18 @@ public class BoardService {
 		close(conn);
 		return result;
 	}
-//	public List<IbBoardComment> selectBoardCommentList(int boardNo){
-//		Connection conn=getConnection();
-//		List<IbBoardComment> result=dao.selectBoardCommentList(conn,boardNo);
-//		close(conn);
-//		return result;
-//	}
+	public List<IbBoardComment> selectIbBoardCommentList(int boardNo){
+	Connection conn=getConnection();
+		List<IbBoardComment> result=dao.selectIbBoardCommentList(conn,boardNo);
+		close(conn);
+		return result;
+	}
+	public int deleteBoardComment(int boardNo) {
+		Connection conn=getConnection();
+		int result=dao.deleteBoardComment(conn,boardNo);
+		if(result>0)commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result;
+	}
 }

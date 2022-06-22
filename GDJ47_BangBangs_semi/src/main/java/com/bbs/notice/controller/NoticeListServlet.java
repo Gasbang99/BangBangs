@@ -1,4 +1,4 @@
-package com.bbs.board.controller;
+package com.bbs.notice.controller;
 
 import java.io.IOException;
 import java.util.List;
@@ -9,22 +9,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.bbs.board.model.service.BoardService;
-import com.bbs.model.vo.IbBoard;
-import com.bbs.model.vo.IbBoardComment;
-
+import com.bbs.notice.model.service.NoticeService;
 
 /**
- * Servlet implementation class BoardViewServlet
+ * Servlet implementation class NoticeListServlet
  */
-@WebServlet("/board/boardView.do")
-public class BoardViewServlet extends HttpServlet {
+@WebServlet("/notice/noticeList.do")
+public class NoticeListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardViewServlet() {
+    public NoticeListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,21 +30,8 @@ public class BoardViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int boardNo=Integer.parseInt(request.getParameter("no"));
-		
-		IbBoard b = new BoardService().selectBoard(boardNo);
-		
-		request.setAttribute("board", b);
-		
-		
-				//댓글 정보를 가져와야함.
-		List<IbBoardComment> commentList=new BoardService().selectIbBoardCommentList(boardNo);
-		request.setAttribute("comments", commentList);
-		
-		request.getRequestDispatcher("/views/board/boardView.jsp")
-		.forward(request, response);
-		
-	}
+			request.getRequestDispatcher("/views/notice/noticeList.jsp").forward(request, response);
+}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

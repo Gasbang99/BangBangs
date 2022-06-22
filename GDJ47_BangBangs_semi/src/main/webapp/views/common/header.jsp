@@ -86,7 +86,7 @@
 
                     
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/notice.do">공지사항</a></li>
+                        <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/notice/noticeList.do">공지사항</a></li>
                         <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/board/boardList.do">문의/FAQ</a></li>
                         <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/member.do">이용권구매</a></li>
                         <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/searchrentalshop.do">대여소조회</a></li>
