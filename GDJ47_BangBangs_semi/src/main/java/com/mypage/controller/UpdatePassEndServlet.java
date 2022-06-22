@@ -14,7 +14,7 @@ import com.bbs.model.vo.Member;
 /**
  * Servlet implementation class UpdatePassEndServlet
  */
-@WebServlet("/updatePassEnd.do")
+@WebServlet(name="updatePwdServlet",urlPatterns = "/updatePassEnd.do")
 public class UpdatePassEndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
