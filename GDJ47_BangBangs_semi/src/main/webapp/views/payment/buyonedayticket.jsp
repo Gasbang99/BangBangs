@@ -13,7 +13,7 @@
         <span>예시)기본 초과 1분~5분:200원,6분~10분:400원</span>
         <li>추가요금은 이용권 결제수단으로 자동결제됩니다</li>
     </ul>
-    
+ <form action="<%=request.getContextPath() %>/enrollpurchasehistory.do" method="post">   
     <div id="selecttype">
         <p style="font-weight: bold;">&nbsp;일일권종류선택</p>
            <select id="comPaymentClsCd" name="comPaymentClsCd" class="fl" style="width: 55%" onchange="comPayment3();">
@@ -50,19 +50,20 @@
     <div id="paybox">
         <h3 id="AmountOfPayment">결제금액</h3><br><br>
         <p id="use" style="border-bottom:2px solid black">이용권&nbsp;&nbsp;&nbsp;
-        <input type="text" class="w80" id="TOT_AMOUNT1" name="TOT_AMOUNT" value="0" readonly="readonly">
+        <input type="text" class="w80" id="TOT_AMOUNT1" name="TOT_AMOUNT1" value="0" readonly="readonly">
         <span style="color:black">원</span></p>
        
         <p id="totalprice">총 금액&nbsp;&nbsp;
-        <input type="text" class="w80" id="TOT_AMOUNT3" name="TOT_AMOUNT" value="0" readonly="readonly">
+        <input type="text" class="w80" id="TOT_AMOUNT3" name="TOT_AMOUNT3" value="0" readonly="readonly">
         <span style="color:black">원</span></p>
         
        	<label><input type="checkbox" id="agree">추가요금자동결제,환불규정, 이용약관에 동의하며 결제를 진행합니다.(이용권 사용안내)<br></label>
         <label><input type="checkbox" id="agree">만 13세 미만의 미성년자가 서비스를 이용하는 경우, 사고 발생 시 보험 적용을 받을 수 없는 등의 불이익을 받으실 수 있습니다. (만 15세 미만의 경우 상법 제732조에 의거하여 사망 보험 적용 불가)</label>
         <br>
         <div id="btn">
-		  <button class="btn" type="button">결제하기</button>		  
+		  <button class="btn" id="submitBtn" type="submit">결제하기</button>		  
 		</div>
     </div>
+  </form>
 </body>
 </html>

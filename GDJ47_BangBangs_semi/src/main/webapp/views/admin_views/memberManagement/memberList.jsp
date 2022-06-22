@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/views/admin_views/common/header.jsp" %>
+
 <%
 	List<Member> list=(List<Member>)request.getAttribute("list");
 	String searchType=request.getParameter("searchType");
 	String keyword=request.getParameter("searchKeyword");
 %>
-<%@ include file="/views/admin_views/common/header.jsp" %>
 
-<%@ include file="/views/admin_views/common/navigationBar2.jsp" %>
+<%@ include file="/views/common/header.jsp" %>
 	
 
 <style type="text/css">
@@ -63,18 +63,23 @@
      			</tr>
       		<%}else{
       			for(Member m : list){%>
-   				<tr>
-   					<td><%=m.getMemberId() %></td>
-   					<td><%=m.getMemberName() %></td>
-   					<td><%=m.getGender() %></td>
-   					<td><%=m.getBirthday() %></td>
-   					<td><%=m.getEmail() %></td>
-       				<td><%=m.getAddress() %></td>
-   					<td><%=m.getPhone() %></td>
-       				<td><%=m.getEnrollDate() %></td> 
-       				<td><%=m.getMemberLevel() %> </td>
-       				<td><%=m.getTotalMileage() %></td>
-       			</tr>
+      			
+	   				<tr>
+	   					<td><%=m.getMemberId() %></td>
+	   					<td><%=m.getMemberName() %></td>
+	   					<td><%=m.getGender() %></td>
+	   					<td><%=m.getBirthday() %></td>
+	   					<td><%=m.getEmail() %></td>
+	       				<td><%=m.getAddress() %></td>
+	   					<td><%=m.getPhone() %></td>
+	       				<td><%=m.getEnrollDate() %></td> 
+	       				<td><%=m.getMemberLevel() %> </td>
+	       				<td><%=m.getTotalMileage() %></td>
+	       				<form id="member-detail" action="<%=request.getContextPath()%>/admin/memberDetail.do" method="post">
+	       				<td><input type="hidden" name="memberId" value="<%=m.getMemberId() %>" ><input type="submit" value="상세정보"></td>
+	       				</form>
+	       			</tr>
+       			
    		<%	} 
    		 }%>
         </tbody>
@@ -94,7 +99,7 @@
         </select>
         <div id="search-userId">
         	<form action="<%=request.getContextPath()%>/admin/searchMember">
-        		<input type="hidden" name="searchType" value="userId" >
+        		<input type="hidden" name="searchType" value="MEMBER_ID" >
         		<input type="text" name="searchKeyword" size="25" 
         		placeholder="검색할 아이디를 입력하세요" >
         		<button type="submit">검색</button>
@@ -102,7 +107,7 @@
         </div>
         <div id="search-userName">
         	<form action="<%=request.getContextPath()%>/admin/searchMember">
-        		<input type="hidden" name="searchType" value="userName">
+        		<input type="hidden" name="searchType" value="MEMBER_NAME">
         		<input type="text" name="searchKeyword" size="25" 
         		placeholder="검색할 이름을 입력하세요">
         		<button type="submit">검색</button>
@@ -110,9 +115,9 @@
         </div>
         <div id="search-gender">
         	<form action="<%=request.getContextPath()%>/admin/searchMember">
-        		<input type="hidden" name="searchType" value="gender">
-        		<label><input type="radio" name="searchKeyword" value="M" >남</label>
-        		<label><input type="radio" name="searchKeyword" value="F" >여</label>
+        		<input type="hidden" name="searchType" value="GENDER">
+        		<label><input type="radio" name="searchKeyword" value="남" >남</label>
+        		<label><input type="radio" name="searchKeyword" value="여" >여</label>
         		<button type="submit">검색</button>
         	</form>
         </div>
@@ -134,4 +139,4 @@
 	</script>
         	
 	
-<%@ include file="/views/admin_views/common/footer.jsp" %>
+        <%@ include file="/views/common/footer.jsp" %>

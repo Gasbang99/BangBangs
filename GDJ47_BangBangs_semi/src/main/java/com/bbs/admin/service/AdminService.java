@@ -30,6 +30,7 @@ public class AdminService {
 		close(conn);
 		return result;
 	}
+	
 	public int searchMemberCount(String type, String keyword) {
 		Connection conn=getConnection();
 		int result=dao.searchMemberCount(conn,type,keyword);
