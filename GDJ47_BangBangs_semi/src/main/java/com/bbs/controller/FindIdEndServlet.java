@@ -38,16 +38,14 @@ public class FindIdEndServlet extends HttpServlet {
 		
 		Member m = new MemberService().findMemberId(name, mailAddress);
 		
+		System.out.println(m.getMemberId());
+		
 		Gson gson = new Gson();
 		
 		response.setContentType("application/json;charset=utf-8");
 		
-<<<<<<< HEAD
-		gson.toJson(m.getMemberId(), response.getWriter());
-=======
 		if(m!=null) gson.toJson(m.getMemberId(), response.getWriter());
 		else gson.toJson("no", response.getWriter());
->>>>>>> branch 'BangBangs' of https://github.com/Gasbang99/BangBangs.git
 	}
 
 	/**

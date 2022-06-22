@@ -236,23 +236,39 @@ public class BoardDao {
 				.totalMileage(rs.getInt("total_mileage"))
 				.build();
 	}
-//	public List<IbBoardComment> selectBoardCommentList(Connection conn,int boardNo){
-//		PreparedStatement pstmt =null;
-//	    ResultSet rs = null;
-//		List<IbBoardComment> result = new ArrayList();
-//		try {
-//			pstmt=conn.prepareStatement(prop.getProperty("selectBoardCommentList"));
-//			pstmt.setInt(1, boardNo);
-//			rs=pstmt.executeQuery();
-//			while(rs.next())result.add(getIbBoardComment(rs));
-//		}catch(SQLException e) {
-//			e.printStackTrace();
-//		}finally {
-//			close(pstmt);
-//			close(rs);
-//		}
-//		return result;
-//	}
+	public List<IbBoardComment> selectIbBoardCommentList(Connection conn,int boardNo){
+		PreparedStatement pstmt =null;
+	    ResultSet rs = null;
+		List<IbBoardComment> result = new ArrayList();
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("selectIbBoardCommentList"));
+			pstmt.setInt(1, boardNo);
+			rs=pstmt.executeQuery();
+			while(rs.next())result.add(getIbBoardComment(rs));
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rs);
+		}
+		return result;
+	}
+	public int deleteBoardComment(Connection conn,int boardNo) {
+		PreparedStatement pstmt= null;
+		ResultSet rs=null;
+		int result = 0;
+		try {
+			pstmt= conn.prepareStatement(prop.getProperty("deleteBoardComment"));
+			pstmt.setInt(1, boardNo);
+			result=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return result;
+	}
 	private  IbBoardComment getIbBoardComment(ResultSet rs) throws SQLException{
 		return IbBoardComment.builder()
 				.IbCommentNum(rs.getInt("ib_comment_num"))

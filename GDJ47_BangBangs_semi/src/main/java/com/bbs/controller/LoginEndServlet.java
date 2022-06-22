@@ -40,7 +40,6 @@ public class LoginEndServlet extends HttpServlet {
 		System.out.println(password);
 		// 아이디를 저장하기
 		String saveId = request.getParameter("saveId");
-		System.out.println(saveId);
 		// saveId값을 기준으로 null값이면 아이디를 저장하지 않고
 		// on이면 아이디를 저장해서 출력해줘야 함.
 		// id값을 유지할 수 있는 저장공간에 저장! -> cookie를 이용하자
@@ -75,7 +74,6 @@ public class LoginEndServlet extends HttpServlet {
 		request.setAttribute("loc", loc);
 		
 		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
-		System.out.println(password);
 	}
 
 	/**

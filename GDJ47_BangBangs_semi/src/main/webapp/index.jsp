@@ -17,9 +17,6 @@
                         </style>
                         <h2 class="text-white-50 mx-auto mt-2 mb-5"></h2>
                         
-                    </div>
-                </div>
-            </div>
         </header>
         <!-- About-->
         <section class="about-section text-center" id="about">

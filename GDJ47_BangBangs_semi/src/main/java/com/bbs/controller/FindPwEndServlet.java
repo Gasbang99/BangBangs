@@ -1,30 +1,27 @@
-package com.bbs.board.controller;
+package com.bbs.controller;
 
 import java.io.IOException;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.bbs.board.model.service.BoardService;
-import com.bbs.model.vo.IbBoard;
-import com.bbs.model.vo.IbBoardComment;
-
+import com.bbs.model.service.MemberService;
+import com.bbs.model.vo.Member;
+import com.google.gson.Gson;
 
 /**
- * Servlet implementation class BoardViewServlet
+ * Servlet implementation class FindPwEndServlet
  */
-@WebServlet("/board/boardView.do")
-public class BoardViewServlet extends HttpServlet {
+@WebServlet("/findpwend.do")
+public class FindPwEndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardViewServlet() {
+    public FindPwEndServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,20 +30,19 @@ public class BoardViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int boardNo=Integer.parseInt(request.getParameter("no"));
+		// TODO Auto-generated method stub
 		
-		IbBoard b = new BoardService().selectBoard(boardNo);
+		String id = request.getParameter("id");
+		String mailAddress = request.getParameter("mailAddress");
 		
-		request.setAttribute("board", b);
+		Member m = new MemberService().findMemberPw(id, mailAddress);
 		
+		Gson gson = new Gson();
 		
-				//댓글 정보를 가져와야함.
-		List<IbBoardComment> commentList=new BoardService().selectIbBoardCommentList(boardNo);
-		request.setAttribute("comments", commentList);
+		response.setContentType("application/json;charset=utf-8");
 		
-		request.getRequestDispatcher("/views/board/boardView.jsp")
-		.forward(request, response);
-		
+		if(m!=null) gson.toJson(m.getMemberId(), response.getWriter());
+		else gson.toJson("no", response.getWriter());
 	}
 
 	/**

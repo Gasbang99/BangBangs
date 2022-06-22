@@ -69,6 +69,13 @@ public class MemberService {
 		return m;
 	}
 
+	public Member findMemberPw(String id, String mailAddress) {
+		Connection conn = getConnection();
+		Member m = dao.findMemberPw(conn, id, mailAddress);
+		close(conn);
+		return m;
+	}
+	
 	public int updateMemberMileage(int mileageSave, int mileageDeduction, String id) {
 		Connection conn=getConnection();
 		int result=dao.updateMemberMileage(conn, mileageSave, mileageDeduction, id);

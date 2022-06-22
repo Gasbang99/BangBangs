@@ -180,6 +180,24 @@ public class MemberDao {
 		}return m;
 	}
 
+	public Member findMemberPw(Connection conn, String id, String mailAddress) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		Member m=null;
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("findMemberPw"));
+			pstmt.setString(1, id);
+			pstmt.setString(2, mailAddress);
+			rs=pstmt.executeQuery();
+			if(rs.next()) m=getMember(rs);
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}return m;
+	}
+	
 	public int updateMemberMileage(Connection conn, int mileageSave, int mileageDeduction, String id) {
 		PreparedStatement pstmt=null;
 		int result=0;

@@ -82,4 +82,6 @@
 </style>
 </body>
 </html>
+<br>
+<br>
 <%@ include file="/views/common/footer.jsp"%>

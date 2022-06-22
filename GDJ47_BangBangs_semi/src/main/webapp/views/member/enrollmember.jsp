@@ -2,16 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp" %>
 <%@ include file="/views/common/footer.jsp" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>회원가입</title>
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="<%=request.getContextPath() %>/js/jquery-3.6.0.min.js"></script>
 
-</head>
-<body>
 <div id="wrapper">
 	<form name="enrollMemberFrm" action="<%=request.getContextPath() %>/enrollmemberend.do" method="POST" class="joinForm" onsubmit="return fn_enrollmemberValidate();">                                                                                           
       <h2 style="font-weight:bolder;">회원가입</h2>
@@ -358,6 +349,8 @@
 	                return false;
                 }
                 
+                $("#")
+                
                 return true;
             }
 		});
@@ -535,6 +528,3 @@
 		  cursor:pointer;
 	}
 </style>
-
-</body>
-</html>
