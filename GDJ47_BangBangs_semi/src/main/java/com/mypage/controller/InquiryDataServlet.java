@@ -77,7 +77,6 @@ public class InquiryDataServlet extends HttpServlet {
 				+"&numPerpage="+numPerpage+"&memberId="+memberId+">"+pageNo+"</a></li>";
 			}
 			pageNo++;
-			System.out.println("wow");
 		}
 		
 		if(pageNo>totalPage) {

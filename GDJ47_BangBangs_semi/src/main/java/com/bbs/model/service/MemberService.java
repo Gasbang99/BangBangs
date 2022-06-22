@@ -69,4 +69,13 @@ public class MemberService {
 		return m;
 	}
 
+	public int updateMemberMileage(int mileageSave, int mileageDeduction, String id) {
+		Connection conn=getConnection();
+		int result=dao.updateMemberMileage(conn, mileageSave, mileageDeduction, id);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result;
+	}
+
 }

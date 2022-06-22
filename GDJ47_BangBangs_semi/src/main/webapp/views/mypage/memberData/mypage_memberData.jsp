@@ -33,7 +33,7 @@
 
 		<div id="subMenu-detail">
 		<form action="<%=request.getContextPath()%>/changememberdata.do">
-			<div style="text-align:center;">
+
 				<table>
 				    <tr>
 				        <td>아이디</td>

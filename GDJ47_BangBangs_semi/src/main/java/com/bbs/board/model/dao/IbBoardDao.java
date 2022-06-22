@@ -79,13 +79,13 @@ public class IbBoardDao {
 
 
 
-	public int selectIbBoardCountById(Connection conn, String memberId) {
+	public int selectIbBoardCountById(Connection conn, String userId) {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		int result=0;
 		try {
 			pstmt=conn.prepareStatement(prop.getProperty("selectIbBoardCountById"));
-			pstmt.setString(1, memberId);
+			pstmt.setString(1, userId);
 			rs=pstmt.executeQuery();
 			if(rs.next()) result=rs.getInt(1);
 		}catch(SQLException e) {

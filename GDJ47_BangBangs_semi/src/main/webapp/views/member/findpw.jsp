@@ -98,10 +98,13 @@
                     $("#crtfcNoMsg").css("color","red");
 				}
 			})
+<<<<<<< HEAD
+=======
 			
 			$("#loginBtn").click(e=>{
 				location.assign("<%=request.getContextPath()%>/login.do");
 			})
+>>>>>>> branch 'BangBangs' of https://github.com/Gasbang99/BangBangs.git
 	  })
 	  
 	  $("#idCkBtn").click(e=>{

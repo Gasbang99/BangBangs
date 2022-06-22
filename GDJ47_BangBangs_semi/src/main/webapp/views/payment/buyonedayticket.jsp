@@ -16,7 +16,7 @@
     
     <div id="selecttype">
         <p style="font-weight: bold;">&nbsp;일일권종류선택</p>
-           <select id="comPaymentClsCd" name="comPaymentClsCd" class="fl" style="width: 55%" onchange="comPayment();">
+           <select id="comPaymentClsCd" name="comPaymentClsCd" class="fl" style="width: 55%" onchange="comPayment3();">
                 <option id="selectDefaltGen" value="">선택</option>
                 <option id="BIL_001" value="1000" etc1="1000" etc2="1000">일일 회원(1시간권)</option>
                 <option id="BIL_002" value="2000" etc1="2000" etc2="2000">일일 회원(2시간권)</option>
@@ -49,7 +49,7 @@
 </div>
     <div id="paybox">
         <h3 id="AmountOfPayment">결제금액</h3><br><br>
-        <p id="use">이용권&nbsp;&nbsp;&nbsp;
+        <p id="use" style="border-bottom:2px solid black">이용권&nbsp;&nbsp;&nbsp;
         <input type="text" class="w80" id="TOT_AMOUNT1" name="TOT_AMOUNT" value="0" readonly="readonly">
         <span style="color:black">원</span></p>
        
