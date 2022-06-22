@@ -15,7 +15,7 @@ import com.google.gson.Gson;
 /**
  * Servlet implementation class SendTemporaryPasswordServlet
  */
-@WebServlet("/sendTemporaryPassword.do")
+@WebServlet(name = "findPwServlet",urlPatterns = "/sendTemporaryPassword.do")
 public class SendTemporaryPasswordServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
