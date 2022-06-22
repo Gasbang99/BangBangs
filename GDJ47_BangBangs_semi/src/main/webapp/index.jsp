@@ -190,4 +190,3 @@
                }
             </style>
         <%@ include file="/views/common/footer.jsp" %>
-        <a href="<%=request.getContextPath() %>/brokenreport.do" target="_blank"><h2>멤버리스트</h2></a> <!-- 테스트문구 지워도됨 -->
