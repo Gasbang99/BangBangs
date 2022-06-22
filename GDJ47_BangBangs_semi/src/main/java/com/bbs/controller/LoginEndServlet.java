@@ -55,6 +55,7 @@ public class LoginEndServlet extends HttpServlet {
 		
 		Member m = new MemberService().searchMember(userId, password);
 		
+		System.out.println(password);
 		String msg = "", loc = "";
 		
 		if(m!=null) {

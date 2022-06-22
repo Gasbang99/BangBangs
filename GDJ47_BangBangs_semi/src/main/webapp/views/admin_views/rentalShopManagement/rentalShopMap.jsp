@@ -1,16 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-
-<head>
-  <meta charset="utf-8">
-  <title>Google Map</title>
-  <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
-</head>
+<%@ include file="/views/common/header.jsp" %>
 
 <body>
-  <div id="map" style="width:100%; height: 100vh;"></div>
+  <div id="map" style="width:100%; height: 80vh;"></div>
  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHvjSqcmNdLlLaP9dPJilDm_XgPSnoAk8&callback=initMap&region=kr"></script> <input type="hidden" id="rs0">
  
   <input type="hidden" id="rs1">
@@ -19,10 +12,10 @@
   <input type="hidden" id="rs4">
   
   <script>
-var temp = new Array(5);
+const rs = new Array(5);
 	
-for (var i = 0; i < temp.length; i++) {
-	      temp[i] = new Array(temp);
+for (let i = 0; i < rs.length; i++) {
+	      rs[i] = new Array(rs);
   	}
  
   $(()=>{
@@ -41,7 +34,7 @@ for (var i = 0; i < temp.length; i++) {
 				
 				
 			
-				var j = 0;
+				let j = 0;
 				data.forEach(v=>{
 				let rentalShopId=v['rentalShopId'];
 				let rentalShopName=v['rentalShopName'];
@@ -49,15 +42,15 @@ for (var i = 0; i < temp.length; i++) {
 				let longitude=v['longitude'];
 				let rentalShopAddress =v['rentalShopAddress'];
 				//$("#crtfcNoCk").val(data);
-				temp[j][0] = rentalShopId;
-				temp[j][1] = rentalShopName;
-				temp[j][2] = latitude;
-				temp[j][3] = longitude;
-				temp[j][4] = rentalShopAddress;
+				rs[j][0] = rentalShopId;
+				rs[j][1] = rentalShopName;
+				rs[j][2] = latitude;
+				rs[j][3] = longitude;
+				rs[j][4] = rentalShopAddress;
 				j++;
 				
 			});
-				  console.log(temp[1][1]);
+				  console.log(rs[1][1]);
 				  initMap();
 		}
 				
@@ -69,50 +62,55 @@ for (var i = 0; i < temp.length; i++) {
 function initMap() {
 	  
 	  //console.log($("#rs0").val());
-	  console.log(temp[0][1]);
+	  console.log(rs[0][1]);
      
-      var seoul = { lat: 37.5642135 ,lng: 127.0016985 };
-      var station1 = {lat: temp[0][2],lng: temp[0][3]};
-      var station2 = {lat: temp[1][2],lng:temp[1][3] };
-      var station3 = {lat: temp[2][2],lng:temp[2][3] };
-      var station4 = {lat: temp[3][2],lng:temp[3][3] };
-      var station5 = {lat: temp[4][2],lng:temp[4][3] };
+	  const seoul = { lat: 37.5642135 ,lng: 127.0016985 };
+      const station1 =new google.maps.LatLng(rs[0][2], rs[0][3]);
+      const station2 = new google.maps.LatLng(rs[1][2], rs[1][3]);
+      const station3 = new google.maps.LatLng(rs[2][2], rs[2][3]);
+      const station4 = new google.maps.LatLng(rs[3][2], rs[3][3]);
+      const station5 = new google.maps.LatLng(rs[4][2], rs[4][3]);
       
-      var map = new google.maps.Map(
-    	        document.getElementById('map'), {
-    	          zoom: 15,
-    	          center: station1
-    	        });
-      
-      new google.maps.Marker({
-    	    position: station1,
-    	    map: map,
-    	    label: temp[0][1]
+      const map = new google.maps.Map(
+     	        document.getElementById('map'), {
+    	        zoom: 15,
+     	        center: station1
     	  });
-      
-      new google.maps.Marker({
-  	    position: station2,
+        
+      			     	        
+        Marker1 = new google.maps.Marker({
+      	    position: station1,
+      	    map: map,
+      	    label: rs[0][1]
+      	  });
+        
+        /* Maker1.addEventListener("click",(e)=>{
+      	  alert("이벤트");
+        }); */
+        
+        Marker2 = new google.maps.Marker({
+    	    position: station2,
+    	    map: map,
+    	    label: rs[1][1]
+    	  });
+        
+        Marker3 =new google.maps.Marker({
+    	    position: station3,
   	    map: map,
-  	    label: temp[1][1]
+  	    label:rs[2][1]
   	  });
-      
-      new google.maps.Marker({
-  	    position: station3,
-	    map: map,
-	    label:temp[2][1]
-	  });
+    	  
+        Marker4 =new google.maps.Marker({
+    	    position: station4,
+  	    map: map,
+  	    label: rs[3][1]
+  	  });
   	  
-  	  new google.maps.Marker({
-  	    position: station4,
-	    map: map,
-	    label: temp[3][1]
-	  });
-	  
-	  new google.maps.Marker({
-  	    position: station5,
-	    map: map,
-	    label: temp[4][1]
-	  });
+        Marker5 = new google.maps.Marker({
+    	    position: station5,
+  	    map: map,
+  	    label: rs[4][1]
+  	  });
     
     } /* 
   var locations = [
@@ -180,8 +178,5 @@ function initMap() {
 
   </script>
   
-  
-</body>
-</html>
-
+          <%@ include file="/views/common/footer.jsp" %>
 	

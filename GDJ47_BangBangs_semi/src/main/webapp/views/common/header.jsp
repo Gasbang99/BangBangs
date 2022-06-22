@@ -90,8 +90,6 @@
                         <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/board/boardList.do">문의/FAQ</a></li>
                         <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/member.do">이용권구매</a></li>
                         <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/searchrentalshop.do">대여소조회</a></li>
-                        <li class="nav-item"> <a href="<%=request.getContextPath() %>/memberList.do">멤버리스트<</a></li> <!-- 테스트문구 지워도됨 -->
-       
                         <% if(loginMember==null){ %>
 	                        <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/login.do">로그인</a></li>
 	                        <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/enrollmember.do">회원가입</a></li>
