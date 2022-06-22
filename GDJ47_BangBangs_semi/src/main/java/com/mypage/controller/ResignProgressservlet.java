@@ -41,8 +41,8 @@ public class ResignProgressservlet extends HttpServlet {
 		loc="/mainscreen.do";
 		if(result>0) {
 			msg="탈퇴되었습니다";
-			HttpSession session=request.getSession();
-			session.setAttribute("loginMember", "");
+			HttpSession session=request.getSession(false);
+			session.invalidate();
 		}else {
 			msg="탈퇴를 실패했습니다";			
 		}

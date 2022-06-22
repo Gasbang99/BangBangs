@@ -1,4 +1,5 @@
 
+<%@page import="com.bbs.payment.model.vo.PurchaseHistory"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="com.bbs.model.vo.IbBoard" %>
@@ -9,27 +10,28 @@
     <%@ page import="com.bbs.model.vo.Member" %>
 <%
 	Member m=(Member)request.getAttribute("member");
+	PurchaseHistory pH=(PurchaseHistory)request.getAttribute("a");
 %>
 <%@ include file="/views/common/header.jsp" %>
     <ul id="mypageHeaderNav" class="nav nav-pills  justify-content-center">
         <li class="nav-item ">
-            <a class="nav-link active" id="memberData" href="<%=request.getContextPath()%>/memberdata.do"><span>회원 정보</span></a>
+            <a class="nav-link active" id="memberData" href="<%=request.getContextPath()%>/memberdata.do?memberId=<%=loginMember.getMemberId()%>"><span>회원 정보</span></a>
         </li>
         <li class="nav-item ">
-            <a class="nav-link " id="purchaseData" href="<%=request.getContextPath()%>/purchasedata.do"><span>결제 정보</span></a>
+            <a class="nav-link " id="purchaseData" href="<%=request.getContextPath()%>/purchasedata.do?memberId=<%=loginMember.getMemberId()%>"><span>결제 정보</span></a>
         </li>
         <li class="nav-item ">
-            <a class="nav-link " id="historyData" href="<%=request.getContextPath()%>historydata.do"><span>이용정보</span></a>
+            <a class="nav-link " id="historyData" href="<%=request.getContextPath()%>historydata.do?memberId=<%=loginMember.getMemberId()%>"><span>이용정보</span></a>
         </li>
     </ul>
 
     <div id="subMenu">
 		<ul class="nav nav-tabs">
 	        <li class="nav-item">
-	            <a class="nav-link active" id="purchaseHistory" href="<%=request.getContextPath()%>/purchasedata.do">결제내역</a>
+	            <a class="nav-link active" id="purchaseHistory" href="<%=request.getContextPath()%>/purchasedata.do?memberId=<%=loginMember.getMemberId()%>">결제내역</a>
 	        </li>
 	        <li class="nav-item">
-	            <a class="nav-link" id="refundHistory" href="<%=request.getContextPath()%>/refundHistory.do">환불내역</a>
+	            <a class="nav-link" id="refundHistory" href="<%=request.getContextPath()%>/refundHistory.do?memberId=<%=loginMember.getMemberId()%>">환불내역</a>
 	        </li>
 		</ul>
 		<div id="subMenu-detail">
@@ -63,9 +65,9 @@
 			     <%} %>
     
 			</table>
-			<div id="pageBar">
+			<ul id="pageBar" class="pagination">
 				<%=pageBar %>
-			</div>
+			</ul>
 		</div>
     </div>
 
