@@ -34,20 +34,34 @@ public class ChangeMemberDataServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		
+		String memId=request.getParameter("member_Id");
+		String memName=request.getParameter("member_name");
+		String memEmail=request.getParameter("email");
+		System.out.println("mem="+memId);
+		System.out.println("mem="+memName);
+		System.out.println("mem="+memEmail);
 		Member m=new Member();
-		m.setMemberId(request.getParameter("member_id"));
-		m.setMemberName(request.getParameter("member_name"));
-		m.setGender(request.getParameter("gender"));
-		m.setBirthday(request.getParameter("birthday"));
-		m.setEmail(request.getParameter("email"));
-		m.setPhone(request.getParameter("phone"));
-		m.setAddress(request.getParameter("address"));
-
-		int result=new MemberService().updateMember(m);
-		
 		String msg="",loc="";
+		int result=0;
+		try {
+			m.setMemberId(request.getParameter("member_Id"));
+			m.setMemberName(request.getParameter("member_name"));
+			m.setGender(request.getParameter("gender"));
+			m.setBirthday(request.getParameter("birthday"));
+			m.setEmail(request.getParameter("email"));
+			m.setPhone(request.getParameter("phone"));
+			m.setAddress(request.getParameter("address"));
+	
+			result=new MemberService().updateMember(m);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
-		loc="//memberdata.do?userId="+m.getMemberId();
+		
+		
+		
+		loc="//memberdata.do?memberId="+m.getMemberId();
 		if(result>0) {
 			msg="정상적으로 정보가 수정되었습니다";
 			HttpSession session=request.getSession();
