@@ -34,7 +34,7 @@
 	        </li>
 		</ul>
 		<div id="subMenu-detail">
-			<form action="<%=request.getContextPath()%>/resignProgress.do" class="position-absolute top-50 start-50 translate-middle">
+			<form action="<%=request.getContextPath()%>/resignprogress.do" class="position-absolute top-50 start-50 translate-middle">
 				<input type="hidden" name="member_id"value="<%=loginMember.getMemberId()%>">
 				<input type="submit" value="탈퇴하기">
 			</form>

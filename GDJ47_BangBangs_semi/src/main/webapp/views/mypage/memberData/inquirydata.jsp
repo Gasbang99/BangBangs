@@ -63,9 +63,9 @@
 			     } %>
     
 			</table>
-			<div id="pageBar">
+			<ul id="pageBar" class="pagination">
 				<%=pageBar %>
-			</div>
+			</ul>
 	</div>
     </div>
 
