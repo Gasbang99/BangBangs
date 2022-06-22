@@ -13,7 +13,7 @@
         <span>예시)기본 초과 1분~5분:200원,6분~10분:400원</span>
         <li>추가요금은 이용권 결제수단으로 자동결제됩니다</li>
     </ul>
-
+<form action="<%=request.getContextPath() %>/enrollpurchasehistory.do" method="post">
 <div id="selecttype">
         <p style="font-weight: bold;">&nbsp;정기권종류선택</p>
            <select id="comPaymentClsCd" name="comPaymentClsCd" class="fl" style="width: 55%" onchange="comPayment();">
@@ -29,9 +29,9 @@
             </select>  
             <p>&nbsp;</p>
 </div><br>
-	<div id="selecttype">
-        <p style="font-weight: bold;">&nbsp;보유 마일리지 <input type="number" id="posseMile" readonly="readonly"></p>
-        <input type="number" id="mileage1" placeholder="마일리지 사용" style="margin-left:40px" onkeyup="comPayment1();" >
+	<div id="selecttype" style="margin-top:5px">
+        <p style="font-weight: bold;margin-top:10px">&nbsp;보유 마일리지 <input type="number" id="posseMile" readonly="readonly" style="margin-left:48px"></p>
+        <p style="font-weight: bold;">&nbsp;사용할 마일리지<input type="number" id="mileage1" placeholder="100단위로 사용가능" style="margin-left:40px" onkeyup="comPayment1();" >
         <br><br>
     </div>
 	<style>
@@ -85,3 +85,4 @@
 		  <button class="btn" type="button">결제하기</button>		  
 		</div>
 	</div>
+</form>

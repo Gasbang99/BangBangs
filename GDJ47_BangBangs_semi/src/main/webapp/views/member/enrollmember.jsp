@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="/views/common/header.jsp" %>
+<%@ include file="/views/common/footer.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,8 +12,9 @@
 
 </head>
 <body>
+<div id="wrapper">
 	<form name="enrollMemberFrm" action="<%=request.getContextPath() %>/enrollmemberend.do" method="POST" class="joinForm" onsubmit="return fn_enrollmemberValidate();">                                                                                           
-      <h2>회원가입</h2>
+      <h2 style="font-weight:bolder;">회원가입</h2>
       <div class="textForm">
         <input name="loginId" type="text" id="id" class="id" placeholder="아이디" required>
 		<input type="button" id="idCkBtn" class="button" value="중복확인">
@@ -61,7 +64,7 @@
 		<input type="text" name="postcode" id="sample6_postcode" placeholder="우편번호" required>
 		<input type="button" id="daumPostcode" class="button" value="우편번호 찾기"><br>
 		<input type="text" name="address" id="sample6_address" placeholder="주소" size=45 required><br>
-		<input type="text" name="detailAddress" id="sample6_detailAddress" placeholder="상세주소">
+		<input type="text" name="detailAddress" id="sample6_detailAddress" placeholder="상세주소" style="margin-right: 15px">
 		<input type="text" name="extraAddress" id="sample6_extraAddress" placeholder="참고항목">
 	  </div>
 	  <div></div>
@@ -85,7 +88,7 @@
     <form name="idDuplicateFrm">
     	<input type="hidden" name="userId">
     </form>
-
+    </div>
 	<script>
 		$(()=>{
             $("input").focus(e=>{ // 선택하면 밑줄 초록색으로
@@ -360,14 +363,21 @@
 		});
 	</script>
 	<style>
-	* {
-	  margin: 0px;
-	  padding: 0px;
-	  text-decoration: none;
-	  font-family:sans-serif;
-	
-	}
-	
+		#sample6_postcode{
+		margin-right:75px;
+		}
+		.footer {
+	    
+	    top: 1700px;
+	    left: 0;
+	     width: 100%; 
+	    padding: 15px 0;
+	    text-align: center;
+	    color: white;
+	    background: black;
+		position : relative;
+		}
+		
 	body {
 	  background-image:#34495e;
 	}
@@ -501,7 +511,6 @@
 	  margin-top: 40px;
 	  margin-bottom: 40px;
 	  width:80%;
-	  height:40px;
 	  background: linear-gradient(125deg,#81ecec,#6c5ce7,#81ecec);
 	  background-position: left;
 	  background-size: 200%;

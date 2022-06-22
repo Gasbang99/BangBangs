@@ -83,10 +83,17 @@
         body {
             padding-left: 300px;
             padding-right: 300px;
+<<<<<<< HEAD
+            border:1px solid red;
+        }
+        #subMenu {
+        	border:1px solid red;
+=======
             /* border:1px solid red; */
         }
         #subMenu {
         	/* border:1px solid red; */
+>>>>>>> branch 'BangBangs' of https://github.com/Gasbang99/BangBangs.git
         }
     </style>
     <script type="text/javascript">

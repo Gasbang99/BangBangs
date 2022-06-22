@@ -73,8 +73,6 @@ public class LoginEndServlet extends HttpServlet {
 		request.setAttribute("loc", loc);
 		
 		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
-		
-		System.out.println(password);
 	}
 
 	/**
