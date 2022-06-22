@@ -50,6 +50,7 @@ public class MemberService {
 		return result;
 	}
 
+
 	public int updatePassword(String memberId, String newPw) {
 		Connection conn=getConnection();
 		int result=dao.updatePassword(conn, memberId, newPw);
@@ -59,5 +60,13 @@ public class MemberService {
 		return result;
 	}
 
+
 	
+	public Member findMemberId(String name, String mailAddress) {
+		Connection conn = getConnection();
+		Member m = dao.findMemberId(conn, name, mailAddress);
+		close(conn);
+		return m;
+	}
+
 }

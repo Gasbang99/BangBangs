@@ -2,6 +2,7 @@ package com.bbs.board.model.dao;
 
 import static com.bbs.common.JDBCTemplate.close;
 
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
@@ -112,11 +113,9 @@ public class BoardDao {
 		int result = 0;
 		try {
 			pstmt=conn.prepareStatement(prop.getProperty("insertBoardComment"));
-			pstmt.setString(1, ibc.getIbCommentContent());
-			pstmt.setString(2, ibc.getIbCommentWriter());
-			pstmt.setInt(3, ibc.getIbPostNum());
-		
-			
+			pstmt.setInt(1, ibc.getIbPostNum());
+			pstmt.setString(2, ibc.getIbCommentContent());
+			pstmt.setString(3, ibc.getIbCommentWriter());
 			result=pstmt.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -151,7 +150,7 @@ public class BoardDao {
 		try {
 			pstmt= conn.prepareStatement(prop.getProperty("deleteBoard"));
 			pstmt.setInt(1, boardNo);
-			rs=pstmt.executeQuery();
+			result=pstmt.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -179,7 +178,7 @@ public class BoardDao {
 		}
 		return result;
 	}
-	public List<IbBoard> searchIbBoardList(Connection conn,String type,String keyword){
+	public List<IbBoard> searchIbBoardList(Connection conn,String type,String keyword,int cPage,int numPerpage){
 		PreparedStatement pstmt = null;
 		ResultSet rs =null;
 		List<IbBoard> result = new ArrayList();
@@ -187,7 +186,11 @@ public class BoardDao {
 		sql=sql.replace("$COL", type);
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, type.equals("member_id")?"%"+keyword+"%":keyword);
+//			pstmt.setString(1,keyword);
+			//동등비교
+			pstmt.setString(1, type.equals("memberId")?"%"+keyword+"%":keyword);
+			pstmt.setInt(2, (cPage-1)*numPerpage+1);
+			pstmt.setInt(3, cPage*numPerpage);
 			rs = pstmt.executeQuery();
 			while(rs.next())result.add(getIbBoard(rs));
 		}catch(SQLException e) {
@@ -198,6 +201,26 @@ public class BoardDao {
 		}
 		return result;
 	}
+	public int searchIbBoardCount(Connection conn,String type,String keyword) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql=prop.getProperty("searchIbBoardCount").replace("$COL", type);
+		int result=0;
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, type.equals("memberId")?"%"+keyword+"%":keyword);
+			rs=pstmt.executeQuery();
+			if(rs.next())result=rs.getInt(1);
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+	}
+			return result;
+	}
+
 	private Member getMember(ResultSet rs) throws SQLException{
 		return Member.builder()
 				.memberId(rs.getString("member_id"))

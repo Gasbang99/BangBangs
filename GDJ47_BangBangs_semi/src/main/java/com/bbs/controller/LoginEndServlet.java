@@ -16,7 +16,7 @@ import com.bbs.model.vo.Member;
 /**
  * Servlet implementation class LoginEndServlet
  */
-@WebServlet("/loginend.do")
+@WebServlet(name = "loginServlet", urlPatterns = "/loginend.do")
 public class LoginEndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

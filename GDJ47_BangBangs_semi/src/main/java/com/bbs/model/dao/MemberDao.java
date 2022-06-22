@@ -161,4 +161,22 @@ public class MemberDao {
 			close(pstmt);
 		}return result;
 	}
+
+	public Member findMemberId(Connection conn, String name, String mailAddress) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		Member m=null;
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("findMemberId"));
+			pstmt.setString(1, name);
+			pstmt.setString(2, mailAddress);
+			rs=pstmt.executeQuery();
+			if(rs.next()) m=getMember(rs);
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}return m;
+	}
 }

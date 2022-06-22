@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.bbs.board.model.service.BoardService;
 import com.bbs.model.vo.IbBoard;
 
+
 /**
  * Servlet implementation class BoardSearchMember
  */
@@ -34,9 +35,47 @@ public class BoardSearchIb extends HttpServlet {
 		String type = request.getParameter("searchType");
 		String keyword=request.getParameter("searchKeyword");
 		
-		List<IbBoard> result = new BoardService().searchIbBoardList(type,keyword);
+		int cPage;
+		int numPerpage=5;
+		try {
+			cPage=Integer.parseInt(request.getParameter("cPage"));
+		}catch(NumberFormatException e) {
+			cPage=1;
+		}
 		
-		request.setAttribute("list", result);
+		List<IbBoard> result = new BoardService().searchIbBoardList(type,keyword,cPage,numPerpage);
+		
+		int totalData=new BoardService().searchIbBoardCount(type,keyword);
+		int totalPage=(int)Math.ceil((double)totalData/numPerpage);
+		int pageBarSize=5;
+		int pageNo=((cPage-1)/pageBarSize)*pageBarSize+1;
+		int pageEnd=pageNo+pageBarSize-1;
+		
+		String pageBar="";
+		if(pageNo==1) {
+			pageBar+="<span>[이전]</span>";
+		}else {
+			pageBar+="<a href='"+request.getRequestURL()
+			+"?cPage="+(pageNo-1)+"&searchType="+type+"&searchKeyword="+keyword+"'>[이전]</a>";
+		}
+		
+		while(!(pageNo>pageEnd||pageNo>totalPage)) {
+			if(pageNo==cPage) {
+				pageBar+="<span>"+pageNo+"</span>";
+			}else {
+				pageBar+="<a href='"+request.getRequestURL()
+				+"?cPage="+(pageNo)+"&searchType="+type+"&searchKeyword="+keyword+"'>"+pageNo+"</a>";
+			}
+			pageNo++;
+		}
+		if(pageNo>totalPage) {
+			pageBar+="<span>[다음]</span>";
+		}else {
+			pageBar+="<a href='"+request.getRequestURL()
+			+"?cPage="+(pageNo)+"&searchType="+type+"&searchKeyword="+keyword+"'>[다음]</a>";
+		}
+		request.setAttribute("pageBar", pageBar);
+		request.setAttribute("boards", result);
 		
 		request.getRequestDispatcher("/views/board/boardList.jsp").forward(request, response);
 	}

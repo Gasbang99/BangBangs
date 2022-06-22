@@ -5,6 +5,8 @@
 <%
 List<IbBoard> boards=(List<IbBoard>)request.getAttribute("boards");
 String pageBar=(String)request.getAttribute("pageBar");
+String searchType=request.getParameter("searchType");
+String keyword=request.getParameter("searchKeyword");
 %>
 <%@ include file="/views/common/header.jsp"%>
   <head>
@@ -101,34 +103,35 @@ String pageBar=(String)request.getAttribute("pageBar");
       </div>
      <section id="memberList-container">
        <div id="search-container">
-        	검색 :
-        	<select id="searchType">
-        		<option value="userId" >작성자</option>
-        		<option value="userName" >제목</option>
-        		<option value="gender" >카테고리</option>
+        	
+        	  <select id="searchType">
+        	<option value="userId" <%=searchType!=null&&searchType.equals("member_Id")?"selected":"" %>>작성자</option>
+        		<option value="userName" <%=searchType!=null&&searchType.equals("ib_Title")?"selected":""%>>제목</option>
+        		<option value="gender" <%=searchType!=null&&searchType.equals("category")?"selected":""%>>카테고리</option>
         	</select>
         	<div id="search-userId">
         		<form action="<%=request.getContextPath()%>/board/searchIb">
-        			<input type="hidden" name="searchType" value="userId" >
+        			<input type="hidden" name="searchType" value="member_Id" >
         			<input type="text" name="searchKeyword" size="25" 
         			placeholder="검색할 작성자를 입력하세요" >
         			<button type="submit" class="btn btn-primary">찾기</button>
         		</form>
         	</div>
         	<div id="search-userName">
-        		<form action="<%=request.getContextPath()%>/admin/searchMember">
-        			<input type="hidden" name="searchType" value="userName">
+        		<form action="<%=request.getContextPath()%>/board/searchIb">
+        			<input type="hidden" name="searchType" value="ib_Title">
         			<input type="text" name="searchKeyword" size="25" 
-        			placeholder="검색할 이름을 입력하세요">
-        			<button type="submit">검색</button>
+        			placeholder="검색할 제목을 입력하세요">
+        			<button type="submit" class="btn btn-primary">찾기</button>
         		</form>
         	</div>
         	<div id="search-gender">
-        		<form action="<%=request.getContextPath()%>/admin/searchMember">
-        			<input type="hidden" name="searchType" value="gender">
-        			<label><input type="radio" name="searchKeyword" value="M" >남</label>
-        			<label><input type="radio" name="searchKeyword" value="F" >여</label>
-        			<button type="submit">검색</button>
+        		<form action="<%=request.getContextPath()%>/board/searchIb">
+        			<input type="hidden" name="searchType" value="category">
+        			<label><input type="checkbox" name="searchKeyword" value="고장" >고장</label>
+        			<label><input type="checkbox" name="searchKeyword" value="문의" >문의</label>
+        			<label><input type="checkbox" name="searchKeyword" value="기타" >기타</label>
+        			<button type="submit" class="btn btn-primary">찾기</button>
         		</form>
         	</div>
         	
@@ -171,7 +174,6 @@ String pageBar=(String)request.getAttribute("pageBar");
   <script>
     	$(()=>{
     		$("#searchType").change(e=>{
-    			/* alert("type이 변경됨"); */
     			const type=$(e.target).val();
     			console.log(type);
     			$("#search-container>div[id!=search-]").hide();

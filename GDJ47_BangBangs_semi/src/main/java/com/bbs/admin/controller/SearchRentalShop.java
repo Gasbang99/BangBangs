@@ -1,4 +1,4 @@
-package com.bbs.payment.controller;
+package com.bbs.admin.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -6,19 +6,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class MemberServlet
+ * Servlet implementation class SearchRentalShop
  */
-@WebServlet("/member.do")
-public class MemberServlet extends HttpServlet {
+@WebServlet("/searchrentalshop.do")
+public class SearchRentalShop extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberServlet() {
+    public SearchRentalShop() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,14 +26,10 @@ public class MemberServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
-		HttpSession session = request.getSession();
-		if(session.getAttribute("loginMember")!=null) {
-			request.getRequestDispatcher("/views/payment/member.jsp").forward(request, response);			
-		}else {
-			request.getRequestDispatcher("/views/member/login.jsp").forward(request, response);
-		}
+
+		request.getRequestDispatcher("views/admin_views/rentalShopManagement/rentalShopMap.jsp").forward(request, response);
+	
+	
 	}
 
 	/**

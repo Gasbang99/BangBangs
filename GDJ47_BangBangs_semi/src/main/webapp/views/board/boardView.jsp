@@ -93,21 +93,19 @@
 </div>
 <!-- Comments Form -->
 <div class="container">
- <table class="table table-hover">
 <form action="<%=request.getContextPath()%>/board/insertBoardComment.do" method="post">
-    <tbody>
+ <table class="table table-hover">
         <tr>
-      	<td><textarea type="text" class="form-control" placeholder="글 내용을 작성하세요" name="content" rows="3" cols="20" ></textarea></td>
-      			
-      	            <input type="hidden" name="writer" value="">
-   		    	    <input type="hidden" name="pNum" value="<%=b.getIbPostNum()%>"> 
+      	<td><textarea class="form-control" placeholder="댓글 작성하세요" name="content" rows="2" cols="90" ></textarea></td>	
+      	          <td><input type="hidden" name="writer" value="<%=loginMember!=null?loginMember.getMemberId():""%>"></td> 
+   		    	   <td><input type="hidden" name="pNum" value="<%=b.getIbPostNum()%>"></td>
       </tr>
-    </tbody>
    </table>
   <input type="submit" class="btn btn-primary pull-right" value="작성">
- 
 </form>
 </div>
+</body>
+</html>
 <style>
 .mb-5{
       text-align: center;
@@ -119,9 +117,5 @@
    textarea{resizeable:none;}
     table#tbl-comment textarea{margin: 4px 0 0 0;}
     table#tbl-comment button.btn-insert2{width:60px; height:23px; color:white; background:#3300ff; position:relative; top:-5px; left:10px;}
-    </style>
-    </style>
 </style>
-</body>
-</html>
 <%@ include file="/views/common/footer.jsp"%>
