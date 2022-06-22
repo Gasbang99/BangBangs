@@ -30,16 +30,15 @@ private Properties prop=new Properties();
 		int result = 0;		
 		try {
 			pstmt = conn.prepareStatement(prop.getProperty("insertPurchase"));
-			pstmt.setString(1, m.getTicketCode());
-			pstmt.setString(2, m.getMemberPassword());
-			pstmt.setString(3, m.getMemberName());
-			pstmt.setString(4, m.getGender());
-			pstmt.setString(5, m.getBirthday());
-			pstmt.setString(6, m.getEmail());
-			pstmt.setString(7, m.getAddress());
-			pstmt.setString(8, m.getPhone());
-			result = pstmt.executeUpdate();
-			
+			pstmt.setInt(1, ph.getPurchaseId());
+			pstmt.setString(2, ph.getPurchaseMethod());
+			pstmt.setInt(3, ph.getPaymentAmount());
+			pstmt.setDate(4, ph.getPurchaseDate());
+			pstmt.setInt(5, ph.getMileageSave());
+			pstmt.setInt(6, ph.getMileageDeduction());
+			pstmt.setString(7, ph.getTicketCode());
+			pstmt.setString(8, ph.getMemberId());
+			result = pstmt.executeUpdate();			
 			if(result>0) commit(conn);
 			else rollback(conn);
 		}catch(SQLException e) {

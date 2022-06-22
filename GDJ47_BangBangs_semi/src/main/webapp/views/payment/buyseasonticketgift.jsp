@@ -16,7 +16,7 @@
 
     <div id="selecttype">
         <p style="font-weight: bold;">&nbsp;정기권종류선택</p>
-           <select id="comPaymentClsCd" name="comPaymentClsCd" class="fl" style="width: 55%" onchange="comPayment();">
+           <select id="comPaymentClsCd" name="comPaymentClsCd" class="fl" style="width: 55%" onchange="comPayment3();">
                 <option id="selectDefaltGen" value="">선택</option>
                 <option id="BIL_001" value="3000" etc1="3000" etc2="3000">7일(1시간권)</option>
                 <option id="BIL_002" value="5000" etc1="5000" etc2="5000">30일(1시간권)</option>
@@ -35,11 +35,7 @@
         <input type="number" style="margin-left:40px">
     
     <br><br>
-<<<<<<< HEAD
     <div id="comPaymentClsCd2">
-=======
-    <div id="comPaymentClsCd1">
->>>>>>> branch 'BangBangs' of https://github.com/Gasbang99/BangBangs.git
         <p style="font-weight: bold;">&nbsp;결제방식</p>
         <table>
             <tr>
@@ -65,7 +61,7 @@
 </div>
     <div id="paybox">
         <h3 id="AmountOfPayment">결제금액</h3><br><br>
-        <p id="use">이용권&nbsp;&nbsp;&nbsp;
+        <p id="use" style="border-bottom:2px solid black">이용권&nbsp;&nbsp;&nbsp;
         <input type="text" class="w80" id="TOT_AMOUNT1" name="TOT_AMOUNT" value="0" readonly="readonly">
         <span style="color:black">원</span></p>
        

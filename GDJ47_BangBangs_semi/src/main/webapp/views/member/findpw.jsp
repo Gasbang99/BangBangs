@@ -61,7 +61,7 @@
 	          }
 	          else{
 	          	$.ajax({
-						url : "<%=request.getContextPath()%>/findend.do?mailAddress="+$("#email").val(),
+						url : "<%=request.getContextPath()%>/sendmail.do?mailAddress="+$("#email").val(),
 						dataType : "json",
 						success : data=>{
 							$("#crtfcNoCk").val(data);
@@ -80,8 +80,19 @@
 				const crtfcNo1 = $("#crtfcNo").val();
 				const crtfcNo2 = $("#crtfcNoCk").val();
 				if(crtfcNo1==crtfcNo2){
-					$("#crtfcNoMsg").text("본인확인이 완료되었습니다!");
+					$("#crtfcNoMsg").text("본인확인이 완료되었습니다!\n임시 비밀번호를 이메일로 보냈습니다.");
                     $("#crtfcNoMsg").css("color","green");
+                    $.ajax({
+						url : "<%=request.getContextPath()%>/sendTemporaryPassword.do?mailAddress="+$("#email").val()+"&id="+$("#id").val(),
+						dataType : "json",
+						success : data=>{
+							
+						},
+						error : (r,d)=>{
+							console.log(r);
+							console.log(d);
+						}
+					})
 				}else{
 					$("#crtfcNoMsg").text("인증번호가 맞지 않습니다.");
                     $("#crtfcNoMsg").css("color","red");
@@ -95,6 +106,17 @@
 			})
 >>>>>>> branch 'BangBangs' of https://github.com/Gasbang99/BangBangs.git
 	  })
+	  
+	  $("#idCkBtn").click(e=>{
+	    		const userId = $("#id").val();
+	    		regid=/^[a-z0-9][a-z0-9_-]{4,19}$/;
+	    		if(!regid.test(userId)){
+	                alert("5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다.");
+	    			$("#id").focus();
+	    		}else{
+	    			
+	    		}
+			})
 	  </script>
 	  
 	  <style>
