@@ -42,17 +42,17 @@ public class InquiryDataServlet extends HttpServlet {
 		}catch(NumberFormatException e) {
 			cPage=1;
 		}
-		System.out.println(cPage);
+
 	
 		int	numPerpage=5;
 	
-		System.out.println(numPerpage);
 		System.out.println(memberId);
+		
 		List<IbBoard> ibBoards=new IbBoardService().selectIbBoardListById(memberId, cPage, numPerpage);
-		System.out.println(ibBoards);
+
 		int totalBoard=new IbBoardService().selectIbBoardCountById(memberId);
 		int totalPage=(int)Math.ceil((double)totalBoard/numPerpage);
-		System.out.println(totalBoard);
+
 		int pageBarSize=5;
 		
 		int pageNo=((cPage-1)/pageBarSize)*pageBarSize+1;
@@ -60,7 +60,7 @@ public class InquiryDataServlet extends HttpServlet {
 		
 		String pageBar="";
 		if(pageNo==1) {
-			pageBar+="<li class='page-item disabled'><span>[이전]</span></li>";
+			pageBar+="<li class='page-item disabled'><span class='page-link'>[이전]</span></li>";
 		}else {
 			pageBar+="<li class='page-item'><a class='page-link' href="+request.getRequestURL()
 					+"?cPage="+(pageNo-1)
@@ -86,7 +86,7 @@ public class InquiryDataServlet extends HttpServlet {
 			+"?cPage="+(pageNo)
 			+"&numPerpage="+numPerpage+"&memberId="+memberId+">[다음]</a></li>";
 		}
-		System.out.println(pageBar);
+
 		request.setAttribute("pageBar", pageBar);
 		request.setAttribute("ibBoards", ibBoards);
 		
