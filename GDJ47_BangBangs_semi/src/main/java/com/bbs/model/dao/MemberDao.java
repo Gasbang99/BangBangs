@@ -27,13 +27,13 @@ public class MemberDao {
 		}
 	}
 	
-	public Member searchMember(Connection conn, String userId, String password) {
+	public Member searchMember(Connection conn, String memberId, String password) {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		Member m=null;
 		try {
 			pstmt=conn.prepareStatement(prop.getProperty("selectMember"));
-			pstmt.setString(1,userId);
+			pstmt.setString(1,memberId);
 			pstmt.setString(2, password);
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
@@ -91,13 +91,13 @@ public class MemberDao {
 		return result;
 	}
 	
-	public int updatePassword(Connection conn, String userId, String password) {
+	public int updatePassword(Connection conn, String memberId, String newPw) {
 		PreparedStatement pstmt=null;
 		int result=0;
 		try {
 			pstmt=conn.prepareStatement(prop.getProperty("updatePassword"));
-			pstmt.setString(1,password);
-			pstmt.setString(2, userId);
+			pstmt.setString(1,newPw);
+			pstmt.setString(2, memberId);
 			result=pstmt.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -178,5 +178,39 @@ public class MemberDao {
 			close(rs);
 			close(pstmt);
 		}return m;
+	}
+
+	public Member findMemberPw(Connection conn, String id, String mailAddress) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		Member m=null;
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("findMemberPw"));
+			pstmt.setString(1, id);
+			pstmt.setString(2, mailAddress);
+			rs=pstmt.executeQuery();
+			if(rs.next()) m=getMember(rs);
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}return m;
+	}
+	
+	public int updateMemberMileage(Connection conn, int mileageSave, int mileageDeduction, String id) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("updateMemberMileage"));
+			pstmt.setInt(1, mileageSave+mileageDeduction);
+			pstmt.setString(2, id);
+
+			result=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}return result;
 	}
 }

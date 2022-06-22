@@ -11,9 +11,9 @@ import com.bbs.model.vo.Member;
 public class MemberService {
 	private MemberDao dao = new MemberDao();
 	
-	public Member searchMember(String userId, String password) {
+	public Member searchMember(String memberId, String oriPw) {
 		Connection conn = getConnection();
-		Member m = dao.searchMember(conn, userId, password);
+		Member m = dao.searchMember(conn, memberId, oriPw);
 		close(conn);
 		return m;
 	}
@@ -49,6 +49,18 @@ public class MemberService {
 		close(conn);
 		return result;
 	}
+
+
+	public int updatePassword(String memberId, String newPw) {
+		Connection conn=getConnection();
+		int result=dao.updatePassword(conn, memberId, newPw);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result;
+	}
+
+
 	
 	public Member findMemberId(String name, String mailAddress) {
 		Connection conn = getConnection();
@@ -56,4 +68,21 @@ public class MemberService {
 		close(conn);
 		return m;
 	}
+
+	public Member findMemberPw(String id, String mailAddress) {
+		Connection conn = getConnection();
+		Member m = dao.findMemberPw(conn, id, mailAddress);
+		close(conn);
+		return m;
+	}
+	
+	public int updateMemberMileage(int mileageSave, int mileageDeduction, String id) {
+		Connection conn=getConnection();
+		int result=dao.updateMemberMileage(conn, mileageSave, mileageDeduction, id);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result;
+	}
+
 }

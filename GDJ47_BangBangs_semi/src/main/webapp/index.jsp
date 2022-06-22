@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ include file="/views/common/header.jsp" %>
 <%@ page import="com.bbs.model.vo.Member" %>
 
-<%@ include file="/views/common/header.jsp" %>
         <!-- Masthead-->
        
 
@@ -16,9 +17,6 @@
                         </style>
                         <h2 class="text-white-50 mx-auto mt-2 mb-5"></h2>
                         
-                    </div>
-                </div>
-            </div>
         </header>
         <!-- About-->
         <section class="about-section text-center" id="about">
@@ -190,4 +188,3 @@
                }
             </style>
         <%@ include file="/views/common/footer.jsp" %>
-        <a href="<%=request.getContextPath() %>/brokenreport.do" target="_blank"><h2>멤버리스트</h2></a> <!-- 테스트문구 지워도됨 -->

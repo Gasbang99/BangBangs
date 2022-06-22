@@ -16,7 +16,7 @@ import com.bbs.model.vo.Member;
 /**
  * Servlet implementation class LoginEndServlet
  */
-@WebServlet("/loginend.do")
+@WebServlet(name = "loginServlet", urlPatterns = "/loginend.do")
 public class LoginEndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -36,10 +36,10 @@ public class LoginEndServlet extends HttpServlet {
 		
 		String userId = request.getParameter("id");
 		String password = request.getParameter("password");
-		
+		System.out.println(userId);
+		System.out.println(password);
 		// 아이디를 저장하기
 		String saveId = request.getParameter("saveId");
-		System.out.println(saveId);
 		// saveId값을 기준으로 null값이면 아이디를 저장하지 않고
 		// on이면 아이디를 저장해서 출력해줘야 함.
 		// id값을 유지할 수 있는 저장공간에 저장! -> cookie를 이용하자
@@ -55,6 +55,7 @@ public class LoginEndServlet extends HttpServlet {
 		
 		Member m = new MemberService().searchMember(userId, password);
 		
+		System.out.println(password);
 		String msg = "", loc = "";
 		
 		if(m!=null) {

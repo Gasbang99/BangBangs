@@ -1,4 +1,4 @@
-package com.bbs.payment.vo;
+package com.bbs.payment.model.vo;
 
 import java.sql.Date;
 
@@ -11,9 +11,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 @Data
-public class Payment {
+public class Ticket {
 	private String ticketCode;
 	private String ticketName;
-	private Date timeLimit;
-	private Date dateLimit;
+	private int timeLimit;
+	private int dateLimit;
+	private int ticketPrice;
 }

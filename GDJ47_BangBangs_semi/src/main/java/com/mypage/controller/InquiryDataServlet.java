@@ -42,17 +42,17 @@ public class InquiryDataServlet extends HttpServlet {
 		}catch(NumberFormatException e) {
 			cPage=1;
 		}
-		System.out.println(cPage);
+
 	
 		int	numPerpage=5;
 	
-		System.out.println(numPerpage);
 		System.out.println(memberId);
+		
 		List<IbBoard> ibBoards=new IbBoardService().selectIbBoardListById(memberId, cPage, numPerpage);
-		System.out.println(ibBoards);
+
 		int totalBoard=new IbBoardService().selectIbBoardCountById(memberId);
 		int totalPage=(int)Math.ceil((double)totalBoard/numPerpage);
-		System.out.println(totalBoard);
+
 		int pageBarSize=5;
 		
 		int pageNo=((cPage-1)/pageBarSize)*pageBarSize+1;
@@ -60,34 +60,33 @@ public class InquiryDataServlet extends HttpServlet {
 		
 		String pageBar="";
 		if(pageNo==1) {
-			pageBar+="<span>[이전]</span>";
+			pageBar+="<li class='page-item disabled'><span class='page-link'>[이전]</span></li>";
 		}else {
-			pageBar+="<a href="+request.getRequestURL()
+			pageBar+="<li class='page-item'><a class='page-link' href="+request.getRequestURL()
 					+"?cPage="+(pageNo-1)
-					+"&numPerpage="+numPerpage+"&memberId="+memberId+">[이전]</a>";
+					+"&numPerpage="+numPerpage+"&memberId="+memberId+">[이전]</a></li>";
 		}
 		
 		while(!(pageNo>pageEnd||pageNo>totalPage)) {
 			if(cPage==pageNo) {
-				pageBar+="<span>"+pageNo+"</span>";
+				pageBar+="<li class='page-item active'><span class='page-link'>"+pageNo+"</span></li>";
 	
 			} else {
-				pageBar+="<a href="+request.getRequestURL()
+				pageBar+="<li class='page-item'><a class='page-link' href="+request.getRequestURL()
 				+"?cPage="+(pageNo)
-				+"&numPerpage="+numPerpage+"&memberId="+memberId+">"+pageNo+"</a>";
+				+"&numPerpage="+numPerpage+"&memberId="+memberId+">"+pageNo+"</a></li>";
 			}
 			pageNo++;
-			System.out.println("wow");
 		}
 		
 		if(pageNo>totalPage) {
-			pageBar+="<span>[다음]</span>";
+			pageBar+="<li class='page-item'><span class='page-link disable'>[다음]</span></li>";
 		}else {
-			pageBar+="<a href="+request.getRequestURL()
+			pageBar+="<a class='page-link' href="+request.getRequestURL()
 			+"?cPage="+(pageNo)
-			+"&numPerpage="+numPerpage+"&memberId="+memberId+">[다음]</a>";
+			+"&numPerpage="+numPerpage+"&memberId="+memberId+">[다음]</a></li>";
 		}
-		System.out.println(pageBar);
+
 		request.setAttribute("pageBar", pageBar);
 		request.setAttribute("ibBoards", ibBoards);
 		

@@ -1,4 +1,4 @@
-package com.mypage.controller;
+package com.bbs.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -6,22 +6,22 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.bbs.model.service.MemberService;
 import com.bbs.model.vo.Member;
+import com.google.gson.Gson;
 
 /**
- * Servlet implementation class ResignProgressservlet
+ * Servlet implementation class FindPwEndServlet
  */
-@WebServlet("/resignprogress.do")
-public class ResignProgressservlet extends HttpServlet {
+@WebServlet("/findpwend.do")
+public class FindPwEndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ResignProgressservlet() {
+    public FindPwEndServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,27 +30,19 @@ public class ResignProgressservlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		
+		String id = request.getParameter("id");
+		String mailAddress = request.getParameter("mailAddress");
 		
-		String memberId=request.getParameter("member_id");
+		Member m = new MemberService().findMemberPw(id, mailAddress);
 		
-		int result=new MemberService().deleteMember(memberId);
+		Gson gson = new Gson();
 		
-		String msg="",loc="";
+		response.setContentType("application/json;charset=utf-8");
 		
-		loc="/mainscreen.do";
-		if(result>0) {
-			msg="탈퇴되었습니다";
-			HttpSession session=request.getSession(false);
-			session.invalidate();
-		}else {
-			msg="탈퇴를 실패했습니다";			
-		}
-		request.setAttribute("msg", msg);
-		request.setAttribute("loc", loc);
-		
-		request.getRequestDispatcher("/views/common/msg.jsp")
-		.forward(request, response);
+		if(m!=null) gson.toJson(m.getMemberId(), response.getWriter());
+		else gson.toJson("no", response.getWriter());
 	}
 
 	/**

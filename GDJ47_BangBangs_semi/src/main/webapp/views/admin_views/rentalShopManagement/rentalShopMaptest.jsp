@@ -1,21 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="/views/common/header.jsp" %>
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Google Map</title>
+  <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>	
+  
+</head>
 
 <body>
-  <div id="map" style="width:100%; height: 80vh;"></div>
+  <div id="map" style="width:100%; height: 100vh;"></div>
  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHvjSqcmNdLlLaP9dPJilDm_XgPSnoAk8&callback=initMap&region=kr"></script> <input type="hidden" id="rs0">
  
-  <input type="hidden" id="rs1">
-  <input type="hidden" id="rs2">
-  <input type="hidden" id="rs3">
-  <input type="hidden" id="rs4">
+  <input type="hidden" id="mk1">
+  <input type="hidden" id="mk2">
+  <input type="hidden" id="mk3">
+  <input type="hidden" id="mk4">
+  <input type="hidden" id="mk5">
   
   <script>
-const rs = new Array(5);
+var temp = new Array(5);
 	
-for (let i = 0; i < rs.length; i++) {
-	      rs[i] = new Array(rs);
+for (var i = 0; i < temp.length; i++) {
+	      temp[i] = new Array(temp);
   	}
  
   $(()=>{
@@ -34,7 +43,7 @@ for (let i = 0; i < rs.length; i++) {
 				
 				
 			
-				let j = 0;
+				var j = 0;
 				data.forEach(v=>{
 				let rentalShopId=v['rentalShopId'];
 				let rentalShopName=v['rentalShopName'];
@@ -42,15 +51,15 @@ for (let i = 0; i < rs.length; i++) {
 				let longitude=v['longitude'];
 				let rentalShopAddress =v['rentalShopAddress'];
 				//$("#crtfcNoCk").val(data);
-				rs[j][0] = rentalShopId;
-				rs[j][1] = rentalShopName;
-				rs[j][2] = latitude;
-				rs[j][3] = longitude;
-				rs[j][4] = rentalShopAddress;
+				temp[j][0] = rentalShopId;
+				temp[j][1] = rentalShopName;
+				temp[j][2] = latitude;
+				temp[j][3] = longitude;
+				temp[j][4] = rentalShopAddress;
 				j++;
 				
 			});
-				  console.log(rs[1][1]);
+				  console.log(temp[1][1]);
 				  initMap();
 		}
 				
@@ -58,61 +67,103 @@ for (let i = 0; i < rs.length; i++) {
 
   })  
   
-
-function initMap() {
+function initMap() : void{
 	  
 	  //console.log($("#rs0").val());
-	  console.log(rs[0][1]);
+	  //console.log(temp[0][1]);
      
-	  const seoul = { lat: 37.5642135 ,lng: 127.0016985 };
-      const station1 =new google.maps.LatLng(rs[0][2], rs[0][3]);
-      const station2 = new google.maps.LatLng(rs[1][2], rs[1][3]);
-      const station3 = new google.maps.LatLng(rs[2][2], rs[2][3]);
-      const station4 = new google.maps.LatLng(rs[3][2], rs[3][3]);
-      const station5 = new google.maps.LatLng(rs[4][2], rs[4][3]);
+      var seoul = { lat: 37.5642135 ,lng: 127.0016985 };
+      const station1 =new google.maps.LatLng(temp[0][2], temp[0][3]);
+      const station2 = new google.maps.LatLng(temp[1][2], temp[1][3]);
+      const station3 = new google.maps.LatLng(temp[2][2], temp[2][3]);
+      const station4 = new google.maps.LatLng(temp[3][2], temp[3][3]);
+      const station5 = new google.maps.LatLng(temp[4][2], temp[4][3]);
       
-      const map = new google.maps.Map(
-     	        document.getElementById('map'), {
-    	        zoom: 15,
-     	        center: station1
-    	  });
-        
-      			     	        
-        Marker1 = new google.maps.Marker({
-      	    position: station1,
-      	    map: map,
-      	    label: rs[0][1]
-      	  });
-        
-        /* Maker1.addEventListener("click",(e)=>{
-      	  alert("이벤트");
-        }); */
-        
-        Marker2 = new google.maps.Marker({
-    	    position: station2,
+      
+      var map = new google.maps.Map(
+   	        document.getElementById('map'), {
+  	        zoom: 15,
+   	        center: station1
+  	  });
+      
+    			     	        
+      Marker1 = new google.maps.Marker({
+    	    position: station1,
     	    map: map,
-    	    label: rs[1][1]
+    	    label: temp[0][1]
     	  });
-        
-        Marker3 =new google.maps.Marker({
-    	    position: station3,
+      
+      /* Maker1.addEventListener("click",(e)=>{
+    	  alert("이벤트");
+      }); */
+      
+      Marker2 = new google.maps.Marker({
+  	    position: station2,
   	    map: map,
-  	    label:rs[2][1]
+  	    label: temp[1][1]
   	  });
-    	  
-        Marker4 =new google.maps.Marker({
-    	    position: station4,
-  	    map: map,
-  	    label: rs[3][1]
-  	  });
+      
+      Marker3 =new google.maps.Marker({
+  	    position: station3,
+	    map: map,
+	    label:temp[2][1]
+	  });
   	  
-        Marker5 = new google.maps.Marker({
-    	    position: station5,
-  	    map: map,
-  	    label: rs[4][1]
-  	  });
+      Marker4 =new google.maps.Marker({
+  	    position: station4,
+	    map: map,
+	    label: temp[3][1]
+	  });
+	  
+      Marker5 = new google.maps.Marker({
+  	    position: station5,
+	    map: map,
+	    label: temp[4][1]
+	  });
+      
+}
+      
+      /* map.addListener("center_changed", () => {
+    	    // 3 seconds after the center of the map has changed, pan back to the
+    	    // marker.
+    	    window.setTimeout(() => {
+    	      map.panTo(marker.getPosition() as google.maps.LatLng);
+    	    }, 3000);
+    	  });
+
+    	  marker.addListener("click", () => {
+    	    map.setZoom(8);
+    	    map.setCenter(marker.getPosition() as google.maps.LatLng);
+    	  });
+    	} */
+      	
+  
+      
+	 /*  Marker marker5=new google.maps.Marker({
+	  	    position: station5,
+		    map: map,
+		    label: temp[4][1]
+		  }); */
+    /* 
+	  marker.addListener("click", () => {
+		    infowindow.open({
+		      anchor: marker,
+		      map,
+		      shouldFocus: false,
+		    });
+		  }); */
+
+	  /* 
+	  Marker melbourne = map.addMarker(
+	      new MarkerOptions()
+	          .position(melbourneLatLng)
+	          .title("Melbourne"));
+	  melbourne.showInfoWindow(); */
     
-    } /* 
+  
+  
+  
+  /* 
   var locations = [
       
       //경복궁 마커
@@ -163,7 +214,6 @@ function initMap() {
           }
       })(marker, i));
       
-      if (marker) {
           marker.addListener('click', function() {
               
               //중심 위치를 클릭된 마커의 위치로 변경
@@ -178,5 +228,8 @@ function initMap() {
 
   </script>
   
-          <%@ include file="/views/common/footer.jsp" %>
+  
+</body>
+</html>
+
 	

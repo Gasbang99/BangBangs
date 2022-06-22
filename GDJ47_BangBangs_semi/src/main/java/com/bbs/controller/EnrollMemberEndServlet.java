@@ -14,7 +14,7 @@ import com.bbs.model.vo.Member;
 /**
  * Servlet implementation class EnrollMemberEndServlet
  */
-@WebServlet("/enrollmemberend.do")
+@WebServlet(name = "enrollMemberServlet", urlPatterns = "/enrollmemberend.do")
 public class EnrollMemberEndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
