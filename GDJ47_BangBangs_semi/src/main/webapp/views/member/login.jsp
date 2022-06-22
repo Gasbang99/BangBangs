@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ include file="/views/common/header.jsp" %>
 <%
 	Cookie[] cookies = request.getCookies();
 	String saveId = null;
@@ -11,8 +12,9 @@
 		}
 	}
 %>
-<!DOCTYPE html>
 
+<%@ include file="/views/common/footer.jsp" %>
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -21,9 +23,10 @@
 
 </head>
 <body>
+<div>
 	<div class="wrap">
 	    <div class="form-wrap">
-	        <div class="title-wrap"><h2>방방쓰</h2></div>
+	        <div class="title-wrap">방방쓰</div>
 	        <form id="login" action="<%= request.getContextPath() %>/loginend.do" method="post" class="input-group">
 	            <input name="id" type="text" class="input-field" placeholder="아이디를 입력하세요" value="<%=saveId!=null?saveId:""%>" required>
 	            <input name="password" type="password" class="input-field" placeholder="비밀번호를 입력하세요" required>
@@ -32,7 +35,7 @@
 				<div style="margin-top:5px"><input type="button" id="nonmember" class="submit1" value="비회원로그인"></div>		
 	        </form>
 	        <div id="sub-wrap" style="margin-top:100px">
-	        	<ul class="find_wrap" id="find_wrap" style="margin-top:30px">
+	        	<ul class="find_wrap" id="find_wrap" style="margin-top:40px">
 	                <li><a href="findid.do"
 	                       class="find_text">아이디 찾기</a></li>
 	                <li>|</li>
@@ -45,7 +48,7 @@
 	        </div>
 	    </div>
 	</div>
-	
+</div>	
 	<script>
 	   $("#nonmember").click(e=>{
 		   location.assign("<%=request.getContextPath() %>/nonmember.do");
@@ -75,6 +78,7 @@
 		    overflow: hidden;
 		    border: 1px solid grey;
 		    border-radius: 60px;
+		    margin-top:150px;
 		}
 		.title-wrap {
 		    width: 230px;
@@ -83,7 +87,7 @@
 		    border-radius: 30px;
 		    text-align: center;
 		    font-size: 35px;
-		    
+		    font-weight:bolder;
 		}
 		.input-group {
 		    top: 150px;
@@ -102,7 +106,7 @@
 		    background: transparent;
 		}
 		.submit {
-		    width: 100%;
+		    width: 300px;
 		    padding: 10px 30px;
 		    cursor: pointer;
 		    display: block;
@@ -115,7 +119,7 @@
 		    border-radius: 30px;
 		}
 		.submit1 {
-		    width: 100%;
+		    width: 300px;
 		    padding: 10px 30px;
 		    cursor: pointer;
 		    display: block;
@@ -138,7 +142,7 @@
 		    position: absolute;
 		}
 		#login {
-		    left: 50px;
+		    left: 40px;
 		}
 		.find_wrap {
 			top: 400px;
@@ -148,8 +152,7 @@
 		    display: flex;
 		    list-style-type: none;
 		    justify-content: space-around;
-			margin-left: 45px;
-		    
+			margin-left: 30px;		    
 		}
 		.find_text{
 			font-size: 12px;

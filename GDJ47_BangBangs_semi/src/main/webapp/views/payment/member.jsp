@@ -30,6 +30,8 @@
 	    function comPayment() {
 	        var p = document.getElementById("comPaymentClsCd").value;
 	        document.getElementById("TOT_AMOUNT1").value=p;
+	        var i = document.getElementById("TOT_AMOUNT2").value
+	        document.getElementById("TOT_AMOUNT3").value=p-i;
 	    }
 	    function comPayment1() {
 	        var i = document.getElementById("mileage1").value;
@@ -48,6 +50,15 @@
 	        var p = document.getElementById("comPaymentClsCd").value;
 	    	document.getElementById("TOT_AMOUNT3").value=p-i;
 	    }
+	    function comPayment3() {
+	        var p = document.getElementById("comPaymentClsCd").value;
+	        document.getElementById("TOT_AMOUNT1").value=p;
+	        document.getElementById("TOT_AMOUNT3").value=p;
+	    }
+	    
+	    $("#submitBtn").click(e=>{
+	    	alert("결제가 완료되었습니다.");
+	    })
     </script>
     <script>
     	$("#btn1").attr("class","nav-link active");
@@ -115,6 +126,11 @@
 	});
     </script>
     <style>
+	    #mileage2{
+	    	font-weight:bolder;
+	    	border-bottom:1px solid black;
+	    	border-width:2px;
+	    }
     	#selecttype{
     		border: 1px solid #000;
     		box-sizing: border-box;
@@ -221,7 +237,17 @@
     		box-shadow: 5px 3px 3px #ccc;    	
             width: 400px;
         	height:auto;  
-        	margin-top:30px;     	
+        	margin-top:30px; 
+        	margin-left:40px;    	
+        }
+        #comPaymentClsCd2{
+            background: #fff;          
+            border: 1px solid #000;
+    		box-sizing: border-box;
+    		box-shadow: 5px 3px 3px #ccc;    	
+            width: 400px;
+        	height:auto;  
+        	margin-top:30px;    	
         }
         #seasonticket{
             border: solid 1px black;

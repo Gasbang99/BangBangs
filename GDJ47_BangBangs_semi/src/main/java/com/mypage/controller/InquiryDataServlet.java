@@ -64,20 +64,18 @@ public class InquiryDataServlet extends HttpServlet {
 		}else {
 			pageBar+="<a href="+request.getRequestURL()
 					+"?cPage="+(pageNo-1)
-					+"&numPerpage="+numPerpage+"&memberId="+memberId+">[이전]</a>";
+					+"&numPerpage="+numPerpage+">[이전]</a>";
 		}
 		
 		while(!(pageNo>pageEnd||pageNo>totalPage)) {
 			if(cPage==pageNo) {
 				pageBar+="<span>"+pageNo+"</span>";
-	
 			} else {
 				pageBar+="<a href="+request.getRequestURL()
 				+"?cPage="+(pageNo)
-				+"&numPerpage="+numPerpage+"&memberId="+memberId+">"+pageNo+"</a>";
+				+"&numPerpage="+numPerpage+">"+pageNo+"</a>";
 			}
 			pageNo++;
-			System.out.println("wow");
 		}
 		
 		if(pageNo>totalPage) {
@@ -85,7 +83,8 @@ public class InquiryDataServlet extends HttpServlet {
 		}else {
 			pageBar+="<a href="+request.getRequestURL()
 			+"?cPage="+(pageNo)
-			+"&numPerpage="+numPerpage+"&memberId="+memberId+">[다음]</a>";
+			+"&numPerpage="+numPerpage+">[다음]</a>";
+
 		}
 		System.out.println(pageBar);
 		request.setAttribute("pageBar", pageBar);
