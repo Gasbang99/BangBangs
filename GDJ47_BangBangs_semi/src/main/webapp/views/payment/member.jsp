@@ -28,14 +28,14 @@
 		})
     	
 	    function comPayment() {
-	        var p = document.getElementById("comPaymentClsCd").value;
+	        let p = document.getElementById("comPaymentClsCd").value;
 	        document.getElementById("TOT_AMOUNT1").value=p;
-	        var i = document.getElementById("TOT_AMOUNT2").value
+	        let i = document.getElementById("TOT_AMOUNT2").value
 	        document.getElementById("TOT_AMOUNT3").value=p-i;
 	    }
 	    function comPayment1() {
-	        var i = document.getElementById("mileage1").value;
-	        var m = $("#posseMile").val();
+	        let i = document.getElementById("mileage1").value;
+	        let m = $("#posseMile").val();
 	        console.log(m);
 	        console.log(i);
 	        if(parseInt(i)>parseInt(m) || i>1000){
@@ -47,11 +47,11 @@
 	        	}
 	        }
 	        document.getElementById("TOT_AMOUNT2").value=-i;
-	        var p = document.getElementById("comPaymentClsCd").value;
+	        let p = document.getElementById("comPaymentClsCd").value;
 	    	document.getElementById("TOT_AMOUNT3").value=p-i;
 	    }
 	    function comPayment3() {
-	        var p = document.getElementById("comPaymentClsCd").value;
+	        let p = document.getElementById("comPaymentClsCd").value;
 	        document.getElementById("TOT_AMOUNT1").value=p;
 	        document.getElementById("TOT_AMOUNT3").value=p;
 	    }
