@@ -19,6 +19,7 @@
         <input name="email" type="text" id="email" class="email" placeholder="가입시 등록한 이메일 입력" required>
 		<input type="button" id="sendBtn" class="button" value="인증번호 받기">
       </div>
+      <input type="hidden" id="userId">
 	  <div id="emailMsg"></div>
 	  <div class="textForm">
 	  	<input type="hidden" id="crtfcNoCk">
@@ -59,19 +60,37 @@
 	              $("#emailMsg").css("color","red");
 	          }
 	          else{
-	          	$.ajax({
-						url : "<%=request.getContextPath()%>/sendmail.do?mailAddress="+$("#email").val(),
+	        	  $.ajax({
+	        		  url : "<%=request.getContextPath()%>/findidend.do?mailAddress="+$("#email").val()+"&name="+$("#name").val(),
 						dataType : "json",
+						async:false,
 						success : data=>{
-							$("#crtfcNoCk").val(data);
+							$("#userId").val(data);
 						},
 						error : (r,d)=>{
 							console.log(r);
 							console.log(d);
 						}
-					})
-					$("#emailMsg").text("인증번호를 발송했습니다. 이메일을 확인하세요.");
-	              $("#emailMsg").css("color","green");
+	        	  })
+	        	  if($("#userId").val()=="no"){
+	        		  $("#emailMsg").text("인증번호를 발송에 실패했습니다. 아이디와 이메일을 다시 확인해주세요.");
+	              		$("#emailMsg").css("color","red");
+	        	  }else{
+	        		  $.ajax({
+							url : "<%=request.getContextPath()%>/sendmail.do?mailAddress="+$("#email").val(),
+							dataType : "json",
+							success : data=>{
+								$("#crtfcNoCk").val(data);
+								console.log($("#crtfcNoCk").val());
+							},
+							error : (r,d)=>{
+								console.log(r);
+								console.log(d);
+							}
+						})
+						$("#emailMsg").text("인증번호를 발송했습니다. 이메일을 확인하세요.");
+		              	$("#emailMsg").css("color","green");
+	        	  }
 	          }
 			})
 			
@@ -81,17 +100,7 @@
 				if(crtfcNo1==crtfcNo2){
 					$("#crtfcNoMsg").text("본인확인이 완료되었습니다!");
                     $("#crtfcNoMsg").css("color","green");
-                    $.ajax({
-						url : "<%=request.getContextPath()%>/findidend.do?mailAddress="+$("#email").val()+"&name="+$("#name").val(),
-						dataType : "json",
-						success : data=>{
-							open("<%=request.getContextPath()%>/findidmsg.do?id="+data, "", "width=300,height=200");
-						},
-						error : (r,d)=>{
-							console.log(r);
-							console.log(d);
-						}
-					})
+                    open("<%=request.getContextPath()%>/findidmsg.do?id="+$("#userId").val(), "", "width=300,height=200");
 				}else{
 					$("#crtfcNoMsg").text("인증번호가 맞지 않습니다.");
                     $("#crtfcNoMsg").css("color","red");

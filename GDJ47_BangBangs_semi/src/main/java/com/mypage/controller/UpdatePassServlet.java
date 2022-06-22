@@ -1,28 +1,23 @@
-package com.bbs.controller;
+package com.mypage.controller;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.bbs.model.service.MemberService;
-import com.bbs.model.vo.Member;
-import com.google.gson.Gson;
-
 /**
- * Servlet implementation class FindIdEndServlet
+ * Servlet implementation class UpdatePassServlet
  */
-@WebServlet("/findidend.do")
-public class FindIdEndServlet extends HttpServlet {
+@WebServlet("/updatePass.do")
+public class UpdatePassServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FindIdEndServlet() {
+    public UpdatePassServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,19 +26,7 @@ public class FindIdEndServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
-		String name = request.getParameter("name");
-		String mailAddress = request.getParameter("mailAddress");
-		
-		Member m = new MemberService().findMemberId(name, mailAddress);
-		
-		Gson gson = new Gson();
-		
-		response.setContentType("application/json;charset=utf-8");
-		
-		if(m!=null) gson.toJson(m.getMemberId(), response.getWriter());
-		else gson.toJson("no", response.getWriter());
+		request.getRequestDispatcher("/views/mypage/memberData/updatePass.jsp").forward(request, response);
 	}
 
 	/**
