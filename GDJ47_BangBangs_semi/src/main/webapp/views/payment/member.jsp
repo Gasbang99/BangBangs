@@ -55,6 +55,10 @@
 	        document.getElementById("TOT_AMOUNT1").value=p;
 	        document.getElementById("TOT_AMOUNT3").value=p;
 	    }
+	    
+	    $("#submitBtn").click(e=>{
+	    	alert("결제가 완료되었습니다.");
+	    })
     </script>
     <script>
     	$("#btn1").attr("class","nav-link active");
