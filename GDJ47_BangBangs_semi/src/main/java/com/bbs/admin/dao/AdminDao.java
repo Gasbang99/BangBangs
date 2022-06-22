@@ -79,7 +79,7 @@ private Properties prop=new Properties();
 		sql=sql.replace("$COL", type);
 		try {
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, type.equals("memberName")?"%"+keyword+"%":keyword);
+			pstmt.setString(1, type.equals("MEMBER_NAME")?"%"+keyword+"%":keyword);
 			pstmt.setInt(2, (cPage-1)*numPerpage+1);
 			pstmt.setInt(3, cPage*numPerpage);
 			rs=pstmt.executeQuery();
@@ -101,7 +101,7 @@ private Properties prop=new Properties();
 		int result=0;
 		try {
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, type.equals("userName")?"%"+keyword+"%":keyword);
+			pstmt.setString(1, type.equals("MEMBER_NAME")?"%"+keyword+"%":keyword);
 			rs=pstmt.executeQuery();
 			if(rs.next()) result=rs.getInt(1);
 			
@@ -119,7 +119,7 @@ private Properties prop=new Properties();
 		ResultSet rs=null;
 		List<String> result=new ArrayList();
 		try {
-			pstmt=conn.prepareStatement("SELECT USERID FROM MEMBER WHERE USERID LIKE '%"+keyword+"%'");
+			pstmt=conn.prepareStatement("SELECT MEMBER_ID FROM MEMBER WHERE MEMBER_ID LIKE '%"+keyword+"%'");
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
 				result.add(rs.getString(1));
