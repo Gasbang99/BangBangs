@@ -69,4 +69,11 @@ public class MemberService {
 		return m;
 	}
 
+	public Member findMemberPw(String id, String mailAddress) {
+		Connection conn = getConnection();
+		Member m = dao.findMemberPw(conn, id, mailAddress);
+		close(conn);
+		return m;
+	}
+
 }

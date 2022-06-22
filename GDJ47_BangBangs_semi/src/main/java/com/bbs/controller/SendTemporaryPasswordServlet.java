@@ -1,6 +1,7 @@
 package com.bbs.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bbs.common.sendmail.SendMail;
+import com.bbs.model.service.MemberService;
 import com.google.gson.Gson;
 
 /**
@@ -35,6 +37,8 @@ public class SendTemporaryPasswordServlet extends HttpServlet {
 		String id = request.getParameter("id");
 		
 		String temPw = SendMail.sendTemporaryPassword(mailAddress, id);
+		
+		int result = new MemberService().updatePassword(id, temPw);
 		
 		Gson gson = new Gson();
 		
