@@ -16,6 +16,7 @@
 	  <div id="emailMsg"></div>
 	  <input type="hidden" id="userId">
 	  <input type="hidden" id="temPw">
+	  <input type="hidden" id="result">
 	  <div class="textForm">
 	  	<input type="hidden" id="crtfcNoCk">
         <input type="text" name="crtfcNo" id="crtfcNo" class="email" placeholder="인증번호 입력" required>
@@ -95,11 +96,23 @@
 					$("#crtfcNoMsg").text("본인확인이 완료되었습니다!\n임시 비밀번호를 이메일로 보냈습니다.");
                     $("#crtfcNoMsg").css("color","green");
                     $.ajax({
-						url : "<%=request.getContextPath()%>/sendTemporaryPassword.do?mailAddress="+$("#email").val()+"&id="+$("#id").val(),
+						url : "<%=request.getContextPath()%>/sendTemporaryPassword.do?mailAddress="+$("#email").val()+"&id="+$("#userId").val(),
 						dataType : "json",
 						async:false,
 						success : data=>{
 							$("#temPw").val(data);
+						},
+						error : (r,d)=>{
+							console.log(r);
+							console.log(d);
+						}
+					})
+					$.ajax({
+						url : "<%=request.getContextPath()%>/updatetemporarypassword.do?password="+$("#temPw").val()+"&id="+$("#userId").val(),
+						dataType : "json",
+						async:false,
+						success : data=>{
+							$("#result").val(data);
 						},
 						error : (r,d)=>{
 							console.log(r);

@@ -90,6 +90,7 @@
                         <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/board/boardList.do">문의/FAQ</a></li>
                         <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/member.do">이용권구매</a></li>
                         <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/searchrentalshop.do">대여소조회</a></li>
+                        <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/rentalBike.do">대여하기</a></li>
                         <% if(loginMember==null){ %>
 	                        <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/login.do">로그인</a></li>
 	                        <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/enrollmember.do">회원가입</a></li>
