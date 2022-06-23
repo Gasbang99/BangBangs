@@ -95,6 +95,9 @@
 	                        <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/enrollmember.do">회원가입</a></li>
                         <%}else{ %>
                         	<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/memberdata.do?memberId=<%=loginMember.getMemberId()%>">마이페이지</a></li>
+	                        <%if(loginMember.getMemberId().equals("admin")){ %>
+								<li><a class="nav-link" href="<%=request.getContextPath()%>/admin/index.do">관리자페이지</a></li><%} %>
+	                        
 	                        <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/logout.do">로그아웃</a></li>
                         <%} %>
                     </ul>

@@ -10,14 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class DashboardServlet
  */
-@WebServlet("/index.do")
-public class DashboardServlet extends HttpServlet {
+@WebServlet("/admin/index.do")
+public class AdminIndexServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DashboardServlet() {
+    public AdminIndexServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,7 +28,7 @@ public class DashboardServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
-		request.getRequestDispatcher("/views/admin_views/dashboard.jsp")
+		request.getRequestDispatcher("/views/admin_views/adminIndex.jsp")
 		.forward(request, response);
 	}
 

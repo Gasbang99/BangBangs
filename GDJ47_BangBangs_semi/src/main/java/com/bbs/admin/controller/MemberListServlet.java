@@ -15,7 +15,7 @@ import com.bbs.model.vo.Member;
 /**
  * Servlet implementation class MemberListServlet
  */
-@WebServlet("/memberList.do")
+@WebServlet("/admin/memberList.do")
 public class MemberListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

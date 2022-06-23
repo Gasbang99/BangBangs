@@ -36,7 +36,7 @@ public class MemberDetailServlet extends HttpServlet {
 		String memberId=request.getParameter("memberId");
 		Member m= new MemberService().selectMemberById(memberId);
 		System.out.println(m);
-		request.setAttribute("member", m);	
+		request.setAttribute("member", m);			
 		request.getRequestDispatcher("/views/admin_views/memberManagement/memberDetail.jsp").forward(request, response);
 		
 	}
