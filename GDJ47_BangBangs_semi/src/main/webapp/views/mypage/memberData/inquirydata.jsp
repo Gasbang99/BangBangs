@@ -22,7 +22,7 @@
         </li>
     </ul>
 
-    <div id="subMenu">
+    <div id="subMenu" >
     	<ul class="nav nav-tabs">
 	        <li class="nav-item">
 	            <a class="nav-link" id="change" href="<%=request.getContextPath()%>/memberdata.do?memberId=<%=loginMember.getMemberId()%>">회원정보수정</a>
@@ -35,7 +35,8 @@
 	        </li>
 		</ul>
 
-		<div id="subMenu-detail">
+		<div id="subMenu-detail" >
+		<div>
 			<table>
     			<tr>
 			        <th>번호</th>
@@ -66,7 +67,9 @@
 			<ul id="pageBar" class="pagination">
 				<%=pageBar %>
 			</ul>
+			</div>
 	</div>
+	
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
@@ -85,8 +88,14 @@
             padding-right: 300px;
             /* border:1px solid red; */
         }
-        #subMenu {
+        #subMenu-detail {
         	/* border:1px solid red; */
+        	/* margin:auto; */
+        	display:flex;
+        	justify-content: center;
+        }
+        table {
+        width: 800px;
         }
     </style>
     <script type="text/javascript">
