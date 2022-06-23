@@ -80,6 +80,26 @@ private Properties prop=new Properties();
 		return result;
 	}
 	
+	public NoticeBoard selectNotice(Connection conn,int noticeNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		NoticeBoard n = null;
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("selectNotice"));
+			pstmt.setInt(1, noticeNo);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				n=getNoticeBoard(rs);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rs);
+		}
+		return n;
+	}
+	
 	private NoticeBoard getNoticeBoard(ResultSet rs) throws SQLException {
 		return NoticeBoard.builder()
 				.noticeNum(rs.getInt("notice_num"))

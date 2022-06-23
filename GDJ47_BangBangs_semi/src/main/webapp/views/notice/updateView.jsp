@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.bbs.model.vo.IbBoard,java.util.List"%>       
+<%@ page import="com.bbs.notice.model.vo.NoticeBoard"%>       
 <%
-IbBoard b = (IbBoard)request.getAttribute("board");
+NoticeBoard n = (NoticeBoard)request.getAttribute("notice");
 %>
 <%@ include file="/views/common/header.jsp"%>
 <html>
@@ -27,24 +27,18 @@ IbBoard b = (IbBoard)request.getAttribute("board");
     <div class="col-sm-3"></div>
      
     <div class="col-sm-6">
-    <h2 class="mb-5">문의사항 수정하기</h2>
-    <form action='<%=request.getContextPath()%>/board/boardUpdateEnd.do'
+    <h2 class="mb-5">공지사항 수정하기</h2>
+    <form action='<%=request.getContextPath()%>/notice/noticeUpdateEnd.do'
 		method="post" enctype="multipart/form-data" >
         <table class="table table-boardered">
-            <tr>
-                <th>작성자</th>
-                <td>
-                <input type="hidden" name="num" value="<%=b.getIbPostNum()%>">
-                
-                
-
-                <input type="text" class="form-control" name="boardWriter" value="<%=b.getMemberId()%>" readonly>
+       
               
-                </td>        
-            </tr>
+           
             <tr>
                 <th>제목</th>
-                <td><input type="text" class="form-control" name="boardTitle"></td>      
+                <td><input type="text" class="form-control" name="noticeTitle">
+                <input type="hidden" name="num" value="<%=n.getNoticeNum()%>">
+                </td>      
             </tr>
              
             <tr>
@@ -54,7 +48,7 @@ IbBoard b = (IbBoard)request.getAttribute("board");
             <tr>
 				<th>내용</th>
 					<td>
-					 <textarea cols="55" rows="10" name="boardContent"></textarea>
+					 <textarea cols="55" rows="10" name="noticeContent"></textarea>
 					</td>
 				</tr>
            
