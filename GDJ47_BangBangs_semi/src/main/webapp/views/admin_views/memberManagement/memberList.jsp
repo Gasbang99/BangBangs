@@ -28,16 +28,6 @@
 </style>
 
 	<div>
-	<div id="numPerpage-container">
-        	페이지당 회원수 : 
-        <form id="numPerFrm" action="<%=request.getContextPath()%>/admin/memberList.do" method="post">
-        	<select name="numPerpage" id="numPerpage">
-        		<option value="10">10</option>
-        		<option value="5">5</option>
-        		<option value="3">3</option>
-        	</select>
-        </form>
-    </div>
 	<div>
 	    <section id="memberList-container">
 	        <h2>회원관리</h2> 
@@ -84,9 +74,7 @@
    		 }%>
         </tbody>
 	    </table>
-			<div id="pageBar">
-				<%=request.getAttribute("pageBar") %>
-			</div>
+			
 			
 		</section>
 		</div>

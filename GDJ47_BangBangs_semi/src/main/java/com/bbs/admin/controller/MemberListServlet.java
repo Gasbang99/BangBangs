@@ -41,7 +41,9 @@ public class MemberListServlet extends HttpServlet {
 		}catch(NumberFormatException e) {
 			cPage=1;
 		}
+		
 		int numPerpage=5;
+		
 		
 		//DB에 저장되어있는 Member테이블의 모든데이터를 가져와야함.
 		List<Member> list=new AdminService().selectMemberList(cPage, numPerpage);
