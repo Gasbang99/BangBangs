@@ -25,7 +25,7 @@
 			 		aria-describedby="inputGroup-sizing-sm" id="password_chk" name="password_chk" required>
 		</div>
 		<div id="passwordCheck"></div>
-		<input type="submit" value="변경" id="changeButton" disabled="disabled"/>&nbsp;
+		<input type="submit" value="변경" id="changeButton" disabled/>&nbsp;
 		
 	</form>
 	<button onclick="window.close();">닫기</button>
@@ -37,11 +37,11 @@
         if(pwck.length>0){
             if(pwck==pwVal){
                 $("#passwordCheck").text("비밀번호가 일치합니다!");
-                $("#pwConfirmMsg").css("color","green");
+                $("#passwordCheck").css("color","green");
                 $("#changeButton").disabled= false;
             }else{
                 $("#passwordCheck").text("비밀번호가 일치하지 않습니다.");
-                $("#pwConfirmMsg").css("color","red");
+                $("#passwordCheck").css("color","red");
                 $("#changeButton").disabled= true;
             }
         }
