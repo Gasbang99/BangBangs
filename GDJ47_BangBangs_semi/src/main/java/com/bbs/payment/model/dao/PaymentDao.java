@@ -16,6 +16,7 @@ import java.util.Properties;
 
 import com.bbs.model.dao.MemberDao;
 import com.bbs.model.vo.IbBoard;
+import com.bbs.payment.model.vo.GiftHistory;
 import com.bbs.payment.model.vo.PurchaseHistory;
 import com.bbs.payment.model.vo.Ticket;
 
@@ -129,6 +130,24 @@ private Properties prop=new Properties();
 			close(rs);
 			close(pstmt);
 		}return result;
+	}
+	public int insertGiftHistory(Connection conn, GiftHistory gh) {
+		PreparedStatement pstmt = null;
+		int result = 0;		
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("insertGiftHistory"));
+			pstmt.setString(1, gh.getGiveMemberId());
+			pstmt.setString(2, gh.getTakeMemberId());
+			pstmt.setString(3, gh.getTicketCode());
+			result = pstmt.executeUpdate();			
+			if(result>0) commit(conn);
+			else rollback(conn);
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
 	}
 	
 }

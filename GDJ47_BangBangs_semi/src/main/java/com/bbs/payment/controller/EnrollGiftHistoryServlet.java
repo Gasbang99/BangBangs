@@ -72,7 +72,7 @@ public class EnrollGiftHistoryServlet extends HttpServlet {
 		
 		String msg = "", loc = "";
 	      
-	      if(resultPH>0&&resultMM>0) {
+	      if(resultPH>0&&resultMM>0&&resultGH>0) {
 	         msg = "결제가 완료되었습니다!";
 	         loc = "/member.do";
 	      }else {
