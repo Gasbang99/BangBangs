@@ -46,7 +46,7 @@
 	        		$("#mileage1").val(Math.floor(m/100)*100);
 	        	}
 	        }
-	        document.getElementById("TOT_AMOUNT2").value=-i;
+	        document.getElementById("TOT_AMOUNT2").value=i;
 	        let p = document.getElementById("comPaymentClsCd").value;
 	    	document.getElementById("TOT_AMOUNT3").value=p-i;
 	    }
@@ -59,6 +59,7 @@
 	    $("#submitBtn").click(e=>{
 	    	alert("결제가 완료되었습니다.");
 	    })
+	    
     </script>
     <script>
     	$("#btn1").attr("class","nav-link active");
@@ -81,6 +82,17 @@
 				$("#ppap").html(data);
 			}
 		});
+        $.ajax({
+			url : "<%=request.getContextPath()%>/possessionmileage.do?id=<%=loginMember.getMemberId()%>",
+			dataType : "json",
+			success : data=>{
+				$("#posseMile").val(data);
+			},
+			error : (r,d)=>{
+				console.log(r);
+				console.log(d);
+			}
+		})
 	});
 	$("#btn2").click(e=>{
         $("#btn1").attr("class","nav-link")
@@ -95,6 +107,17 @@
 				$("#ppap").html(data);
 			}
 		});
+        $.ajax({
+			url : "<%=request.getContextPath()%>/possessionmileage.do?id=<%=loginMember.getMemberId()%>",
+			dataType : "json",
+			success : data=>{
+				$("#posseMile").val(data);
+			},
+			error : (r,d)=>{
+				console.log(r);
+				console.log(d);
+			}
+		})
 	});
 	$("#btn3").click(e=>{
         $("#btn1").attr("class","nav-link")
@@ -109,6 +132,17 @@
 				$("#ppap").html(data);
 			}
 		});
+        $.ajax({
+			url : "<%=request.getContextPath()%>/possessionmileage.do?id=<%=loginMember.getMemberId()%>",
+			dataType : "json",
+			success : data=>{
+				$("#posseMile").val(data);
+			},
+			error : (r,d)=>{
+				console.log(r);
+				console.log(d);
+			}
+		})
 	});
 	$("#btn4").click(e=>{
         $("#btn1").attr("class","nav-link")
@@ -123,6 +157,17 @@
 				$("#ppap").html(data);
 			}
 		});
+        $.ajax({
+			url : "<%=request.getContextPath()%>/possessionmileage.do?id=<%=loginMember.getMemberId()%>",
+			dataType : "json",
+			success : data=>{
+				$("#posseMile").val(data);
+			},
+			error : (r,d)=>{
+				console.log(r);
+				console.log(d);
+			}
+		})
 	});
     </script>
     <style>

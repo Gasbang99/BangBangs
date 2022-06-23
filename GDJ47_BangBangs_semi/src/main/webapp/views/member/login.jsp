@@ -31,8 +31,7 @@
 	            <input name="id" type="text" class="input-field" placeholder="아이디를 입력하세요" value="<%=saveId!=null?saveId:""%>" required>
 	            <input name="password" type="password" class="input-field" placeholder="비밀번호를 입력하세요" required>
 	            <label><input type="checkbox" name="saveId" class="checkbox" <%=saveId!=null?"checked":"" %>>아이디 저장</label>
-				<div><input type="submit" class="submit" value="L O G I N"></div>	
-				<div style="margin-top:5px"><input type="button" id="nonmember" class="submit1" value="비회원로그인"></div>		
+				<div><input type="submit" class="submit" value="L O G I N"></div>			
 	        </form>
 	        <div id="sub-wrap" style="margin-top:100px">
 	        	<ul class="find_wrap" id="find_wrap" style="margin-top:40px">
