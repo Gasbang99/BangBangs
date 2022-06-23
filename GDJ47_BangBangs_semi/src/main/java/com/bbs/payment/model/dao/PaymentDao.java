@@ -17,6 +17,7 @@ import java.util.Properties;
 import com.bbs.model.dao.MemberDao;
 import com.bbs.model.vo.IbBoard;
 import com.bbs.payment.model.vo.PurchaseHistory;
+import com.bbs.payment.model.vo.Ticket;
 
 public class PaymentDao {
 private Properties prop=new Properties();
@@ -53,7 +54,7 @@ private Properties prop=new Properties();
 	public List<PurchaseHistory> selectPurchaseHistoryById(Connection conn, String memberId, int cPage,
 			int numPerpage) {
 		PreparedStatement pstmt=null;
-		List<IbBoard> result= new ArrayList();
+		List<PurchaseHistory> result= new ArrayList();
 		ResultSet rs = null;
 		try {
 			pstmt = conn.prepareStatement(prop.getProperty("selectPurchaseHistoryById"));
@@ -62,7 +63,7 @@ private Properties prop=new Properties();
 			pstmt.setInt(3, cPage*numPerpage);
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
-				result.add(getIbBoard(rs));
+				result.add(getPhBoard(rs));
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -75,16 +76,42 @@ private Properties prop=new Properties();
 	
 	
 	
-	private PurchaseHistory getIbBoard(ResultSet rs) throws SQLException {
+	private PurchaseHistory getPhBoard(ResultSet rs) throws SQLException {
 		return PurchaseHistory.builder()
-				.purchaseId(rs.getInt("ib_post_num"))
-				.purchaseMethod(rs.getString("ib_title"))
-				.paymentAmount(rs.getInt("ib_enroll_date"))
-				.purchaseDate(rs.getDate("member_id"))
-				.mileageSave(rs.getInt("category"))
-				.mileageDeduction(rs.getInt("ib_content"))
-				.ticketCode(rs.getString("ib_board_original_filename"))
-				.memberId(rs.getString("ib_board_renamed_filename"))
+				.purchaseId(rs.getInt("purchase_id"))
+				.purchaseMethod(rs.getString("payment_method"))
+				.paymentAmount(rs.getInt("payment_amount"))
+				.purchaseDate(rs.getDate("purchase_date"))
+				.mileageSave(rs.getInt("mileage_save"))
+				.mileageDeduction(rs.getInt("mileage_deduction"))
+				.ticketCode(rs.getString("ticket_code"))
+				.memberId(rs.getString("member_id"))
+				.build();
+	}
+	public Ticket findTicketNameByTicketCode(Connection conn, String ticketCode) {
+		PreparedStatement pstmt=null;
+		Ticket ticket=null;
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("findTicketNameByTicketCode"));
+			pstmt.setString(1, ticketCode);
+			rs=pstmt.executeQuery();
+			if(rs.next()) ticket=getTicket(rs);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return ticket;
+	}
+	private Ticket getTicket(ResultSet rs) throws SQLException {
+		return Ticket.builder()
+				.ticketCode(rs.getString("ticket_Code"))
+				.ticketName(rs.getString("ticket_Name"))
+				.timeLimit(rs.getInt("time_Limit"))
+				.dateLimit(rs.getInt("date_Limit"))
+				.ticketPrice(rs.getInt("ticket_Price"))
 				.build();
 	}
 	

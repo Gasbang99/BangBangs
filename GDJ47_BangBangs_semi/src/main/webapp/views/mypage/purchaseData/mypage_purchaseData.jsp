@@ -1,24 +1,25 @@
 
+<%@page import="java.util.List"%>
 <%@page import="com.bbs.payment.model.vo.PurchaseHistory"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="com.bbs.model.vo.IbBoard" %>
-<% 	IbBoard ibBoards=(IbBoard)request.getAttribute("ibBoard"); 
+<% 	List<PurchaseHistory>  pH=(List<PurchaseHistory>)request.getAttribute("purchaseHistory"); 
 	
 	String pageBar=(String)request.getAttribute("pageBar");%>
 	
     <%@ page import="com.bbs.model.vo.Member" %>
 <%
 	Member m=(Member)request.getAttribute("member");
-	PurchaseHistory pH=(PurchaseHistory)request.getAttribute("a");
+	
 %>
 <%@ include file="/views/common/header.jsp" %>
     <ul id="mypageHeaderNav" class="nav nav-pills  justify-content-center">
         <li class="nav-item ">
-            <a class="nav-link active" id="memberData" href="<%=request.getContextPath()%>/memberdata.do?memberId=<%=loginMember.getMemberId()%>"><span>회원 정보</span></a>
+            <a class="nav-link" id="memberData" href="<%=request.getContextPath()%>/memberdata.do?memberId=<%=loginMember.getMemberId()%>"><span>회원 정보</span></a>
         </li>
         <li class="nav-item ">
-            <a class="nav-link " id="purchaseData" href="<%=request.getContextPath()%>/purchasedata.do?memberId=<%=loginMember.getMemberId()%>"><span>결제 정보</span></a>
+            <a class="nav-link  active" id="purchaseData" href="<%=request.getContextPath()%>/purchasedata.do?memberId=<%=loginMember.getMemberId()%>"><span>결제 정보</span></a>
         </li>
         <li class="nav-item ">
             <a class="nav-link " id="historyData" href="<%=request.getContextPath()%>historydata.do?memberId=<%=loginMember.getMemberId()%>"><span>이용정보</span></a>
@@ -43,24 +44,34 @@
 			        <th>결제수단</th>
 			        <th>환불</th>
     			</tr>
-    			<%if(!ibBoards.isEmpty()) {
-        			for(IbBoard b : ibBoards){%>
+    			<%if(!pH.isEmpty()) {
+        			for(PurchaseHistory b : pH){%>
         		<tr>
-		            <td><%=b.getIbPostNum() %>
-		            </td>
-		            <td>
-		                <a href="<%=request.getContextPath()%>/board/boardView.do?no=<%=b.getIbPostNum()%>">
-		                <%=b.getIbTitle() %>
-		                </a>
-		            </td>
-		            <td><%=b.getIbEnrollDate() %></td>
-		            <td><%=b.getIbContent() %></td>
-		            <td><form action="<%=request.getContextPath()%>/"></form></td>
+		            <td id="<%=b.getPurchaseId()%>"></td>
+		            <td><%=b.getPaymentAmount()%></td>
+		            <td><%=b.getPurchaseMethod()%></td>
+		            <td><%=b.getPurchaseDate() %></td>
+		            <td><form action="<%=request.getContextPath()%>/"><input type="submit" value="환불"></form></td>
+		            <script>
+        			$.ajax({
+        				url:"<%=request.getContextPath()%>/findTicketName.do?ticketCode=<%=b.getTicketCode()%>",
+        						dataType:"json",
+        						success:data=>{
+        							console.log(data);
+        							$("#<%=b.getPurchaseId()%>").text(data);
+        						},
+        						error : (r,d)=>{
+        							console.log(r);
+        							console.log(d);
+        						}
+        			});
+        		</script>
         		</tr>
+        		
 			    <%}
 			     }else{ %>
 			    <tr>
-			      	<td colspan='4'>조회된 결과가 없습니다.</td>
+			      	<td colspan='5'>조회된 결과가 없습니다.</td>
 			    </tr>
 			     <%} %>
     
@@ -93,6 +104,8 @@
     </style>
     <script type="text/javascript">
 	$("tr").attr("class","border rounded");
+
+	
 	</script>
 </body>
 </html>
