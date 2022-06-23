@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.List,com.bbs.notice.model.vo.NoticeBoard" %>
+<%
+	List<NoticeBoard> notices = (List<NoticeBoard>)request.getAttribute("notices");
+	String pageBar=(String)request.getAttribute("pageBar");
+%>
 <%@ include file="/views/common/header.jsp"%>
 <html>
 <head>
@@ -92,6 +97,7 @@
                     </div>
                 </div>
             </div>
+          
         </header>
                             <!-- 테이블시작 -->
         <section id="features">
@@ -103,48 +109,94 @@
 			</div>
 			<div class="row">
 				<div class="col-md-12">
-					<div class="table-wrap">
-						<!-- <table class="table custom-table"> -->
-						 <table class="table table-striped">
+					<!-- <div class="table-wrap"> -->
+						<table class="table custom-table"> 
+						 <!-- <table class="table table-striped"> -->
 						 <thead>
 						    <tr>
 						      <th scope="col" style="font-weight: bold; font-size :12px;">번호</th>
 						      <th scope="col" style="font-weight: bold; font-size :12px;">제목</th>
 						      <th scope="col" style="font-weight: bold; font-size :12px;">등록일</th>
 						      <th scope="col" style="font-weight: bold; font-size :12px;">파일</th>
-						      <th scope="col" style="font-weight: bold; font-size :12px;">이벤트</th>
+						      <th scope="col" style="font-weight: bold; font-size :12px;">열람</th>
 						    </tr>
 						  </thead>
-						  <tbody>
+						   <tbody>
+						  <%if(notices!=null){ %>
+						 	<%for(NoticeBoard n : notices){ %>
 						    <tr>
-						      <th scope="row">수정중</th>
-						      <td>수정중</td>
-						      <td>수정중</td>
-						      <td>수정중</td>
+						      <th scope="row"><%=n.getNoticeNum() %></th>
+						      <td><%=n.getNoticeTitle() %></td>
+						      <td><%=n.getNoticeEnrollDate() %></td>
+						       <td><%if(n.getIbBoardOriginalFilename()!=null){ %>
+				 			<img src="<%=request.getContextPath()%>/images/ok.png"
+				 			width="40">
+							<%}else{ %>
+				 		   <img src="<%=request.getContextPath()%>/images/no.png"
+				 			width="40">
+							<%} %></td>
 						    
-						      <td><a href="#" class="btn btn-success">on</a></td>
+				<td><a class="btn btn-warning" href="<%=request.getContextPath()%>/notice/noticeView.do?no=<%=n.getNoticeNum()%>">Open</a></td>
 						    </tr>
-
-						  </tbody>
+						 <%}
+            				}else{ %>
+						 	 <tr>
+							<td colspan='5'>조회된 결과가 없습니다.</td>
+							</tr>
+						  <%} %>
+						   </tbody>
+					<!-- 작성 버튼 -->
+				 <%if(loginMember!=null&&loginMember.getMemberId().equals("admin")){ %>
+				   <tr>
+		    	<td colspan="7" style="text-align:right">
+        		<button type="button" class="btn btn-primary" onclick="location.assign('<%=request.getContextPath()%>/notice/noticeWrite.do')">작성</button>
+        		 </td>
+				  </tr>
+        		<%} %>
+        			<!-- 작성 버튼 -->
 						</table>
+					<div id="pageBar">
+					<%=pageBar %>
+					</div>
 					</div>
 				</div>
 			</div>
-		</div>
 	</section>
 	</section>
 	<!-- 테이블끝 -->
-            </div>
-        </div>
-      
+        
+       
+    
+        
        
 
 	<script src="js/jquery.min.js"></script>
   <script src="js/popper.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/main.js"></script>
-</div>
+
 </body>
 </html>
-
+ <style>
+    section#memberList-container {text-align:center;}
+    
+    section#memberList-container table#tbl-member {width:100%; border:1px solid gray;}
+    section#memberList-container table#tbl-member th, table#tbl-member td {border:1px solid gray; padding:10px; }
+        div#search-container {margin:0 0 10px 0; padding:3px;}
+  div#search-userId{display:inline-block;}
+    div#search-userName{display:none;}
+    div#search-gender{display:none;}
+    div#numPerpage-container{float:right;}
+    form#numperPageFrm{display:inline;}
+    .mb-5{
+      text-align: center;
+      font-weight: bold;
+    }
+    .btn btn-primary{
+     
+    }
+    div#pageBar{margin-top:10px; text-align:center;}
+	div#pageBar span.cPage{color: #0066ff;}
+	
+  </style>
 <%@ include file="/views/common/footer.jsp"%>

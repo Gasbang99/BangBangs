@@ -95,6 +95,8 @@ String keyword=request.getParameter("searchKeyword");
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
         
         
+        <div class="table-responsive custom-table-responsive">
+
         <table class="table custom-table">
           <thead>
             <tr>  
@@ -116,7 +118,7 @@ String keyword=request.getParameter("searchKeyword");
           <tbody>
           <%if(boards!=null){ 
 			   for(IbBoard b : boards){%>
-             <tr scope="row">
+              <tr scope="row">
               <th scope="row">
                 <label class="control control--checkbox">
                   <input type="checkbox"/>
@@ -155,7 +157,7 @@ String keyword=request.getParameter("searchKeyword");
 		   
 		      <button class="btn btn-primary"
 		      onclick="location.assign('<%=request.getContextPath()%>/board/boardWriter.do')">
-		      글쓰기
+		      작성
 		      </button>
 		      </td>
 		</tr>
@@ -202,7 +204,7 @@ String keyword=request.getParameter("searchKeyword");
 		<%=pageBar %>
 		</div>
   </div>
-   	
+ </div>  	
     <script src="<%=request.getContextPath()%>/js/jquery-3.3.1.min.js"></script>
     <script src="<%=request.getContextPath()%>/js/popper.min.js"></script>
     <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>

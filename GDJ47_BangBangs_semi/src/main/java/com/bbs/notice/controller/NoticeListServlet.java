@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.bbs.board.model.service.BoardService;
 import com.bbs.notice.model.service.NoticeService;
+import com.bbs.notice.model.vo.NoticeBoard;
 
 /**
  * Servlet implementation class NoticeListServlet
@@ -30,6 +32,58 @@ public class NoticeListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int cPage;
+		int numPerpage;
+		try {
+			cPage=Integer.parseInt(request.getParameter("cPage"));
+		}catch(NumberFormatException e) {
+			cPage=1;
+		}
+		try {
+			numPerpage=Integer.parseInt(request.getParameter("numPerpage"));
+			
+		}catch(NumberFormatException e) {
+			numPerpage=5;
+		}
+		List<NoticeBoard> notices=new NoticeService().selectNoticeList(cPage,numPerpage);
+		int totalNotice=new NoticeService().selectNoticeCount();
+		int totalPage=(int)Math.ceil((double)totalNotice/numPerpage);
+		
+		int pageBarSize=5;
+		int pageNo=((cPage-1)/pageBarSize)*pageBarSize+1;
+		int pageEnd=pageNo+pageBarSize-1;
+		
+		String pageBar="";
+		if(pageNo==1) {
+			pageBar+="<span>[이전]</span>";
+		}else {
+			pageBar+="<a href="+request.getRequestURI()
+					 +"?cPage="+(pageNo-1)
+					+"&numPerpage="+numPerpage+">[이전]</a>";
+			
+		}
+		while(!(pageNo>pageEnd||pageNo>totalPage)) {
+			if(cPage==pageNo) {
+				pageBar+="<span>"+pageNo+"</span>";
+			}else {
+				pageBar+="<a href="+request.getRequestURI()
+				 +"?cPage="+(pageNo)
+				+"&numPerpage="+numPerpage+">"+pageNo+"</a>";
+			}
+			pageNo++;
+		}
+		if(pageNo>totalPage) {
+			pageBar+="<span>[다음]</span>";
+		}else {
+			pageBar+="<a href="+request.getRequestURI()
+			 +"?cPage="+(pageNo)
+			+"&numPerpage="+numPerpage+">[다음]</a>";
+		}
+		
+		request.setAttribute("pageBar", pageBar);
+		request.setAttribute("notices", notices);
+		
+		
 			request.getRequestDispatcher("/views/notice/noticeList.jsp").forward(request, response);
 }
 
