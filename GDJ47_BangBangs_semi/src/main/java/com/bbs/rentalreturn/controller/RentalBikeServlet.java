@@ -31,6 +31,8 @@ public class RentalBikeServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		if(session.getAttribute("loginMember")!=null) {
+			
+			
 			request.getRequestDispatcher("/views/rentalreturn/rental.jsp").forward(request, response);
 		}else {
 			request.getRequestDispatcher("/views/member/login.jsp").forward(request, response);
