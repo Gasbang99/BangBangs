@@ -36,8 +36,6 @@ public class LoginEndServlet extends HttpServlet {
 		
 		String userId = request.getParameter("id");
 		String password = request.getParameter("password");
-		System.out.println(userId);
-		System.out.println(password);
 		// 아이디를 저장하기
 		String saveId = request.getParameter("saveId");
 		// saveId값을 기준으로 null값이면 아이디를 저장하지 않고
@@ -55,7 +53,6 @@ public class LoginEndServlet extends HttpServlet {
 		
 		Member m = new MemberService().searchMember(userId, password);
 		
-		System.out.println(password);
 		String msg = "", loc = "";
 		
 		if(m!=null) {

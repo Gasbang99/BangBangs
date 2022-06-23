@@ -14,6 +14,7 @@
 		<input type="button" id="sendBtn" class="button" value="인증번호 받기">
       </div>
 	  <div id="emailMsg"></div>
+	  <input type="hidden" id="userId">
 	  <div class="textForm">
 	  	<input type="hidden" id="crtfcNoCk">
         <input type="text" name="crtfcNo" id="crtfcNo" class="email" placeholder="인증번호 입력" required>
@@ -92,7 +93,6 @@
 				if(crtfcNo1==crtfcNo2){
 					$("#crtfcNoMsg").text("본인확인이 완료되었습니다!");
                     $("#crtfcNoMsg").css("color","green");
-                    console.log($("#userId").val());
                     open("<%=request.getContextPath()%>/findidmsg.do?id="+$("#userId").val(), "", "width=300,height=200");
 				}else{
 					$("#crtfcNoMsg").text("인증번호가 맞지 않습니다.");

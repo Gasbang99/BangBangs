@@ -138,7 +138,7 @@ public class SendMail {
             }
         });
 
-        String crtfcNo = RandomStringUtils.randomNumeric(6);
+        String crtfcNo = RandomStringUtils.randomNumeric(8);
         try {
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(user));
@@ -148,7 +148,7 @@ public class SendMail {
             message.setSubject("[방방쓰] 임시 비밀번호");
 
             // 메일 내용
-            message.setText("아이디 : "+id+" 님의 임시 비밀번호는 $bb"+crtfcNo+"s& 입니다.\n임시 비밀번호로 로그인 후 비밀번호를 변경해주세요.");
+            message.setText("아이디 : "+id+" 님의 임시 비밀번호는 "+crtfcNo+" 입니다.\n임시 비밀번호로 로그인 후 비밀번호를 변경해주세요.");
 
             // send the message
             Transport.send(message);
@@ -158,7 +158,7 @@ public class SendMail {
             e.printStackTrace();
         }
         
-        return "$bb"+crtfcNo+"s&";
+        return crtfcNo;
     }
 	
 }
