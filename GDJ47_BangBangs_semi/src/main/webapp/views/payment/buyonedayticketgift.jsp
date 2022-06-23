@@ -38,8 +38,8 @@
 </style>
 		<br>
         <div id="selecttype">
-        <p style="font-weight: bold;">&nbsp;선물받는 분의 전화번호</p>
-        <input type="number" style="margin-left:40px" required>
+        <p style="font-weight: bold;">&nbsp;선물받는 분의ID</p>
+        <input type="text" name="giftid" style="margin-left:40px" required>
     
     <br><br>
     <div id="comPaymentClsCd2">
@@ -87,3 +87,13 @@
 		  <button class="btn" id="submitBtn" type="submit">결제하기</button>	  
 		</div>
     </div>
+    <script>
+    	$(document).ready(function(){  //한글입력 안되게 처리 
+    	$("input[name=giftid]").keyup(function(event){    
+    		if (!(event.keyCode >=37 && event.keyCode<=40)) {   
+    			var inputVal = $(this).val();    
+    			$(this).val(inputVal.replace(/[^a-z0-9]/gi,'')); 
+    			 }  
+    			});
+    	});
+    </script>

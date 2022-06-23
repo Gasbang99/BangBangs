@@ -6,8 +6,8 @@ import static com.bbs.common.JDBCTemplate.getConnection;
 import java.sql.Connection;
 import java.util.List;
 
-import com.bbs.model.vo.Member;
 import com.bbs.payment.model.dao.PaymentDao;
+import com.bbs.payment.model.vo.GiftHistory;
 import com.bbs.payment.model.vo.PurchaseHistory;
 import com.bbs.payment.model.vo.Ticket;
 
@@ -34,5 +34,12 @@ public class PaymentService {
 		String name=ticketData.getTicketName();
 		close(conn);
 		return name;
+	}
+	
+	public int insertGiftHistory (GiftHistory gh) {
+		Connection conn = getConnection();
+		int result = dao.insertGiftHistory(conn, gh);
+		close(conn);
+		return result;
 	}
 }
