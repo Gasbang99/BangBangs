@@ -51,7 +51,7 @@ public class PurchaseDataServlet extends HttpServlet {
 		
 		List<PurchaseHistory> pH=new PaymentService().selectPurchaseHistoryById(memberId, cPage, numPerpage);
 
-		int totalBoard=new IbBoardService().selectIbBoardCountById(memberId);
+		int totalBoard=new PaymentService().selectIPurchaseHistoryCountById(memberId);
 		int totalPage=(int)Math.ceil((double)totalBoard/numPerpage);
 
 		int pageBarSize=5;

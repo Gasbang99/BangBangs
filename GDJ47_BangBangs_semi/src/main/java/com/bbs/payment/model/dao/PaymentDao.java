@@ -114,6 +114,22 @@ private Properties prop=new Properties();
 				.ticketPrice(rs.getInt("ticket_Price"))
 				.build();
 	}
+	public int selectIPurchaseHistoryCountById(Connection conn, String memberId) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		int result=0;
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("selectIPurchaseHistoryCountById"));
+			pstmt.setString(1, memberId);
+			rs=pstmt.executeQuery();
+			if(rs.next()) result=rs.getInt(1);
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}return result;
+	}
 	
 }
 
