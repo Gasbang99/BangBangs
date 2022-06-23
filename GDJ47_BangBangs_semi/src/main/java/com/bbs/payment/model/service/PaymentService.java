@@ -35,10 +35,18 @@ public class PaymentService {
 		close(conn);
 		return name;
 	}
+
 	
 	public int insertGiftHistory (GiftHistory gh) {
 		Connection conn = getConnection();
 		int result = dao.insertGiftHistory(conn, gh);
+		close(conn);
+		return result;
+	}
+
+	public int selectIPurchaseHistoryCountById(String memberId) {
+		Connection conn=getConnection();
+		int result=dao.selectIPurchaseHistoryCountById(conn, memberId);
 		close(conn);
 		return result;
 	}

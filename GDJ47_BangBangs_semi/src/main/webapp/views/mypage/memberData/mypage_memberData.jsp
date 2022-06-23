@@ -186,8 +186,14 @@
             padding-right: 300px;
             /* border:1px solid red; */
         }
-        #subMenu {
+        #subMenu-detail {
         	/* border:1px solid red; */
+        	/* margin:auto; */
+        	display:flex;
+        	justify-content: center;
+        }
+        table {
+        width: 800px;
         }
     </style>
     <script type="text/javascript">
