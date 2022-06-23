@@ -38,8 +38,6 @@ public class FindIdEndServlet extends HttpServlet {
 		
 		Member m = new MemberService().findMemberId(name, mailAddress);
 		
-		System.out.println(m.getMemberId());
-		
 		Gson gson = new Gson();
 		
 		response.setContentType("application/json;charset=utf-8");

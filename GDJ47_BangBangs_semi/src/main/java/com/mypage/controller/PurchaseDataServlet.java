@@ -89,7 +89,7 @@ public class PurchaseDataServlet extends HttpServlet {
 		}
 
 		request.setAttribute("pageBar", pageBar);
-		request.setAttribute("ibBoards", ibBoards);
+		request.setAttribute("purchaseHistory", pH);
 		
 		
 		

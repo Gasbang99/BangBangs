@@ -12,8 +12,9 @@
     <title>이용권구매</title>
 </head>
 <body>
+<form action="" method="post">
     <head>
-        <h1 style="margin-left:400px">이용권 구매</h1>
+        <h1 style="margin-left:400px;margin-top:100px">이용권 구매</h1>
     </head>
     <body>
     <div id="total">
@@ -22,45 +23,27 @@
             <tr>
                 <th>이용권 구분</th>
                 <td>
-                <select id="comPaymentClsCd" name="comPaymentClsCd" onchange="comPayment();">
+                <select id="comPaymentClsCd" name="comPaymentClsCd" onchange="comPayment();" required>
                     <option id="selectDefaltGen" value="">선택</option>
                 <option id="BIL_001" value="1000" etc1="1000" etc2="1000">일일 회원(1시간권)</option>
                 <option id="BIL_002" value="2000" etc1="2000" etc2="2000">일일 회원(2시간권)</option>
                 </select>
                 </td>
-            </tr>  
-            <tr>
-                <th>매수</th>
-                <td>
-                    <select id="headcount" name="headcount" onchange="comHead();">
-                        <option value="0">인원 수 선택</option>
-                        <option id="gropuCnt2" value="2">2명</option>
-                        <option id="gropuCnt3" value="3">3명</option>
-                        <option id="gropuCnt4" value="4">4명</option>
-                        <option id="gropuCnt5" value="5">5명</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <th>가격</th>
-                <td>
-                    60분에 원 60분초과시 분당 원
-                </td>
-            </tr>
+            </tr>   
             <tr>
                 <th>결제수단</th>
                 <td>
                     <label>
-                        <input type="radio" name="pay" value="toss"><img src="https://play-lh.googleusercontent.com/W607uSRreW4h6Ar4reYPYCtYXID0_AIsd9m2fgWwdAN7JyZGG3WVM782wa5CfCvKZVM" width="15" height="15">toss
+                        <input type="radio" name="pay" value="toss"><img src="https://play-lh.googleusercontent.com/W607uSRreW4h6Ar4reYPYCtYXID0_AIsd9m2fgWwdAN7JyZGG3WVM782wa5CfCvKZVM" width="15" height="15" required>toss
                     </label>
                     <label>
-                        <input type="radio" name="pay" value="kakao"><img src="https://play-lh.googleusercontent.com/W43xj43ErMIs5BQgCdMKEa0NXCoUUW8DjQc5SxcDfLrC26H8sHDmoFIUWLYmsQahpo0" width="15" height="15">kakao
+                        <input type="radio" name="pay" value="kakao"><img src="https://play-lh.googleusercontent.com/W43xj43ErMIs5BQgCdMKEa0NXCoUUW8DjQc5SxcDfLrC26H8sHDmoFIUWLYmsQahpo0" width="15" height="15" required>kakao
                     </label>
                     <label>
-                        <input type="radio" name="pay" value="card">신용/체크카드
+                        <input type="radio" name="pay" value="card" required>신용/체크카드
                     </label>
                     <label>
-                        <input type="radio" name="pay" value="phone">휴대전화
+                        <input type="radio" name="pay" value="phone" required>휴대전화
                     </label>
                 </td>
             </tr>
@@ -68,7 +51,7 @@
                 <th>생년월일</th>
                 <td>
                     <label>
-                <select id="year" name="year">
+                <select id="year" name="year" required>
                     <option value>연도</option>
                     <option value="1922">1922 년</option>
                     <option value="1923">1923 년</option>
@@ -159,7 +142,7 @@
                     <option value="2009">2009 년</option>
 
                 </select>
-                <select id="month" name="month">
+                <select id="month" name="month" required>
                     <option value="">월</option>
                     <option value="1">1월</option>
                     <option value="2">2월</option>
@@ -174,7 +157,7 @@
                     <option value="11">11월</option>
                     <option value="12">12월</option>
                 </select>
-                <select id="day" name="day">
+                <select id="day" name="day" required>
                     <option value="">일</option>
                     <option value="1">1일</option>
                     <option value="2">2일</option>
@@ -213,11 +196,7 @@
             <tr>
                 <th>휴대전화번호</th>
                 <td>
-                    <input type="number" min="0" max="0" maxlength="3" name="phone1" id="phone1">-
-                
-                    <input type="number" min="0" max="0" maxlength="4" name="phone2" id="phone2">-
-                
-                    <input type="number" min="0" max="0" maxlength="4" name="phone3" id="phone3">
+                    <input type="number" name="phone" id="phone" required>-
                 </td>
             </tr>
             <tr>
@@ -238,12 +217,12 @@
                 </th>
             </tr>
                 <td>
-                <input type="checkbox" name="terms">만 14세 이상입니다<br>
-                <input type="checkbox" name="terms">서비스 이용약관 동의<br>
-                <input type="checkbox" name="terms">개인정보 수집,이용 동의<br>
-                <input type="checkbox" name="terms">수집한 개인정보의 제3자 정보제공 동의<br>
-                <input type="checkbox" name="terms">환불규정 동의<br>
-                <input type="checkbox" name="terms">위치기반 서비스 이용약관에 동의<br>
+                <input type="checkbox" name="terms" required>만 14세 이상입니다<br>
+                <input type="checkbox" name="terms" required>서비스 이용약관 동의<br>
+                <input type="checkbox" name="terms" required>개인정보 수집,이용 동의<br>
+                <input type="checkbox" name="terms" required>수집한 개인정보의 제3자 정보제공 동의<br>
+                <input type="checkbox" name="terms" required>환불규정 동의<br>
+                <input type="checkbox" name="terms" required>위치기반 서비스 이용약관에 동의<br>
                 </td>
             </label>
         </table>
@@ -258,7 +237,7 @@
 
     </script>
     <div id="paymentbtn">
-    <button type="button"  class="btn btn-success" style="width:500px;">결제하기</button>
+    <button type="submit"  class="btn btn-success" style="width:500px;">결제하기</button>
     </div>
     <style>
         #payagree{
@@ -295,6 +274,7 @@
     </table>
     
     </div>
+    </form>
     <style>
         #foot{
             color: red;
@@ -304,14 +284,15 @@
         }
     </style>
     <script>  	
-    	var p;
 	    function comPayment() {
-	        p = document.getElementById("comPaymentClsCd").value;
+	        let p = document.getElementById("comPaymentClsCd").value;
+	        document.getElementById("TOT_AMOUNT").value=p;
 	    }
 	    function comHead() {
 	        var o = document.getElementById("headcount").value;
 	        document.getElementById("TOT_AMOUNT").value=p*o;
 	    }
+	    
     </script>
 </body>
 </html>
