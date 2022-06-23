@@ -35,4 +35,11 @@ public class PaymentService {
 		close(conn);
 		return name;
 	}
+
+	public int selectIPurchaseHistoryCountById(String memberId) {
+		Connection conn=getConnection();
+		int result=dao.selectIPurchaseHistoryCountById(conn, memberId);
+		close(conn);
+		return result;
+	}
 }

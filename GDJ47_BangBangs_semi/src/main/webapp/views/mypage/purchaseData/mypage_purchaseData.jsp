@@ -35,7 +35,8 @@
 	            <a class="nav-link" id="refundHistory" href="<%=request.getContextPath()%>/refundHistory.do?memberId=<%=loginMember.getMemberId()%>">환불내역</a>
 	        </li>
 		</ul>
-		<div id="subMenu-detail">
+		<div id="subMenu-detail"  class="row justify-content-center">
+		<div>
 			<table>
     			<tr>
 			        <th>결제상품</th>
@@ -79,6 +80,7 @@
 			<ul id="pageBar" class="pagination">
 				<%=pageBar %>
 			</ul>
+			</div>
 		</div>
     </div>
 
@@ -98,8 +100,14 @@
             padding-right: 300px;
             border:1px solid red;
         }
-        #subMenu {
-        	border:1px solid red;
+        #subMenu-detail {
+        	/* border:1px solid red; */
+        	/* margin:auto; */
+        	display:flex;
+        	justify-content: center;
+        }
+        table {
+        width: 800px;
         }
     </style>
     <script type="text/javascript">
