@@ -33,8 +33,10 @@ IbBoard b = (IbBoard)request.getAttribute("board");
         <table class="table table-boardered">
             <tr>
                 <th>작성자</th>
-                <input type="hidden" name="num" value="<%=b.getIbPostNum()%>">
                 <td>
+                <input type="hidden" name="num" value="<%=b.getIbPostNum()%>">
+                
+                
 
                 <input type="text" class="form-control" name="boardWriter" value="<%=b.getMemberId()%>" readonly>
               

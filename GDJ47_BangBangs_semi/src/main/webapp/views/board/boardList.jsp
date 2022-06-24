@@ -95,7 +95,7 @@ String keyword=request.getParameter("searchKeyword");
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
         
         
-        <div class="table-responsive custom-table-responsive">
+        <div>
 
         <table class="table custom-table">
           <thead>

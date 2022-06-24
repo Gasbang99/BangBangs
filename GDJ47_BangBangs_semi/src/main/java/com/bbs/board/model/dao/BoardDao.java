@@ -99,6 +99,7 @@ public class BoardDao {
 			pstmt= conn.prepareStatement(prop.getProperty("selectBoard"));
 			pstmt.setInt(1, boardNo);
 			rs=pstmt.executeQuery();
+			
 			if(rs.next()) b=getIbBoard(rs);
 		}catch(SQLException e) {
 			e.printStackTrace();

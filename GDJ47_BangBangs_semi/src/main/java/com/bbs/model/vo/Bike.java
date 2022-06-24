@@ -13,9 +13,9 @@ import lombok.NoArgsConstructor;
 @Builder
 public class Bike {
 	private int bikeId;
-	private String bikeStatus;
-	private Date bikeEnollDate;
+	private String bikeBrokenStatus;
+	private Date bikeEnrollDate;
 	private int rentalShopId;
-	private String rentalAvail;
-	
+	private String rentalAvailability;
+
 }

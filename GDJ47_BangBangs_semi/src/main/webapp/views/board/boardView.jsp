@@ -99,7 +99,8 @@
 <form action="<%=request.getContextPath()%>/board/insertBoardComment.do" method="post">
  <table class="table table-hover">
         <tr>
-      	<td><textarea class="form-control" placeholder="회원님 문의 댓글을 작성하세요." name="content" rows="2" cols="90" ></textarea></td>
+      	<td><textarea class="form-control" placeholder="회원님 문의 댓글을 작성하세요." name="content" rows="2" cols="90" 
+      	style="border: none; resize: none;"></textarea></td>
       				
       	          <td><input type="hidden" name="writer" value="<%=loginMember!=null?loginMember.getMemberId():""%>"></td> 
    		    	   <td><input type="hidden" name="pNum" value="<%=b.getIbPostNum()%>"></td>

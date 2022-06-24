@@ -13,6 +13,7 @@ import com.bbs.model.service.MemberService;
 import com.bbs.model.vo.Member;
 import com.bbs.payment.model.service.PaymentService;
 import com.bbs.payment.model.vo.GiftHistory;
+import com.bbs.payment.model.vo.PossessionTicket;
 import com.bbs.payment.model.vo.PurchaseHistory;
 
 /**
@@ -38,7 +39,7 @@ public class EnrollGiftHistoryServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		String takeMemberId = request.getParameter("giftid");
+		String takeMemberId = request.getParameter("takeid");
 		
 		String ticketCode = request.getParameter("comPaymentClsCd");
 		int mileageDeduction = Integer.parseInt(request.getParameter("TOT_AMOUNT2"));
@@ -62,8 +63,13 @@ public class EnrollGiftHistoryServlet extends HttpServlet {
 		gh.setTakeMemberId(takeMemberId);
 		gh.setTicketCode(ticketCode);
 		
+		PossessionTicket pt = new PossessionTicket();
+		pt.setMemberId(takeMemberId);
+		pt.setPsTicketCode(ticketCode);
+		
 		int resultPH = new PaymentService().insertPurchase(ph);
 		int resultGH = new PaymentService().insertGiftHistory(gh);
+		int resultPT = new PaymentService().insertPossessionTicket(pt);
 		
 		int resultMM=0;
 		if(resultPH>0) {
@@ -72,7 +78,7 @@ public class EnrollGiftHistoryServlet extends HttpServlet {
 		
 		String msg = "", loc = "";
 	      
-	      if(resultPH>0&&resultMM>0) {
+	      if(resultPH>0&&resultMM>0&&resultGH>0&&resultPT>0) {
 	         msg = "결제가 완료되었습니다!";
 	         loc = "/member.do";
 	      }else {

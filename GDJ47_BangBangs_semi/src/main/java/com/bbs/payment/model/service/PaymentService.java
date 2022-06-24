@@ -6,8 +6,9 @@ import static com.bbs.common.JDBCTemplate.getConnection;
 import java.sql.Connection;
 import java.util.List;
 
-import com.bbs.model.vo.Member;
 import com.bbs.payment.model.dao.PaymentDao;
+import com.bbs.payment.model.vo.GiftHistory;
+import com.bbs.payment.model.vo.PossessionTicket;
 import com.bbs.payment.model.vo.PurchaseHistory;
 import com.bbs.payment.model.vo.Ticket;
 
@@ -39,6 +40,20 @@ public class PaymentService {
 	public int selectIPurchaseHistoryCountById(String memberId) {
 		Connection conn=getConnection();
 		int result=dao.selectIPurchaseHistoryCountById(conn, memberId);
+		close(conn);
+		return result;
+	}
+
+	public int insertGiftHistory(GiftHistory gh) {
+		Connection conn = getConnection();
+		int result = dao.insertGiftHistory(conn, gh);
+		close(conn);
+		return result;
+	}
+	
+	public int insertPossessionTicket(PossessionTicket pt) {
+		Connection conn = getConnection();
+		int result = dao.insertPossessionTicket(conn, pt);
 		close(conn);
 		return result;
 	}

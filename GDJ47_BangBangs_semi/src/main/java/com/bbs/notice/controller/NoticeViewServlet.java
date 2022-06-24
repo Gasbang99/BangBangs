@@ -1,16 +1,20 @@
 package com.bbs.notice.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.bbs.notice.model.service.NoticeService;
+import com.bbs.notice.model.vo.NoticeBoard;
+
 /**
  * Servlet implementation class NoticeViewServlet
  */
-@WebServlet("/notice/noticeView")
+@WebServlet("/notice/noticeView.do")
 public class NoticeViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -26,8 +30,14 @@ public class NoticeViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		int noticeNo=Integer.parseInt(request.getParameter("no"));
+		
+		NoticeBoard n = new NoticeService().selectNotice(noticeNo);
+		System.out.println(n);
+		request.setAttribute("notice", n);
+		
+		request.getRequestDispatcher("/views/notice/noticeView.jsp")
+		.forward(request, response);
 	}
 
 	/**

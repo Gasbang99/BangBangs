@@ -30,7 +30,8 @@
         <table class="table table-boardered">
             <tr>
                 <th>작성자</th>
-                <td><input type="text" class="form-control" name="boardWriter" required></td>        
+                <td><input type="text" class="form-control" name="boardWriter" value="<%=loginMember!=null?loginMember.getMemberId():""%>"
+					readonly></td>      
             </tr>
             <tr>
                 <th>제목</th>

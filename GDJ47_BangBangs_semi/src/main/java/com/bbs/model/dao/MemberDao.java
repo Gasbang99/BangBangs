@@ -9,8 +9,10 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Properties;
 
+import com.bbs.model.vo.Bike;
 import com.bbs.model.vo.Member;
 
 public class MemberDao {
@@ -213,4 +215,5 @@ public class MemberDao {
 			close(pstmt);
 		}return result;
 	}
+
 }
