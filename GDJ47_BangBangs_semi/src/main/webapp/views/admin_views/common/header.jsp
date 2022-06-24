@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.List,com.bbs.model.vo.Member" %> 
+<%@ page import="java.util.List,com.bbs.model.vo.Bike" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,28 +14,5 @@
 </head>
 <body>
 <div>
-<header>
 
-	
-		<div id="container">
-				<h1 id="top-header">관리자페이지</h1>
-				<div>
-						
-						<table>
-							<tr>
-								<td>
-								</td>
-							</tr>
-							<tr>
-								<td>
-								</td>
-								<td>
-									
-								</td>
-							</tr>
-						</table>
-				</div>
-			<hr>
-		</div>
-	</header>
 </div>

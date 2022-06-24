@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.bbs.admin.service.AdminService;
+import com.bbs.admin.service.AdminMemberService;
 import com.bbs.model.vo.Member;
 
 /**
@@ -53,8 +53,8 @@ public class MemberSearchServlet extends HttpServlet {
 		Map<String,Object> param=Map.of("type",type,"keyword",keyword,
 				"cPage",cPage,"numPerpage",numPerpage);
 		
-		List<Member> result=new AdminService().searchMemberList(type,keyword,cPage,numPerpage);
-		int totalData=new AdminService().searchMemberCount(type,keyword);
+		List<Member> result=new AdminMemberService().searchMemberList(type,keyword,cPage,numPerpage);
+		int totalData=new AdminMemberService().searchMemberCount(type,keyword);
 		int totalPage=(int)Math.ceil((double)totalData/numPerpage);
 		int pageBarSize=5;
 		int pageNo=((cPage-1)/pageBarSize)*pageBarSize+1;

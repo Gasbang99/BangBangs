@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import com.bbs.admin.dao.AdminDao;
+import com.bbs.adminMember.dao.AdminDao;
 import com.bbs.model.dao.MemberDao;
 import com.bbs.model.vo.Member;
 import com.bbs.model.vo.RentalShop;

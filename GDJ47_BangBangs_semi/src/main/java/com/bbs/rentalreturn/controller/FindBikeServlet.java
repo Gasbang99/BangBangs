@@ -1,4 +1,4 @@
-package com.bbs.admin.controller;
+package com.bbs.rentalreturn.controller;
 
 import java.io.IOException;
 import java.util.List;
@@ -9,21 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.bbs.admin.service.AdminMemberService;
-import com.bbs.model.service.MemberService;
-import com.bbs.model.vo.Member;
+import com.bbs.model.vo.Bike;
+import com.bbs.rentalreturn.model.service.RentalReturnService;
+import com.google.gson.Gson;
 
 /**
- * Servlet implementation class MemberDetailServlet
+ * Servlet implementation class FindBikeServlet
  */
-@WebServlet("/admin/memberDetail.do")
-public class MemberDetailServlet extends HttpServlet {
+@WebServlet("/findbike.do")
+public class FindBikeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberDetailServlet() {
+    public FindBikeServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,13 +32,17 @@ public class MemberDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		
-		String memberId=request.getParameter("memberId");
-		Member m= new MemberService().selectMemberById(memberId);
-		System.out.println(m);
-		request.setAttribute("member", m);			
-		request.getRequestDispatcher("/views/admin_views/memberManagement/memberDetail.jsp").forward(request, response);
+		String rentalshop = request.getParameter("rentalshop");
 		
+		List<Bike> bikeList = new RentalReturnService().selectBike(rentalshop);
+		
+		Gson gson = new Gson();
+		
+		response.setContentType("application/json;charset=utf-8");
+		
+		gson.toJson(bikeList, response.getWriter());
 	}
 
 	/**

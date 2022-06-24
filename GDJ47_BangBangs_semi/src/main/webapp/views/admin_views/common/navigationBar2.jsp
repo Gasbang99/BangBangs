@@ -49,7 +49,7 @@
 	                    <li> <i class="arrow fas fa-angle-right"></i></li>
 	                    <ul class="small_menu">
 	                        <li><a href="<%=request.getContextPath()%>/admin/memberList.do">회원관리</a></li>
-	                        <li><a href="<%=request.getContextPath()%>/bikeManagement.do">자전거 관리</a></li>
+	                        <li><a href="<%=request.getContextPath()%>/admin/bikeManagement.do">자전거 관리</a></li>
 	                        <li><a href="<%=request.getContextPath()%>/rentalShopManagement.do">대여소관리</a></li>
 	                        <li><a href="<%=request.getContextPath()%>/stats.do">통계</a></li>
 	                    </ul>
