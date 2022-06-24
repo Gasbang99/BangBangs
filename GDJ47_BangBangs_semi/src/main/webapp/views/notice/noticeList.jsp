@@ -103,7 +103,7 @@
           
         </header>
                             <!-- 테이블시작 -->
-        <section id="features">
+        <section id="features" style="padding-bottom:10rem">
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-md-6 text-center mb-5">

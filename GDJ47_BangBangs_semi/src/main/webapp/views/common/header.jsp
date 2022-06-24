@@ -73,7 +73,7 @@
             font-family: "Nanum Gothic Coding";
         }
         #mainNav{
-        
+        	background-color:white;
         }
         #mainNav a{
         
