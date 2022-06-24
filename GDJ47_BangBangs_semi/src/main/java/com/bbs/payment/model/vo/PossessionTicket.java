@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 @Data
-public class PosessionTicket {
+public class PossessionTicket {
 	private int psTicketId;
 	private String psTicketActive;
 	private Date psTicketActiveDate;
