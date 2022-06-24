@@ -38,6 +38,15 @@ public class ChangeMemberDataServlet extends HttpServlet {
 		String memId=request.getParameter("member_Id");
 		String memName=request.getParameter("member_name");
 		String memEmail=request.getParameter("email");
+		String postcode = request.getParameter("postcode");
+		String address = request.getParameter("address");
+		String detailAddress = request.getParameter("detailAddress");
+		String extraAddress = request.getParameter("extraAddress");
+		String birthYear = request.getParameter("birthYear");
+		String birthMonth = request.getParameter("birthMonth");
+		if(birthMonth.length()==1) birthMonth = 0+birthMonth;
+		String birthDay = request.getParameter("birthDay");
+		
 		System.out.println("mem="+memId);
 		System.out.println("mem="+memName);
 		System.out.println("mem="+memEmail);
@@ -48,10 +57,10 @@ public class ChangeMemberDataServlet extends HttpServlet {
 			m.setMemberId(request.getParameter("member_Id"));
 			m.setMemberName(request.getParameter("member_name"));
 			m.setGender(request.getParameter("gender"));
-			m.setBirthday(request.getParameter("birthday"));
+			m.setBirthday(birthYear+"/"+birthMonth+"/"+birthDay);
 			m.setEmail(request.getParameter("email"));
 			m.setPhone(request.getParameter("phone"));
-			m.setAddress(request.getParameter("address"));
+			m.setAddress("("+postcode+")"+address+" "+detailAddress+extraAddress);
 	
 			result=new MemberService().updateMember(m);
 		} catch (Exception e) {

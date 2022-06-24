@@ -50,7 +50,7 @@
 				    <tr>
 				        <td>비밀번호</td>
 				        <td>
-				        	<button onclick="updatePass();">수정하기</button>
+				        	<button onclick="updatePass();" class="btn btn-secondary">수정하기</button>
 				        </td>
 				    </tr>
 				    <tr>
@@ -70,8 +70,26 @@
 				    <tr>
 				        <td>생일</td>
 				        <td>
-				        <input type="text" name="birthday" id="birthday" class="form-control"
-										value="<%=m.getBirthday()%>" >
+				        	<div class="textForm">
+								<input type="text" id="birthYear" name="birthYear" class="form-control" placeholder="연도(4자)" required> 
+								<select name="birthMonth" id="birthMonth" class="form-select"	 required>
+									<option value="">월</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+									<option value="6">6</option>
+									<option value="7">7</option>
+									<option value="8">8</option>
+									<option value="9">9</option>
+									<option value="10">10</option>
+									<option value="11">11</option>
+									<option value="12">12</option>
+								</select> 
+								<input type="text" name="birthDay" id="birthDay" class="form-control" placeholder="일" maxlength="2" required>
+								<div id="birth"></div>
+						  </div>
 				        </td>
 				    </tr>
 				    <tr>
@@ -106,7 +124,7 @@
 				        </td>
 				    </tr>
 				    <tr>
-				    	<td colspan="2"><button type="submit">수정하기</button></td>
+				    	<td colspan="2"><button type="submit" class="btn btn-secondary">수정하기</button></td>
 				    </tr>
 				</table>
 				</div>
@@ -119,6 +137,49 @@
 			open("<%=request.getContextPath()%>/updatePass.do?memberId=<%=m.getMemberId()%>", "_blank",
 			"width=400, height=210");
 		}
+		
+		$("#birthYear").blur(e=>{ // 생년월일
+            regYear=/[0-9]{4}/;
+            const year=e.target.value;
+            if(!regYear.test(year)){
+                $("#birth").text("태어난 연도 4자리를 정확하게 입력하세요.");
+                $("#birth").css("color","red");
+            }else{
+                $("#birth").text("태어난 월을 선택하세요.");
+                $("#birth").css("color","red");
+                $("#birthMonth").on({
+                    "change":e=>{
+                        const month=e.target.value;
+                        if(month.length==0){
+                            $("#birth").text("태어난 월을 선택하세요.");
+                            $("#birth").css("color","red");
+                        }else if(month.length>0){
+                            $("#birth").text("태어난 일(날짜) 2자리를 정확하게 입력하세요.");
+                            $("#birth").css("color","red");
+                            $("#birthDay").blur(e=>{
+                                regDay=/(0[1-9]|[12][0-9]|3[01])/;
+                                const day=e.target.value;
+                                if(!regDay.test(day)){
+                                    $("#birth").text("태어난 일(날짜) 2자리를 정확하게 입력하세요.");
+                                    $("#birth").css("color","red");
+                                }
+                                if(regDay.test(day)){
+                                    $("#birth").text("좋은 생일 날짜네요!");
+									$("#birth").css("color","green");
+                                }
+                            })
+                        }
+                    },
+                    "blur":e=>{
+                        const month=e.target.value;
+                        if(month.length==0){
+                            $("#birth").text("태어난 월을 선택하세요.");
+                            $("#birth").css("color","red");
+                        }
+                    }
+                })
+            }
+        })
 	</script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
@@ -194,6 +255,10 @@
         }
         table {
         width: 800px;
+        }
+        
+        #birth {
+        	width:622px;
         }
     </style>
     <script type="text/javascript">
