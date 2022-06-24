@@ -64,8 +64,11 @@
 					url : "<%=request.getContextPath()%>/findbike.do?rentalshop="+val,
 					dataType : "json",
 					success : data=>{
-						console.log(data);
-						console.log(data[0]);
+						for(let i=0; i)
+						for(let i in obj) {
+							  console.log(i); // key
+							  console.log(obj[i]); // value against the key
+							}
 					},
 					error : (r,d)=>{
 						console.log(r);
@@ -77,6 +80,8 @@
 	  </script>
 	  
 	  <style>
+	  
+	  
 	  * {
 	  margin: 0px;
 	  padding: 0px;
