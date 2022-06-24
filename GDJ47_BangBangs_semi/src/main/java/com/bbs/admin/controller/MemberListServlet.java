@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.bbs.admin.service.AdminService;
+import com.bbs.admin.service.AdminMemberService;
 import com.bbs.model.vo.Member;
 
 /**
@@ -46,13 +46,13 @@ public class MemberListServlet extends HttpServlet {
 		
 		
 		//DB에 저장되어있는 Member테이블의 모든데이터를 가져와야함.
-		List<Member> list=new AdminService().selectMemberList(cPage, numPerpage);
+		List<Member> list=new AdminMemberService().selectMemberList(cPage, numPerpage);
 		
 		request.setAttribute("list", list);
 
 		//사용자가 원하는 페이지를 요청할 수 있게 페이지바를 만들어보자
 				//1. 전체 페이지수
-				int totalData=new AdminService().selectMemberCount();
+				int totalData=new AdminMemberService().selectMemberCount();
 				int totalPage=(int)Math.ceil((double)totalData/numPerpage);
 				
 				//2. 출력할 페이지번호의 갯수 정하기

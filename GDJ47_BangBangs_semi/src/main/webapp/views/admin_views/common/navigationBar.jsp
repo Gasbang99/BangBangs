@@ -27,23 +27,7 @@
 	</div>
 </nav>
 <div>
-    <section id="memberList-container">
-        <h2>회원관리</h2> 
-        <table id="tbl-member">
-            <thead>
-                <tr>
-                    <th>아이디</th>
-				    <th>이름</th>
-				    <th>성별</th>
-				    <th>나이</th>
-				    <th>이메일</th>
-				    <th>전화번호</th>
-				    <th>주소</th>
-				    <th>가입날짜</th>
-                </tr>
-            </thead>
-          </table>
-	</section>
+    
 	</div>
 
 

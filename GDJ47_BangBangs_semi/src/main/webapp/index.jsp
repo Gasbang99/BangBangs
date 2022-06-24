@@ -14,7 +14,7 @@
                     <div class="text-center">                
                         
                        
-                        </style>
+                        </style>'
                         <h2 class="text-white-50 mx-auto mt-2 mb-5"></h2>
                         
         </header>

@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.bbs.admin.service.AdminService;
+import com.bbs.admin.service.AdminMemberService;
 import com.bbs.model.service.MemberService;
 import com.bbs.model.vo.Member;
 
