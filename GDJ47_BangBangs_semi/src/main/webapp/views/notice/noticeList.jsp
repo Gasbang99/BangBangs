@@ -9,6 +9,8 @@
 <html>
 <head>
      <!-- Bootstrap core JS-->
+    
+
      <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -33,6 +35,7 @@
 </head>
 
     <body>
+  
         <!-- Page Content-->
         <div class="container px-4 px-lg-5">
             <!-- Heading Row-->
@@ -154,10 +157,30 @@
 				  </tr>
         		<%} %>
         			<!-- 작성 버튼 -->
+        			<!-- 조회하는것 -->
 						</table>
-					<div id="pageBar">
-					<%=pageBar %>
-					</div>
+						<section id="memberList-container">
+       <div id="search-container">
+        	
+        	  <select id="searchType">
+        		<option value="userName" >제목</option>
+        	</select>
+        <div id="search-userId">
+        		<form action="<%=request.getContextPath()%>/notice/serchNotice">
+        			<input type="hidden"  name="searchType" value="notice_Title" >
+        			<input type="text" name="searchKeyword" size="25" 
+        			placeholder="검색할 제목를 입력하세요" >
+        			<button type="submit" class="btn btn-primary">찾기</button>
+        		</form>
+        	</div>
+        	</div>
+ 				</section>
+            </div>
+     
+    <div id="pageBar" >
+  		<%=pageBar %>
+ 	</div>
+
 					</div>
 				</div>
 			</div>
@@ -195,8 +218,17 @@
     .btn btn-primary{
      
     }
-    div#pageBar{margin-top:10px; text-align:center;}
+    div#pageBar{margin-top:10px; text-align:center; }
 	div#pageBar span.cPage{color: #0066ff;}
 	
   </style>
+   <script>
+    	$(()=>{
+    		$("#searchType").change(e=>{
+    			const type=$(e.target).val();
+    			console.log(type);
+    		});
+    	
+    </script>
+
 <%@ include file="/views/common/footer.jsp"%>
