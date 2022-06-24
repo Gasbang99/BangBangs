@@ -36,7 +36,8 @@ NoticeBoard n = (NoticeBoard)request.getAttribute("notice");
            
             <tr>
                 <th>제목</th>
-                <td><input type="text" class="form-control" name="noticeTitle">
+                <td>
+                <input type="text" class="form-control" name="noticeTitle">
                 <input type="hidden" name="num" value="<%=n.getNoticeNum()%>">
                 </td>      
             </tr>

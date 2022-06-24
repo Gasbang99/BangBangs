@@ -15,8 +15,8 @@ import java.util.List;
 import java.util.Properties;
 
 import com.bbs.model.dao.MemberDao;
-import com.bbs.model.vo.IbBoard;
 import com.bbs.payment.model.vo.GiftHistory;
+import com.bbs.payment.model.vo.PossessionTicket;
 import com.bbs.payment.model.vo.PurchaseHistory;
 import com.bbs.payment.model.vo.Ticket;
 
@@ -42,7 +42,7 @@ private Properties prop=new Properties();
 			pstmt.setInt(4, ph.getMileageDeduction());
 			pstmt.setString(5, ph.getTicketCode());
 			pstmt.setString(6, ph.getMemberId());
-			result = pstmt.executeUpdate();			
+			result = pstmt.executeUpdate();
 			if(result>0) commit(conn);
 			else rollback(conn);
 		}catch(SQLException e) {
@@ -139,7 +139,7 @@ private Properties prop=new Properties();
 			pstmt.setString(1, gh.getGiveMemberId());
 			pstmt.setString(2, gh.getTakeMemberId());
 			pstmt.setString(3, gh.getTicketCode());
-			result = pstmt.executeUpdate();			
+			result = pstmt.executeUpdate();
 			if(result>0) commit(conn);
 			else rollback(conn);
 		}catch(SQLException e) {
@@ -150,5 +150,22 @@ private Properties prop=new Properties();
 		return result;
 	}
 	
+	public int insertPossessionTicket(Connection conn, PossessionTicket pt) {
+		PreparedStatement pstmt = null;
+		int result = 0;		
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("insertPossessionTicket"));
+			pstmt.setString(1, pt.getPsTicketCode());
+			pstmt.setString(2, pt.getMemberId());
+			result = pstmt.executeUpdate();
+			if(result>0) commit(conn);
+			else rollback(conn);
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
 }
 

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import com.bbs.model.service.MemberService;
 import com.bbs.model.vo.Member;
 import com.bbs.payment.model.service.PaymentService;
+import com.bbs.payment.model.vo.PossessionTicket;
 import com.bbs.payment.model.vo.PurchaseHistory;
 
 /**
@@ -52,7 +53,12 @@ public class EnrollPurchaseHistoryServlet extends HttpServlet {
 		ph.setMemberId(id);
 		ph.setMileageSave(mileageSave);
 		
+		PossessionTicket pt = new PossessionTicket();
+		pt.setMemberId(id);
+		pt.setPsTicketCode(ticketCode);
+		
 		int resultPH = new PaymentService().insertPurchase(ph);
+		int resultPT = new PaymentService().insertPossessionTicket(pt);
 		
 		int resultMM=0;
 		if(resultPH>0) {
@@ -61,7 +67,7 @@ public class EnrollPurchaseHistoryServlet extends HttpServlet {
 		
 		String msg = "", loc = "";
 	      
-	      if(resultPH>0&&resultMM>0) {
+	      if(resultPH>0&&resultMM>0&&resultPT>0) {
 	         msg = "결제가 완료되었습니다!";
 	         loc = "/member.do";
 	      }else {

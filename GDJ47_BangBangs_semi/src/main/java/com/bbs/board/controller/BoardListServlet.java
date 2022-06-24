@@ -54,11 +54,11 @@ public class BoardListServlet extends HttpServlet {
 				
 				String pageBar="";
 				if(pageNo==1) {
-					pageBar+="<span>[이전]</span>";
+					pageBar+="<span></span>";
 				}else {
 					pageBar+="<a href="+request.getRequestURI()
 							 +"?cPage="+(pageNo-1)
-							+"&numPerpage="+numPerpage+">[이전]</a>";
+							+"&numPerpage="+numPerpage+"></a>";
 					
 				}
 				while(!(pageNo>pageEnd||pageNo>totalPage)) {
@@ -72,11 +72,11 @@ public class BoardListServlet extends HttpServlet {
 					pageNo++;
 				}
 				if(pageNo>totalPage) {
-					pageBar+="<span>[다음]</span>";
+					pageBar+="<span></span>";
 				}else {
 					pageBar+="<a href="+request.getRequestURI()
 					 +"?cPage="+(pageNo)
-					+"&numPerpage="+numPerpage+">[다음]</a>";
+					+"&numPerpage="+numPerpage+"></a>";
 				}
 				
 				request.setAttribute("pageBar", pageBar);

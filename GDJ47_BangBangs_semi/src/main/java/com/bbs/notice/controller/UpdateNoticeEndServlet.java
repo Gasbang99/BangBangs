@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
-import com.bbs.board.model.service.BoardService;
 import com.bbs.common.MyFileRenamedPolicy;
+import com.bbs.notice.model.service.NoticeService;
 import com.bbs.notice.model.vo.NoticeBoard;
 import com.oreilly.servlet.MultipartRequest;
 
@@ -48,24 +48,22 @@ public class UpdateNoticeEndServlet extends HttpServlet {
 					new MyFileRenamedPolicy());
 		
 		NoticeBoard n=NoticeBoard.builder()
-				.noticeTitle("noticeTitle")
-				.ibPostNum(Integer.parseInt(mr.getParameter("num")))
-				.memberId(mr.getParameter("boardWriter"))
+				.noticeTitle(mr.getParameter("noticeTitle"))
+				.noticeNum(Integer.parseInt(mr.getParameter("num")))
 				.IbBoardOriginalFilename(mr.getOriginalFileName("upfile"))
 				.IbBoardRenamedFilename(mr.getFilesystemName("upfile"))
-				.ibContent(mr.getParameter("boardContent"))
-				.category(mr.getParameter("boardCategory"))
+				.noticeContent(mr.getParameter("noticeContent"))
 				.build();
 		
-		int result=new BoardService().updateMember(b);
+		int result=new NoticeService().updateNotice(n);
 		String msg="",loc="";
 		
 		if(result>0) {
-			msg="게시글이 수정되었습니다.";
-			loc="/board/boardView.do?no="+b.getIbPostNum();
+			msg="공지사항이 수정되었습니다.";
+			loc="/notice/noticeView.do?no="+n.getNoticeNum();
 		}else {
-			msg="게시글 수정실패!";
-			loc="/board/updateboard.do?num="+b.getIbPostNum();
+			msg="공지사항 수정실패!";
+			loc="/notice/updatenotice.do?num="+n.getNoticeNum();
 		}
 		request.setAttribute("msg", msg);
 		request.setAttribute("loc", loc);
