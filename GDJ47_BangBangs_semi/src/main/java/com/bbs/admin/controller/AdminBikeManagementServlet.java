@@ -16,13 +16,13 @@ import com.bbs.model.vo.Bike;
  * Servlet implementation class BikeManagementServlet
  */
 @WebServlet("/admin/bikeManagement.do")
-public class BikeManagementServlet extends HttpServlet {
+public class AdminBikeManagementServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BikeManagementServlet() {
+    public AdminBikeManagementServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,6 +31,7 @@ public class BikeManagementServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		int cPage;
 		try{
 			cPage=Integer.parseInt(request.getParameter("cPage"));
@@ -64,7 +65,7 @@ public class BikeManagementServlet extends HttpServlet {
 					pageBar+="<span>[이전]</span>";
 				}else {
 					pageBar+="<a href='"+request.getContextPath()
-							+"/admin/BikeList.do?cPage="+(pageNo-1)+"'>[이전]</a>";
+							+"/admin/bikeManagement.do?cPage="+(pageNo-1)+"'>[이전]</a>";
 				}
 				
 				while(!(pageNo>pageEnd||pageNo>totalPage)) {
@@ -72,7 +73,7 @@ public class BikeManagementServlet extends HttpServlet {
 						pageBar+="<span>"+pageNo+"<span>";
 					}else {
 						pageBar+="<a href='"+request.getContextPath()
-						+"/admin/BikeList.do?cPage="+pageNo+"'>"+pageNo+"</a>";
+						+"/admin/bikeManagement.do?cPage="+pageNo+"'>"+pageNo+"</a>";
 					}
 					pageNo++;
 				}
@@ -81,11 +82,10 @@ public class BikeManagementServlet extends HttpServlet {
 					pageBar+="<span>[다음]</span>";
 				}else {
 					pageBar+="<a href='"+request.getContextPath()
-					+"/admin/BikeList.do?cPage="+pageNo+"'>[다음]</a>";
+					+"/admin/bikeManagement.do?cPage="+pageNo+"'>[다음]</a>";
 				}
 				
 				request.setAttribute("pageBar", pageBar);
-				System.out.println(pageBar);
 				request.getRequestDispatcher("/views/admin_views/bikeManagement/bikeManagement.jsp").forward(request, response);
 		
 		

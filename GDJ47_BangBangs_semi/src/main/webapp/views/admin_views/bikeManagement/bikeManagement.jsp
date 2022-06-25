@@ -49,17 +49,17 @@
            <tbody>
       		<%if(list.isEmpty()){ %>
       			<tr>
-      				<td colspan="5"><h3>조회된결과가 없습니다!</h3></td>
+      				<td colspan="5"><h4>조회된결과가 없습니다!</h4></td>
      			</tr>
       		<%}else{
       			for(Bike b : list){%>
       			
 	   				<tr>
 	   					<td><%=b.getBikeId() %></td>
-	   					<td><%=b.getBikeStatus() %></td>
-	   					<td><%=b.getBikeEnollDate() %></td>
+	   					<td><%=b.getBikeBrokenStatus() %></td>
+	   					<td><%=b.getBikeEnrollDate() %></td>
 	   					<td><%=b.getRentalShopId() %></td>
-	   					<td><%=b.getRentalAvail() %></td>
+	   					<td><%=b.getRentalAvailability() %></td>
 	       				<form id="bike-detail" action="<%=request.getContextPath()%>/admin/BikeDetail.do" method="post">
 	       				<td><input type="hidden" name="bikeId" value="<%=b.getBikeId() %>" ><input type="submit" value="상세정보"></td>
 	       				</form>
@@ -69,7 +69,9 @@
    		 }%>
         </tbody>
 	    </table>
-			
+		<div id="pageBar">
+        	<%=request.getAttribute("pageBar") %>
+        </div>
 			
 		</section>
 		</div>
@@ -78,30 +80,30 @@
 	<div id="search-container">
         	검색타입 : 
         <select id="searchType">
-        	<option value="BikeId" <%=searchType!=null&&searchType.equals("BikeId")?"selected":"" %>>아이디</option>
-        	<option value="bikeStatus" <%=searchType!=null&&searchType.equals("bikeStatus")?"selected":"" %> >회원이름</option>
-        	<option value="rentalAvail" <%=searchType!=null&&searchType.equals("rentalAvail")?"selected":"" %> >성별</option>
+        	<option value="BikeId" <%=searchType!=null&&searchType.equals("BikeId")?"selected":"" %>>일련번호</option>
+        	<option value="bikeStatus" <%=searchType!=null&&searchType.equals("bikeStatus")?"selected":"" %> >자전거상태</option>
+        	<option value="rentalAvailability" <%=searchType!=null&&searchType.equals("rentalAvailability")?"selected":"" %> >대여여부</option>
         </select>
         <div id="search-BikeId">
-        	<form action="<%=request.getContextPath()%>/admin/searchBike">
-        		<input type="hidden" name="searchType" value="BikeId" >
+        	<form action="<%=request.getContextPath()%>/admin/bikesearch.do">
+        		<input type="hidden" name="searchType" value="Bike_Id" >
         		<input type="text" name="searchKeyword" size="25" 
         		placeholder="검색할 일련번호를 입력하세요" >
         		<button type="submit">검색</button>
         	</form>
         </div>
         <div id="search-bikeStatus">
-        	<form action="<%=request.getContextPath()%>/admin/searchBike">
-        		<input type="hidden" name="searchType" value="bikeStatus">
+        	<form action="<%=request.getContextPath()%>/admin/bikesearch.do">
+        		<input type="hidden" name="searchType" value="BIKE_BROKEN_STATUS">
         		<label><input type="radio" name="searchKeyword" value="정상" >정상</label>
         		<label><input type="radio" name="searchKeyword" value="고장" >고장</label>
         		<label><input type="radio" name="searchKeyword" value="수리중" >수리중</label>
         		<button type="submit">검색</button>
         	</form>
         </div>
-        <div id="search-rentalAvail">
-        	<form action="<%=request.getContextPath()%>/admin/searchBike">
-        		<input type="hidden" name="searchType" value=rentalAvail>
+        <div id="search-rentalAvailability">
+        	<form action="<%=request.getContextPath()%>/admin/bikesearch.do">
+        		<input type="hidden" name="searchType" value=RENTAL_AVAILABILITY>
         		<label><input type="radio" name="searchKeyword" value="y" >대여가능</label>
         		<label><input type="radio" name="searchKeyword" value="n" >대여중</label>
         		<button type="submit">검색</button>

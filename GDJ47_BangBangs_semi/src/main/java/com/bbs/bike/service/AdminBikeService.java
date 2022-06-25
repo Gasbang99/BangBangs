@@ -42,7 +42,7 @@ private AdminBikeDao dao=new AdminBikeDao();
 	
 	public List<String> searchUserId(String keyword){
 		Connection conn=getConnection();
-		List<String> result=dao.searchUserId(conn, keyword);
+		List<String> result=dao.searchBikeId(conn, keyword);
 		close(conn);
 		return result;
 		
