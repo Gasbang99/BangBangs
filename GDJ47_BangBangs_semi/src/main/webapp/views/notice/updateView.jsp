@@ -17,7 +17,14 @@ NoticeBoard n = (NoticeBoard)request.getAttribute("notice");
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
  
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
- 
+   <!-- api -->
+ <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+
+<!-- include summernote css/js-->
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
  
 </head>
 <body>
@@ -49,7 +56,8 @@ NoticeBoard n = (NoticeBoard)request.getAttribute("notice");
             <tr>
 				<th>내용</th>
 					<td>
-					 <textarea cols="55" rows="10" name="noticeContent"></textarea>
+					<textarea cols="55" rows="10" name="noticeContent" ></textarea>
+					
 					</td>
 				</tr>
            
@@ -78,4 +86,18 @@ NoticeBoard n = (NoticeBoard)request.getAttribute("notice");
 </style>
 </body>
 </html>
+<script>
+$(document).ready(function() {
+     $('#summernote').summernote({
+             height: 300,                 // set editor height
+             minHeight: null,             // set minimum height of editor
+             maxHeight: null,             // set maximum height of editor
+             focus: true                  // set focus to editable area after initializing summernote
+     });
+});
+
+$(document).ready(function() {
+	  $('#summernote').summernote();
+	});
+</script>
 <%@ include file="/views/common/footer.jsp"%>

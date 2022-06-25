@@ -78,9 +78,9 @@ public class BoardDao {
 			pstmt.setString(1, b.getIbTitle());
 			pstmt.setString(2, b.getMemberId());
 			pstmt.setString(3, b.getCategory());
-			pstmt.setString(4, b.getIbContent());
-			pstmt.setString(5, b.getIbBoardOriginalFilename());
-			pstmt.setString(6, b.getIbBoardRenamedFilename());
+			pstmt.setString(4, b.getIbBoardOriginalFilename());
+			pstmt.setString(5, b.getIbBoardRenamedFilename());
+			pstmt.setString(6, b.getIbContent());
 			result=pstmt.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();

@@ -321,7 +321,7 @@
 		}
         #total{
         	margin-left:400px;
-        	height:1000px;
+        	height:1200px;
         }
         #w30{
         	width:50px;
