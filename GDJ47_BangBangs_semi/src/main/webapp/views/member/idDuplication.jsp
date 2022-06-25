@@ -40,6 +40,7 @@
 		const btn=document.querySelector("[type=button]");
 		btn.addEventListener("click",(e)=>{
 			opener.enrollMemberFrm.id.value='<%=userId%>';
+			opener.enrollMemberFrm.idchecked.value='checked';
 			opener.enrollMemberFrm.password.focus();
 			close();
 		});

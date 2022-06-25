@@ -1,6 +1,8 @@
 package com.bbs.rentalreturn.model.dao;
 
 import static com.bbs.common.JDBCTemplate.close;
+import static com.bbs.common.JDBCTemplate.commit;
+import static com.bbs.common.JDBCTemplate.rollback;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -14,6 +16,7 @@ import java.util.Properties;
 
 import com.bbs.model.dao.MemberDao;
 import com.bbs.model.vo.Bike;
+import com.bbs.model.vo.RentalHistory;
 
 public class RentalReturnDao {
 	private Properties prop=new Properties();
@@ -55,6 +58,41 @@ public class RentalReturnDao {
 				.rentalShopId(rs.getInt("rental_shop_id"))
 				.rentalAvailability(rs.getString("rental_availability"))
 				.build();
+	}
+
+	public int insertRentalHistory(Connection conn, RentalHistory rh) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("insertRentalHistory"));
+			pstmt.setInt(1, rh.getBikeId());
+			pstmt.setString(2, rh.getMemberId());
+			result = pstmt.executeUpdate();
+			if(result>0) commit(conn);
+			else rollback(conn);
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int updateBikeRentalAvailability(Connection conn, int bikeId) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("updateBikeRentalAvailability"));
+			pstmt.setInt(1, bikeId);
+			result = pstmt.executeUpdate();
+			if(result>0) commit(conn);
+			else rollback(conn);
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
 	}
 
 }

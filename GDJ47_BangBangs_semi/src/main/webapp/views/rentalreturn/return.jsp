@@ -4,8 +4,8 @@
 <%@ include file="/views/common/footer.jsp" %>
 
 <div id="wrapper">
-	<form name="enrollrentalhistory" action="<%=request.getContextPath() %>/enrollrentalhistory.do" method="POST" class="joinForm">                                                                                           
-      <h2 style="font-weight:bolder;">대여하기</h2>
+	<form name="enrollrentalhistory" action="<%=request.getContextPath() %>/enrollrentalhistory.do" method="POST" class="joinForm" onsubmit="return fn_returnBikeValidate();">                                                                                           
+      <h2 style="font-weight:bolder;">반납하기</h2>
       <div class="textForm">
 		<select name="rentalshop" id="rentalshop" required>
 			<option value="">대여소</option>
@@ -18,9 +18,19 @@
 	  </div>
 	  <div></div>
 	  <div class="textForm">
-		<select name="bike" id="bike" required>
-			<option value="">자전거</option>
-		</select> 
+		<label id="brokenReport"><input type="checkbox" name="brokenReport"> 고장 신고하기</label>
+	  </div>
+	  <div></div>
+	  <div class="textForm">
+	  	  <label><input type="checkbox" name="brokenArea" id="brokenArea1" value="타이어"> 타이어</label>&nbsp;&nbsp;
+		  <label><input type="checkbox" name="brokenArea" id="brokenArea2" value="안장"> 안장</label>&nbsp;&nbsp;
+		  <label><input type="checkbox" name="brokenArea" id="brokenArea3" value="페달"> 페달</label>&nbsp;&nbsp;
+		  <label><input type="checkbox" name="brokenArea" id="brokenArea4" value="체인"> 체인</label>&nbsp;&nbsp;
+		  <label><input type="checkbox" name="brokenArea" id="brokenArea5" value="기타"> 기타</label>
+	  </div>
+	  <div id="checkedOrNot"></div>
+	  <div class="textForm">
+	  	<textarea cols="50" rows="5" name="brokenContent" id="brokenContent" style="resize: none;"></textarea>
 	  </div>
 	  <div></div>
       <input type="submit" class="btn" value="대 여 하 기"/>
@@ -29,23 +39,41 @@
 	  
 	  <script>
 	  $(()=>{
-		  $("input").focus(e=>{ // 선택하면 밑줄 초록색으로
+		  $("input, textarea").focus(e=>{ // 선택하면 밑줄 초록색으로
 	          $(e.target).parent().css("border-color","green");
 	      })
 	      $("select").click(e=>{ // 선택하면 밑줄 초록색으로
                 $(e.target).parent().css("border-color","green");
-            })
+          })
+          $("label").mouseover(e=>{ // 선택하면 밑줄 초록색으로
+                $(e.target).parent().css("border-color","green");
+          })
 	      
-	      $("input, select").blur(e=>{ // 벗어나면 밑줄 원래대로 / 입력 안하고 벗어날시 메세지 출력
+	      $("input, select, textarea").blur(e=>{ // 벗어나면 밑줄 원래대로 / 입력 안하고 벗어날시 메세지 출력
 	                $(e.target).parent().css("border-color","#adadad");
 	                const val=e.target.value;
 	                if(val.length==0){
 	                    $(e.target).parent().next().text("필수 정보입니다.");
 	                    $(e.target).parent().next().css("color","red");
 	                }
-	            })
+           })
+           $("label").mouseout(e=>{
+            	$(e.target).parent().css("border-color","#adadad");
+           })
+            
+           
+           const fn_returnBikeValidate=()=>{
+        	   if(!($("input[name=brokenArea]").is(":checked"))){
+     			  $("#checkedOrNot").text("필수 정보입니다.");
+                  $("#checkedOrNot").css("color","red");
+                  return false;
+     		  }else{
+    			  $("#checkedOrNot").text("");
+    			  return true;
+    		  }
+           }
 	
-			$("input").keyup(e=>{ // 입력시 필수정보 메세지 사라짐
+			$("input, textarea").keyup(e=>{ // 입력시 필수정보 메세지 사라짐
                 const val=e.target.value;
                 if(val.length>0){
                     $(e.target).parent().next().text("");
@@ -58,23 +86,6 @@
                }
             })
 		  
-		  $("#rentalshop").change(e=>{
-			  const val = e.target.value;
-			  $.ajax({
-					url : "<%=request.getContextPath()%>/findbike.do?rentalshop="+val,
-					dataType : "json",
-					success : data=>{
-						for(let i=0; i<data.length; i++){
-							const option = $("<option>").attr("value",Object.values(data[i])[0]).text(Object.values(data[i])[0]);
-							$("#bike").append(option);
-						}
-					},
-					error : (r,d)=>{
-						console.log(r);
-						console.log(d);
-					}
-				})
-		  })
 	  })
 	  </script>
 	  
@@ -122,7 +133,7 @@
 	  background: none;
 	}
 	
-	#bike {
+	#brokenReport {
 	  width: 100%;
 	  border:none;
 	  outline:none;
@@ -130,6 +141,7 @@
 	  font-size:16px;
 	  height:25px;
 	  background: none;
+	  text-align:left;
 	}
 	
 	  	.btn {
