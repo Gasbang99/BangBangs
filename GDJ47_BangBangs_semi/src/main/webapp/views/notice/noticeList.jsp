@@ -35,6 +35,8 @@
 </head>
 
     <body>
+
+
         <!-- Page Content-->
         <div class="container px-4 px-lg-5">
             <!-- Heading Row-->
@@ -220,6 +222,7 @@
     div#pageBar{margin-top:10px; text-align:center; }
 	div#pageBar span.cPage{color: #0066ff;}
 	
+
   </style>
    <script>
     	$(()=>{
@@ -229,5 +232,17 @@
     		});
     	
     </script>
+    <script type="text/javascript">
+    const wnd = window.open("","info", "width=500, height=300");
+    wnd.document.write(
+        "<h2>서비스 점검 안내</h2>",
+        "<ul>",
+        "<li><strong>일시 : 2022-06-25(금) ~ 2022-07-06(토)</strong></li>",
+        "<li>사유 : 시스템 서버 작업</li><br>",
+        "<p>BangBang 고객님들은 해당 시간의 이용에 참고하시기 바랍니다.</p>",
+        "</ul>"
+       
+    )
+	</script>  
 
 <%@ include file="/views/common/footer.jsp"%>
