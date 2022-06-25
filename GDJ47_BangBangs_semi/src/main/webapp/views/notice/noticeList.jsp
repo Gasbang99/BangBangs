@@ -35,7 +35,6 @@
 </head>
 
     <body>
-  
         <!-- Page Content-->
         <div class="container px-4 px-lg-5">
             <!-- Heading Row-->

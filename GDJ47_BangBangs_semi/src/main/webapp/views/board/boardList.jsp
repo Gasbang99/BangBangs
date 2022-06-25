@@ -74,11 +74,15 @@ String keyword=request.getParameter("searchKeyword");
                     <div class="col-lg-4 mb-5 mb-lg-0">
                         <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-building"></i></div>
                         <h2 class="h4 fw-bolder">기다릴 필요 없는 접수 처리</h2>
-                        <p>여기는 문의사항 게시판 입니다.<br>공지 사항으로 이동</p>
-                        <a class="text-decoration-none" href="<%=request.getContextPath()%>/notice/noticeList.do">
-                            click
+                        <p>실시간 채팅 서비스<br>이동</p>
+                       <a class="text-decoration-none" href="<%=request.getContextPath()%>/notice/chatService.do"><img src="<%=request.getContextPath()%>/images/chat.png" width="40">
+                       
+                       </a>
+				 		
+                       <%--  <a class="text-decoration-none" href="<%=request.getContextPath()%>/notice/chatService.do">
+                            click --%>
                             <i class="bi bi-arrow-right"></i>
-                        </a>
+                       
                     </div>
                     <div class="col-lg-4 mb-5 mb-lg-0">
                         <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-toggles2"></i></div>
@@ -93,8 +97,12 @@ String keyword=request.getParameter("searchKeyword");
         </section>
        
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-        
-        
+        <div class="container">
+<div class="container">
+
+
+
+</div>
         <div>
 
         <table class="table custom-table">
@@ -152,6 +160,7 @@ String keyword=request.getParameter("searchKeyword");
 			</tr>
             <%} %>
           </tbody>
+          <%if(loginMember!=null){ %>
               <tr>
 		    <td colspan="7" style="text-align:right">
 		   
@@ -161,6 +170,7 @@ String keyword=request.getParameter("searchKeyword");
 		      </button>
 		      </td>
 		</tr>
+		<%} %>
         </table>
       </div>
      <section id="memberList-container">
@@ -230,7 +240,13 @@ String keyword=request.getParameter("searchKeyword");
     }
     div#pageBar{margin-top:10px; text-align:center;}
 	div#pageBar span.cPage{color: #0066ff;}
-	
+	#chat img {
+    position: fixed;
+    right: 50px;
+    bottom: 50px;
+    width: 110px;
+    height: 100px;
+}
   </style>
 </html>
   <script>
