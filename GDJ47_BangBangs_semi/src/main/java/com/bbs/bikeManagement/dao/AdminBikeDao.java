@@ -81,7 +81,7 @@ private Properties prop=new Properties();
 		sql=sql.replace("$COL", type);
 		try {
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, type.equals("Bike_NAME")?"%"+keyword+"%":keyword);
+			pstmt.setString(1, keyword);
 			pstmt.setInt(2, (cPage-1)*numPerpage+1);
 			pstmt.setInt(3, cPage*numPerpage);
 			rs=pstmt.executeQuery();
@@ -103,7 +103,7 @@ private Properties prop=new Properties();
 		int result=0;
 		try {
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, type.equals("BIKE_NAME")?"%"+keyword+"%":keyword);
+			pstmt.setString(1, keyword);
 			rs=pstmt.executeQuery();
 			if(rs.next()) result=rs.getInt(1);
 			
@@ -116,7 +116,7 @@ private Properties prop=new Properties();
 		
 	}
 	
-	public List<String> searchUserId(Connection conn, String keyword){
+	public List<String> searchBikeId(Connection conn, String keyword){
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		List<String> result=new ArrayList();
@@ -140,13 +140,49 @@ private Properties prop=new Properties();
 		try {
 			b=new Bike();
 			b.setBikeId(rs.getInt("BIKE_ID"));
-			b.setBikeStatus(rs.getString("BIKE_BROKEN_STATUS"));
-			b.setBikeEnollDate(rs.getDate("BIKE_ENROLL_DATE"));
+			b.setBikeBrokenStatus(rs.getString("BIKE_BROKEN_STATUS"));
+			b.setBikeEnrollDate(rs.getDate("BIKE_ENROLL_DATE"));
 			b.setRentalShopId(rs.getInt("RENTAL_SHOP_ID"));
-			b.setRentalAvail(rs.getString("RENTAL_AVAILABILITY"));
+			b.setRentalAvailability(rs.getString("RENTAL_AVAILABILITY"));
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
 		return b;
 	}
+	
+	public Bike selectBikeById(Connection conn, String BikeId) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		Bike b=null;
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("selectBikeById"));
+			pstmt.setString(1, BikeId);
+			rs=pstmt.executeQuery();
+			if(rs.next()) b=getBike(rs);
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}return b;
+	}
+	public int updateBike(Connection conn, Bike b) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("updateBike"));
+			
+			pstmt.setString(1, b.getBikeBrokenStatus());
+			pstmt.setInt(2, b.getRentalShopId());
+			pstmt.setString(3, b.getRentalAvailability());
+			pstmt.setInt(4, b.getBikeId());
+			
+			result=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}return result;
+	}
+	
 }

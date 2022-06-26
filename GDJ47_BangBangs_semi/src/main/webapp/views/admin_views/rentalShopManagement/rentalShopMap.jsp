@@ -3,7 +3,7 @@
 <%@ include file="/views/common/header.jsp" %>
 
 <body>
-  <div id="map" style="width:100%; height: 80vh; margin-top : 5%"></div>
+  <div id="map" style="width:100%; height: 100vh; margin-top : 5%"></div>
  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHvjSqcmNdLlLaP9dPJilDm_XgPSnoAk8&callback=initMap&region=kr"></script> <input type="hidden" id="rs0">
  
   <input type="hidden" id="rs1">
@@ -31,9 +31,6 @@ for (let i = 0; i < rs.length; i++) {
 				console.log(data.length);
 				//var station = new Array();
 				console.log(1);
-				
-				
-			
 				let j = 0;
 				data.forEach(v=>{
 				let rentalShopId=v['rentalShopId'];

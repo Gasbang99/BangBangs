@@ -12,22 +12,25 @@
 	
 
 <style type="text/css">
-	section#memberList-container {text-align:center;}	
-	section#memberList-container table#tbl-member {width:70%; border:1px solid gray; border-collapse:collapse;}
-	section#memberList-container table#tbl-member th, table#tbl-member td {border:1px solid gray; padding:5px; font-size:10px; }
- 	div#search-container {margin:0 0 10px 0; padding:3px; align: center;}
+	section#memberList-container table#tbl-member {height: 50%; width:70%; border:1px solid gray; border-collapse:collapse; }
+	section#memberList-container table#tbl-member th, table#tbl-member td {border:1px solid gray; padding:5px; font-size:13px; }
+	section#memberList-container table#tbl-member th{font-size:15px;}
+ 	div#search-container {margin:0 0 10px 0; padding:3px;margin: auto;}
     div#search-userId{display:inline-block;}
     div#search-userName{display:none;}
     div#search-gender{display:none;}
     div#numPerpage-container{float:right;}
     form#numperPageFrm{display:inline;} 
-    #memberlist-container{display:flex;}
     div.center{align-items: center;}
-    .select-searchbar{justify-content: center;}
+    div#search-container{justify-content: center; margin: 20px}
+    div#whole-container{margin-top: 150px; text-align: center;}
+	#tbl-member{margin: 30px; justify-content: center;}
+	section#memberlist-container{margin-left: 150px; align-content: center;}
+	select#searchType{height:30px;}
     
 </style>
 
-	<div>
+	<div id="whole-container">
 	<div>
 	    <section id="memberList-container">
 	        <h2>회원관리</h2> 
@@ -44,6 +47,7 @@
 			    <th>가입날짜</th>
 			    <th>회원등급</th>
 			    <th>총마일리지</th>
+			    <th>상세정보</th>
                </tr>
            </thead>
            <tbody>
@@ -74,7 +78,9 @@
    		 }%>
         </tbody>
 	    </table>
-			
+		<div id="pageBar">
+        	<%=request.getAttribute("pageBar") %>
+        </div>
 			
 		</section>
 		</div>

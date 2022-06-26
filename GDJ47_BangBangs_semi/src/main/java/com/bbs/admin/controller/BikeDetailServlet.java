@@ -1,23 +1,29 @@
 package com.bbs.admin.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.bbs.bike.service.AdminBikeService;
+import com.bbs.model.service.MemberService;
+import com.bbs.model.vo.Bike;
+import com.bbs.model.vo.Member;
+
 /**
- * Servlet implementation class SearchRentalShop
+ * Servlet implementation class BikeDetailServlet
  */
-@WebServlet("/rentalShopManagement.do")
-public class SearchRentalShop extends HttpServlet {
+@WebServlet("/admin/BikeDetail.do")
+public class BikeDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SearchRentalShop() {
+    public BikeDetailServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,9 +33,11 @@ public class SearchRentalShop extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		request.getRequestDispatcher("views/admin_views/rentalShopManagement/rentalShopMap.jsp").forward(request, response);
-	
-	
+		String bikeId=request.getParameter("bikeId");
+		Bike b= new AdminBikeService().selectBikeById(bikeId);
+		request.setAttribute("bike", b);			
+		request.getRequestDispatcher("/views/admin_views/bikeManagement/bikeDetail.jsp").forward(request, response);
+		
 	}
 
 	/**

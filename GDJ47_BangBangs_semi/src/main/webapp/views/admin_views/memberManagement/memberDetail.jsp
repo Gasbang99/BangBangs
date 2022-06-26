@@ -8,7 +8,7 @@
 <%@ include file="/views/common/header.jsp" %>
     <ul id="mypageHeaderNav" class="nav nav-pills  justify-content-center">
         <li class="nav-item ">
-            <a class="nav-link active" id="memberData" href="<%=request.getContextPath()%>/memberdata.do?memberId=<%=loginMember.getMemberId()%>"><span>회원 정보</span></a>
+            <a class="nav-link active" id="memberData" href="<%=request.getContextPath()%>/admin/memberDetail.do?memberId=<%=loginMember.getMemberId()%>"><span>회원 정보</span></a>
         </li>
         <li class="nav-item ">
             <a class="nav-link " id="purchaseData" href="<%=request.getContextPath()%>/purchasedata.do"><span>결제 정보</span></a>
@@ -21,7 +21,7 @@
     <div id="subMenu">
     	<ul class="nav nav-tabs">
 	        <li class="nav-item">
-	            <a class="nav-link active" id="change" href="<%=request.getContextPath()%>/memberdata.do?memberId=<%=loginMember.getMemberId()%>">회원정보수정</a>
+	            <a class="nav-link active" id="change" href="<%=request.getContextPath()%>/admin/memberDetail.do?memberId=<%=loginMember.getMemberId()%>">회원정보수정</a>
 	        </li>
 	        <li class="nav-item">
 	            <a class="nav-link" id="inquiry" href="<%=request.getContextPath()%>/inquirydata.do?memberId=<%=loginMember.getMemberId()%>">문의내용</a>
