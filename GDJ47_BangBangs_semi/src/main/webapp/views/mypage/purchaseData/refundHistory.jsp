@@ -2,8 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="com.bbs.model.vo.IbBoard" %>
-<% 	IbBoard ibBoards=(IbBoard)request.getAttribute("ibBoard"); %>
-	
+<% 
 	String pageBar=(String)request.getAttribute("pageBar");%>
 	
     <%@ page import="com.bbs.model.vo.Member" %>
@@ -39,25 +38,11 @@
 			        <th>금액</th>
 			        <th>환불날짜</th>
     			</tr>
-    			<%if(!ibBoards.isEmpty()) {
-        			for(IbBoard b : ibBoards){%>
-        		<tr>
-		            <td><%=b.getIbPostNum() %>
-		            </td>
-		            <td>
-		                <a href="<%=request.getContextPath()%>/board/boardView.do?no=<%=b.getIbPostNum()%>">
-		                <%=b.getIbTitle() %>
-		                </a>
-		            </td>
-		            <td><%=b.getIbEnrollDate() %></td>
-		     
-        		</tr>
-			    <%}
-			     }else{ %>
+    			
 			    <tr>
 			      	<td colspan='4'>조회된 결과가 없습니다.</td>
 			    </tr>
-			     <%} %>
+
     
 			</table>
 			<div id="pageBar">

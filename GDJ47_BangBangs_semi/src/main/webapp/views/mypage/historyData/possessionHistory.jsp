@@ -14,26 +14,26 @@
 <%@ include file="/views/common/header.jsp" %>
     <ul id="mypageHeaderNav" class="nav nav-pills  justify-content-center">
         <li class="nav-item ">
-            <a class="nav-link" id="memberData" href="<%=request.getContextPath()%>/memberdata.do"><span>회원 정보</span></a>
+            <a class="nav-link" id="memberData" href="<%=request.getContextPath()%>/memberdata.do?memberId=<%=loginMember.getMemberId()%>"><span>회원 정보</span></a>
         </li>
         <li class="nav-item ">
-            <a class="nav-link " id="purchaseData" href="<%=request.getContextPath()%>/purchasedata.do"><span>결제 정보</span></a>
+            <a class="nav-link " id="purchaseData" href="<%=request.getContextPath()%>/purchasedata.do?memberId=<%=loginMember.getMemberId()%>"><span>결제 정보</span></a>
         </li>
         <li class="nav-item ">
-            <a class="nav-link active" id="historyData" href="<%=request.getContextPath()%>/historydata.do"><span>이용정보</span></a>
+            <a class="nav-link active" id="historyData" href="<%=request.getContextPath()%>/historydata.do?memberId=<%=loginMember.getMemberId()%>"><span>이용정보</span></a>
         </li>
     </ul>
 
     <div id="subMenu">
 		<ul class="nav nav-tabs">
 	        <li class="nav-item">
-	            <a class="nav-link" id="rentalHistory" href="<%=request.getContextPath()%>/historydata.do">대여반납이력</a>
+	            <a class="nav-link" id="rentalHistory" href="<%=request.getContextPath()%>/historydata.do?memberId=<%=loginMember.getMemberId()%>">대여반납이력</a>
 	        </li>
 	        <li class="nav-item">
-	            <a class="nav-link active" id="psTicket" href="<%=request.getContextPath()%>/possessionHistory.do">이용권 보유내역</a>
+	            <a class="nav-link active" id="psTicket" href="<%=request.getContextPath()%>/possessionHistory.do?memberId=<%=loginMember.getMemberId()%>">이용권 보유내역</a>
 	        </li>
 	        <li class="nav-item">
-	            <a class="nav-link" id="mileageHistory" href="<%=request.getContextPath()%>/mileage.do">마일리지</a>
+	            <a class="nav-link" id="mileageHistory" href="<%=request.getContextPath()%>/mileage.do?memberId=<%=loginMember.getMemberId()%>">마일리지</a>
 	        </li>
 	    </ul>
 		<div id="subMenu-detail">

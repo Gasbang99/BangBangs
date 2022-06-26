@@ -1,11 +1,13 @@
 
 
 
+<%@page import="java.util.List"%>
+<%@page import="com.bbs.model.vo.RentalHistory"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
 <%@ page import="com.bbs.model.vo.IbBoard" %>
-<% 	IbBoard ibBoards=(IbBoard)request.getAttribute("ibBoard"); 
+<% 	List<RentalHistory> rentalHistory=(List<RentalHistory>)request.getAttribute("rentalHistory"); 
 	String pageBar=(String)request.getAttribute("pageBar");%>
 	
     <%@ page import="com.bbs.model.vo.Member" %>
@@ -15,39 +17,37 @@
 <%@ include file="/views/common/header.jsp" %>
     <ul id="mypageHeaderNav" class="nav nav-pills  justify-content-center">
         <li class="nav-item ">
-            <a class="nav-link" id="memberData" href="<%=request.getContextPath()%>/memberdata.do"><span>회원 정보</span></a>
+            <a class="nav-link" id="memberData" href="<%=request.getContextPath()%>/memberdata.do?memberId=<%=loginMember.getMemberId()%>"><span>회원 정보</span></a>
         </li>
         <li class="nav-item ">
-            <a class="nav-link " id="purchaseData" href="<%=request.getContextPath()%>/purchasedata.do"><span>결제 정보</span></a>
+            <a class="nav-link " id="purchaseData" href="<%=request.getContextPath()%>/purchasedata.do?memberId=<%=loginMember.getMemberId()%>"><span>결제 정보</span></a>
         </li>
         <li class="nav-item ">
-            <a class="nav-link active" id="historyData" href="<%=request.getContextPath()%>/historydata.do"><span>이용정보</span></a>
+            <a class="nav-link active" id="historyData" href="<%=request.getContextPath()%>/historydata.do?memberId=<%=loginMember.getMemberId()%>"><span>이용정보</span></a>
         </li>
     </ul>
 
     <div id="subMenu">
 		<ul class="nav nav-tabs">
 	        <li class="nav-item">
-	            <a class="nav-link active" id="rentalHistory" href="<%=request.getContextPath()%>/historydata.do">대여반납이력</a>
+	            <a class="nav-link active" id="rentalHistory" href="<%=request.getContextPath()%>/historydata.do?memberId=<%=loginMember.getMemberId()%>">대여반납이력</a>
 	        </li>
 	        <li class="nav-item">
-	            <a class="nav-link" id="psTicket" href="<%=request.getContextPath()%>/possessionHistory.do">이용권 보유내역</a>
+	            <a class="nav-link" id="psTicket" href="<%=request.getContextPath()%>/possessionHistory.do?memberId=<%=loginMember.getMemberId()%>">이용권 보유내역</a>
 	        </li>
 	        <li class="nav-item">
-	            <a class="nav-link" id="mileageHistory" href="<%=request.getContextPath()%>/mileage.do">마일리지</a>
+	            <a class="nav-link" id="mileageHistory" href="<%=request.getContextPath()%>/mileage.do?memberId=<%=loginMember.getMemberId()%>">마일리지</a>
 	        </li>
 	    </ul>
 		<div id="subMenu-detail">
 			<table>
     			<tr>
 			        <th>자전거번호</th>
-			        <th>대여날짜</th>
-			        <th>대여대여소</th>
+			        <th>대여날짜</th>	        
 			        <th>반납날짜</th>
-			        <th>반납대여소</th>
     			</tr>
-    			<%if(!ibBoards.isEmpty()) {
-        			for(IbBoard b : ibBoards){%>
+    			<%if(!rentalHistory.isEmpty()) {
+        			for(RentalHistory r : rentalHistory){%>
         		<tr>
 		            <td><%=b.getIbPostNum() %>
 		            </td>
