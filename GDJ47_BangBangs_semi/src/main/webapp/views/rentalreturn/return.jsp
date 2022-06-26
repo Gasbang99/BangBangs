@@ -75,6 +75,16 @@
                    $(e.target).parent().next().text("");
                }
             })
+            
+            $("#brokenReportLabel").click(e=>{
+            	if($("#brokenReport").is(":checked")){
+            		$("input[name=brokenArea]").attr("disabled",false);
+            		$("#brokenContent").attr("disabled",false);
+            	}else{
+            		$("input[name=brokenArea]").attr("disabled",true);
+            		$("#brokenContent").attr("disabled",true);
+            	}
+            })
 		  
             $("#returnBtn").click(e=>{
             	if($("#brokenReport").is(":checked")){

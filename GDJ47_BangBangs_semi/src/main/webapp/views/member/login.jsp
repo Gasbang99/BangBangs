@@ -2,18 +2,18 @@
     pageEncoding="UTF-8"%>
     <%@ include file="/views/common/header.jsp" %>
 <%
-	Cookie[] cookies = request.getCookies();
 	String saveId = null;
-	if(cookies!=null){
-		for(Cookie c : cookies){
+	Cookie[] cookies2 = request.getCookies();
+	if(cookies2!=null){
+		for(Cookie c : cookies2){
 			if(c.getName().equals("saveId")){
 				saveId = c.getValue();
 			}
 		}
 	}
 %>
-
 <%@ include file="/views/common/footer.jsp" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -171,6 +171,3 @@
 		}
 	
 	</style>
-	
-</body>
-</html>

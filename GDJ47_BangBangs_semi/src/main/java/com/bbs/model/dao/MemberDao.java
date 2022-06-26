@@ -123,6 +123,7 @@ public class MemberDao {
 			m.setEnrollDate(rs.getDate("enroll_Date"));
 			m.setMemberLevel(rs.getString("member_Level"));
 			m.setTotalMileage(rs.getInt("total_Mileage"));
+			m.setOnLoan(rs.getString("on_loan"));
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}

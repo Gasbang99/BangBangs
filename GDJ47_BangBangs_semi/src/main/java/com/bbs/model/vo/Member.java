@@ -23,6 +23,7 @@ public class Member {
    private Date enrollDate;
    private String memberLevel;
    private int totalMileage;
+   private String onLoan;
    
    
 }
