@@ -37,8 +37,8 @@ public class RentalBikeServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		Member m = (Member)session.getAttribute("loginMember");
-		List<PossessionTicket> list = new RentalReturnService().selectPossessionTicket(m.getMemberId());
 		if(m!=null) {
+			List<PossessionTicket> list = new RentalReturnService().selectPossessionTicket(m.getMemberId());
 			request.setAttribute("pslist", list);
 			request.getRequestDispatcher("/views/rentalreturn/rental.jsp").forward(request, response);
 		}else {
