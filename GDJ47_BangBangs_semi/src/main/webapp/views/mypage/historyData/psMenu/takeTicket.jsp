@@ -1,7 +1,7 @@
 
 
 
-<%@page import="com.bbs.payment.model.vo.PossessionTicket"%>
+<%@page import="com.bbs.payment.model.vo.GiftHistory"%>
 <%@page import="java.util.List"%>
 <%@page import="com.bbs.model.vo.RentalHistory"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -9,7 +9,7 @@
 
 <%@ page import="com.bbs.model.vo.IbBoard" %>
 <% 	
-	List<PossessionTicket> psTicket=(List<PossessionTicket>)request.getAttribute("psTicket"); 
+	List<GiftHistory> takeGift=(List<GiftHistory>)request.getAttribute("takeGift"); 
 	String pageBar=(String)request.getAttribute("pageBar");
 	%>
 	
@@ -45,9 +45,9 @@
 		<div id="subMenu-detail" class="row justify-content-center">
 		<ul class="nav nav-tabs">
 	        <li class="nav-item">
-	            <a class="nav-link active" id="rentalHistory" href="<%=request.getContextPath()%>/possessionHistory.do?memberId=<%=loginMember.getMemberId()%>">이용권</a>
+	            <a class="nav-link" id="rentalHistory" href="<%=request.getContextPath()%>/possessionHistory.do?memberId=<%=loginMember.getMemberId()%>">이용권</a>
 	        </li>
-	        <li class="nav-item">
+	        <li class="nav-item active">
 	            <a class="nav-link" id="psTicket" href="<%=request.getContextPath()%>/takeTicket.do?memberId=<%=loginMember.getMemberId()%>">받은 이용권</a>
 	        </li>
 	        <li class="nav-item">
@@ -57,33 +57,24 @@
 		<div>
 			<table>
 				 <tr>
-			      	<td colspan='3'>이용권</td>
+			      	<td colspan='3'>받은 이용권</td>
 			    </tr>
     			<tr>
 			        <th>이용권 이름</th>
-			        <th>이용권 활성시간</th>	        
-			        <th>이용권 만료시간</th>	        
-			        <th>사용여부</th>
+			        <th>보낸 사람</th>	        
+			        <th>보낸 시간</th>
     			</tr>
-    			<%if(!psTicket.isEmpty()) {
-        			for(PossessionTicket p : psTicket){%>
+    			<%if(!takeGift.isEmpty()) {
+        			for(GiftHistory g : takeGift){%>
         		<tr>
-		            <td><%=p.getPsTicketCode()%></td>
-		            <td><%=p.getPsTicketActiveDate()%></td>
-		            <td><%=p.getPsTicketExpireDate()%></td>
-		            <td>
-		            	<%if(p.getPsTicketActive().equals("활성")){ %>
-		            	<%=p.getPsTicketActive()%>
-		            	<% }else{ %>
-		            	<a href="<%=request.getContextPath()%>/activeTicket.do?psTicketId=<%=p.getPsTicketId()%>&memberId=<%=loginMember.getMemberId()%>"><%=p.getPsTicketActive()%></a>
-		            	<%} %>
-		            </td>
-		           <%--  <td><%=p.getPsTicketActive()%></td> --%>
+		            <td><%=g.getTicketCode()%></td>
+		            <td><%=g.getGiveMemberId()%></td>
+		            <td><%=g.getSendDate()%></td>
         		</tr>
 			    <%}
 			     }else{ %>
 			    <tr>
-			      	<td colspan='4'>조회된 결과가 없습니다.</td>
+			      	<td colspan='3'>조회된 결과가 없습니다.</td>
 			    </tr>
 			     <%} %>
     

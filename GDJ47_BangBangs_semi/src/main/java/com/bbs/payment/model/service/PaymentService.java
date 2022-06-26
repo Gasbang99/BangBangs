@@ -1,7 +1,9 @@
 package com.bbs.payment.model.service;
 
 import static com.bbs.common.JDBCTemplate.close;
+import static com.bbs.common.JDBCTemplate.commit;
 import static com.bbs.common.JDBCTemplate.getConnection;
+import static com.bbs.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.List;
@@ -57,4 +59,58 @@ public class PaymentService {
 		close(conn);
 		return result;
 	}
+
+	public List<PossessionTicket> selectPsTicketListById(String memberId, int cPage, int numPerpage) {
+		Connection conn=getConnection();
+		List<PossessionTicket> result=dao.selectPsTicketListById(conn,memberId,cPage,numPerpage);
+		close(conn);
+		return result;
+	}
+
+	public int selectPsTicketCountById(String memberId) {
+		Connection conn=getConnection();
+		int result=dao.selectPsTicketCountById(conn, memberId);
+		close(conn);
+		return result;
+	}
+
+	public int activePsTicketBypsTicketId(int psTicketId) {
+		Connection conn=getConnection();
+		int result=dao.activePsTicketBypsTicketId(conn, psTicketId);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result;
+	}
+
+	public List<GiftHistory> selectTakeGiftListById(String memberId, int cPage, int numPerpage) {
+		Connection conn=getConnection();
+		List<GiftHistory> result=dao.selectTakeGiftListById(conn,memberId,cPage,numPerpage);
+		close(conn);
+		return result;
+	}
+
+	public int selectTakeGiftCountById(String memberId) {
+		Connection conn=getConnection();
+		int result=dao.selectTakeGiftCountById(conn, memberId);
+		close(conn);
+		return result;
+	}
+
+	public List<GiftHistory> selectGiveGiftListById(String memberId, int cPage, int numPerpage) {
+		Connection conn=getConnection();
+		List<GiftHistory> result=dao.selectGiveGiftListById(conn,memberId,cPage,numPerpage);
+		close(conn);
+		return result;
+	}
+
+	public int selectGiveGiftCountById(String memberId) {
+		Connection conn=getConnection();
+		int result=dao.selectGiveGiftCountById(conn, memberId);
+		close(conn);
+		return result;
+	}
+
+	
+	
 }

@@ -39,26 +39,22 @@
 	            <a class="nav-link" id="mileageHistory" href="<%=request.getContextPath()%>/mileage.do?memberId=<%=loginMember.getMemberId()%>">마일리지</a>
 	        </li>
 	    </ul>
-		<div id="subMenu-detail">
+		<div id="subMenu-detail" class="row justify-content-center">
+		<div>
 			<table>
     			<tr>
 			        <th>자전거번호</th>
 			        <th>대여날짜</th>	        
 			        <th>반납날짜</th>
+			        <th>사용시간</th>
     			</tr>
     			<%if(!rentalHistory.isEmpty()) {
         			for(RentalHistory r : rentalHistory){%>
         		<tr>
-		            <td><%=b.getIbPostNum() %>
-		            </td>
-		            <td>
-		                <a href="<%=request.getContextPath()%>/board/boardView.do?no=<%=b.getIbPostNum()%>">
-		                <%=b.getIbTitle() %>
-		                </a>
-		            </td>
-		            <td><%=b.getIbEnrollDate() %></td>
-		            <td><%=b.getIbContent() %></td>
-		            <td><%=b.getIbContent() %></td>
+		            <td><%=r.getBikeId()%></td>
+		            <td><%=r.getRentalStartTime()%></td>
+		            <td><%=r.getRentalReturnTime()%></td>
+		            <td><%=r.getRentalUsedTime()%></td>
         		</tr>
 			    <%}
 			     }else{ %>
@@ -68,8 +64,9 @@
 			     <%} %>
     
 			</table>
-			<div id="pageBar">
+			<ul id="pageBar" class="pagination">
 				<%=pageBar %>
+			</ul>
 			</div>
 		</div>
     </div>
@@ -90,8 +87,14 @@
             padding-right: 300px;
             border:1px solid red;
         }
-        #subMenu {
-        	border:1px solid red;
+        #subMenu-detail {
+        	/* border:1px solid red; */
+        	/* margin:auto; */
+        	display:flex;
+        	justify-content: center;
+        }
+        table {
+        width: 800px;
         }
     </style>
     <script type="text/javascript">
