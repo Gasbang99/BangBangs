@@ -61,6 +61,16 @@ public class RentalReturnDao {
 				.rentalAvailability(rs.getString("rental_availability"))
 				.build();
 	}
+	private RentalHistory getRentalHis(ResultSet rs) throws SQLException{
+		return RentalHistory.builder()
+				.rentalId(rs.getInt("rental_id"))
+				.bikeId(rs.getInt("bike_id"))
+				.memberId(rs.getString("member_id"))
+				.rentalStartTime(rs.getDate("rental_start_time"))
+				.rentalReturnTime(rs.getDate("rental_return_time"))
+				.rentalUsedTime(rs.getInt("rental_used_time"))
+				.build();
+	}
 
 	public int insertRentalHistory(Connection conn, RentalHistory rh) {
 		PreparedStatement pstmt = null;
@@ -95,6 +105,45 @@ public class RentalReturnDao {
 			close(pstmt);
 		}
 		return result;
+	}
+
+	public List<RentalHistory> selectRentalHistoryById(Connection conn, String memberId, int cPage, int numPerpage) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		List<RentalHistory> rentalHistory=new ArrayList();
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("selectRentalHistoryById"));
+			pstmt.setString(1, memberId);
+			pstmt.setInt(2, (cPage-1)*numPerpage+1);
+			pstmt.setInt(3, cPage*numPerpage);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				rentalHistory.add(getRentalHis(rs));
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}return rentalHistory;
+	}
+
+	public int selectRentalHistoryCountById(Connection conn, String memberId) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		int result=0;
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("selectRentalHistoryCountById"));
+			pstmt.setString(1, memberId);
+			rs=pstmt.executeQuery();
+			if(rs.next()) result=rs.getInt(1);
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}return result;
 	}
 
 	public int updateMemberOnLoan(Connection conn, String id) {

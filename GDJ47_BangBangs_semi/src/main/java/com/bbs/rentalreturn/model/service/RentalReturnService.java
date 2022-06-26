@@ -36,6 +36,20 @@ public class RentalReturnService {
 		return result;
 	}
 
+
+	public List<RentalHistory> selectRentalHistoryById(String memberId, int cPage, int numPerpage) {
+		Connection conn = getConnection();
+		List<RentalHistory> result = dao.selectRentalHistoryById(conn, memberId, cPage, numPerpage);
+		close(conn);
+		return result;
+	}
+
+	public int selectRentalHistoryCountById(String memberId) {
+		Connection conn=getConnection();
+		int result=dao.selectRentalHistoryCountById(conn, memberId);
+		close(conn);
+		return result;
+	}
 	public int updateMemberOnLoan(String id) {
 		Connection conn = getConnection();
 		int result = dao.updateMemberOnLoan(conn, id);

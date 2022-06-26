@@ -1,16 +1,14 @@
 
-
-
-<%@page import="com.bbs.payment.model.vo.PossessionTicket"%>
+<%@page import="com.bbs.payment.model.vo.PurchaseHistory"%>
 <%@page import="java.util.List"%>
 <%@page import="com.bbs.model.vo.RentalHistory"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%@ page import="com.bbs.model.vo.IbBoard" %>
-<% 	
-	List<PossessionTicket> psTicket=(List<PossessionTicket>)request.getAttribute("psTicket"); 
+<% 	List<PurchaseHistory> mileageHistory=(List<PurchaseHistory>)request.getAttribute("mileageHistory"); 
 	String pageBar=(String)request.getAttribute("pageBar");
+	int totalMileage=(int)request.getAttribute("totalMileage");
+	
 	%>
 	
     <%@ page import="com.bbs.model.vo.Member" %>
@@ -36,49 +34,29 @@
 	            <a class="nav-link" id="rentalHistory" href="<%=request.getContextPath()%>/historydata.do?memberId=<%=loginMember.getMemberId()%>">대여반납이력</a>
 	        </li>
 	        <li class="nav-item">
-	            <a class="nav-link active" id="psTicket" href="<%=request.getContextPath()%>/possessionHistory.do?memberId=<%=loginMember.getMemberId()%>">이용권 보유내역</a>
+	            <a class="nav-link" id="psTicket" href="<%=request.getContextPath()%>/possessionHistory.do?memberId=<%=loginMember.getMemberId()%>">이용권 보유내역</a>
 	        </li>
-	        <li class="nav-item">
+	        <li class="nav-item active">
 	            <a class="nav-link" id="mileageHistory" href="<%=request.getContextPath()%>/mileage.do?memberId=<%=loginMember.getMemberId()%>">마일리지</a>
 	        </li>
 	    </ul>
 		<div id="subMenu-detail" class="row justify-content-center">
-		<ul class="nav nav-tabs">
-	        <li class="nav-item">
-	            <a class="nav-link active" id="rentalHistory" href="<%=request.getContextPath()%>/possessionHistory.do?memberId=<%=loginMember.getMemberId()%>">이용권</a>
-	        </li>
-	        <li class="nav-item">
-	            <a class="nav-link" id="psTicket" href="<%=request.getContextPath()%>/takeTicket.do?memberId=<%=loginMember.getMemberId()%>">받은 이용권</a>
-	        </li>
-	        <li class="nav-item">
-	            <a class="nav-link" id="mileageHistory" href="<%=request.getContextPath()%>/giveTicket.do?memberId=<%=loginMember.getMemberId()%>">보낸 이용권</a>
-	        </li>
-	    </ul>
 		<div>
 			<table>
-				 <tr>
-			      	<td colspan='3'>이용권</td>
-			    </tr>
+				<tr colspan='4'><h2>총 마일리지 : <%=totalMileage %></h2></tr>
     			<tr>
-			        <th>이용권 이름</th>
-			        <th>이용권 활성시간</th>	        
-			        <th>이용권 만료시간</th>	        
-			        <th>사용여부</th>
+			        <th>날짜</th>
+			        <th>내용</th>	        
+			        <th>사용 마일리지</th>
+			        <th>적립 마일리지</th>
     			</tr>
-    			<%if(!psTicket.isEmpty()) {
-        			for(PossessionTicket p : psTicket){%>
+    			<%if(!mileageHistory.isEmpty()) {
+        			for(PurchaseHistory mH : mileageHistory){%>
         		<tr>
-		            <td><%=p.getPsTicketCode()%></td>
-		            <td><%=p.getPsTicketActiveDate()%></td>
-		            <td><%=p.getPsTicketExpireDate()%></td>
-		            <td>
-		            	<%if(p.getPsTicketActive().equals("활성")){ %>
-		            	<%=p.getPsTicketActive()%>
-		            	<% }else{ %>
-		            	<a href="<%=request.getContextPath()%>/activeTicket.do?psTicketId=<%=p.getPsTicketId()%>&memberId=<%=loginMember.getMemberId()%>"><%=p.getPsTicketActive()%></a>
-		            	<%} %>
-		            </td>
-		           <%--  <td><%=p.getPsTicketActive()%></td> --%>
+		            <td><%=mH.getPurchaseDate()%></td>
+		            <td><%=mH.getTicketCode()%></td>
+		            <td><%=mH.getMileageDeduction()%></td>
+		            <td><%=mH.getMileageSave()%></td>
         		</tr>
 			    <%}
 			     }else{ %>
@@ -89,7 +67,7 @@
     
 			</table>
 			<ul id="pageBar" class="pagination">
-				<%=pageBar%>
+				<%=pageBar %>
 			</ul>
 			</div>
 		</div>

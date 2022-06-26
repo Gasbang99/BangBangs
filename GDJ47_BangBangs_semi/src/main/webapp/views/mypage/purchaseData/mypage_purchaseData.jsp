@@ -22,7 +22,7 @@
             <a class="nav-link  active" id="purchaseData" href="<%=request.getContextPath()%>/purchasedata.do?memberId=<%=loginMember.getMemberId()%>"><span>결제 정보</span></a>
         </li>
         <li class="nav-item ">
-            <a class="nav-link " id="historyData" href="<%=request.getContextPath()%>historydata.do?memberId=<%=loginMember.getMemberId()%>"><span>이용정보</span></a>
+            <a class="nav-link " id="historyData" href="<%=request.getContextPath()%>/historydata.do?memberId=<%=loginMember.getMemberId()%>"><span>이용정보</span></a>
         </li>
     </ul>
 

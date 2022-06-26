@@ -1,6 +1,6 @@
 package com.bbs.model.vo;
 
-import java.sql.Date;
+import java.util.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,5 +18,6 @@ public class RentalHistory {
 	private Date rentalStartTime;
 	private Date rentalReturnTime;
 	private int rentalUsedTime;
+
 
 }
