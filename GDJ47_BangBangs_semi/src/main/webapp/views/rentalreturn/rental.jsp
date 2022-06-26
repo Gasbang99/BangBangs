@@ -1,31 +1,109 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.bbs.payment.model.vo.PossessionTicket,java.util.List" %>
+<%
+	List<PossessionTicket> pslist = (List<PossessionTicket>)request.getAttribute("pslist");
+%>
 <%@ include file="/views/common/header.jsp" %>
 <%@ include file="/views/common/footer.jsp" %>
 
-<div id="wrapper">
-	<form name="enrollrentalhistory" action="<%=request.getContextPath() %>/enrollrentalhistory.do" method="POST" class="joinForm">                                                                                           
-      <h2 style="font-weight:bolder;">대여하기</h2>
-      <div class="textForm">
-		<select name="rentalshop" id="rentalshop" required>
-			<option value="">대여소</option>
-			<option value="GAS_BANG">GAS_BANG</option>
-			<option value="MINGOOSE">MINGOOSE</option>
-			<option value="JJULIUS">JJULIUS</option>
-			<option value="DRAGON_CASTLE">DRAGON_CASTLE</option>
-			<option value="JUN_DRAGON">JUN_DRAGON</option>
-		</select> 
-	  </div>
-	  <div></div>
-	  <div class="textForm">
-		<select name="bike" id="bike" required>
-			<option value="">자전거</option>
-		</select> 
-	  </div>
-	  <div></div>
-      <input type="submit" class="btn" value="대 여 하 기"/>
-    </form>
- </div>
+	<%if(pslist.isEmpty()){ %>
+		<form name="enrollrentalhistory" action="<%=request.getContextPath() %>/enrollrentalhistory.do" method="POST" class="joinForm">                                                                                           
+        	<h2>사용가능한 이용권이 없습니다.<br>이용권을 구매해주세요.</h2>
+			<input type="button" class="btn" id="buyBtn" value="이 용 권 구 매 하 기">
+		</form>
+	<%}else{ %>
+		<%int count=0; %>
+		<%for(PossessionTicket p : pslist){
+			if((p.getPsTicketActive()).equals("활성")){
+				count++;
+			}
+		}%>
+		<%if(count>0){ %>
+			<div id="wrapper">
+				<form name="enrollrentalhistory" action="<%=request.getContextPath() %>/enrollrentalhistory.do" method="POST" class="joinForm">                                                                                           
+			      <h2 style="font-weight:bolder;">대여하기</h2>
+			      <div class="textForm">
+			      	<%String tn = ""; %>
+						<%for(PossessionTicket p : pslist){ %>
+							<%if(p.getPsTicketActive().equals("활성")){ %>
+								<%if(p.getPsTicketCode().contains("D")) tn+="일일권 ";
+								else if(p.getPsTicketCode().contains("W")) tn+="7일권 ";
+								else if(p.getPsTicketCode().contains("M")) tn+="30일권 ";
+								else if(p.getPsTicketCode().contains("H")) tn+="180일권 ";
+								else if(p.getPsTicketCode().contains("Y")) tn+="365일권 ";
+								%>
+								<%if(p.getPsTicketCode().contains("1")) tn+="1시간";
+								if(p.getPsTicketCode().contains("2")) tn+="2시간";%>
+							<%} %>
+						<%} %>
+			      	<h3 class="name" style="color:grey"><%=tn %></h3>
+			      </div>
+			      <div class="textForm">
+					<select name="rentalshop" id="rentalshop" required>
+						<option value="">대여소</option>
+						<option value="GAS_BANG">GAS_BANG</option>
+						<option value="MINGOOSE">MINGOOSE</option>
+						<option value="JJULIUS">JJULIUS</option>
+						<option value="DRAGON_CASTLE">DRAGON_CASTLE</option>
+						<option value="JUN_DRAGON">JUN_DRAGON</option>
+					</select> 
+				  </div>
+				  <div></div>
+				  <div class="textForm">
+					<select name="bike" id="bike" required>
+						<option value="">자전거</option>
+					</select> 
+				  </div>
+				  <div></div>
+			      <input type="submit" class="btn" value="대 여 하 기"/>
+			    </form>
+			 </div>
+ 		<%}else{ %>
+ 			<div id="wrapper">
+				<form name="enrollrentalhistory" action="<%=request.getContextPath() %>/enrollrentalhistory.do" method="POST" class="joinForm">                                                                                           
+			      <h2 style="font-weight:bolder;">대여하기</h2>
+			      <div class="textForm">
+			      	<select name="possessionticket" id="possessionticket" required>
+						<option value="">보유 이용권</option>
+						<%String tn = ""; %>
+						<%for(PossessionTicket p : pslist){ %>
+							<%if(p.getPsTicketCode().contains("D")) tn+="일일권 ";
+							else if(p.getPsTicketCode().contains("W")) tn+="7일권 ";
+							else if(p.getPsTicketCode().contains("M")) tn+="30일권 ";
+							else if(p.getPsTicketCode().contains("H")) tn+="180일권 ";
+							else if(p.getPsTicketCode().contains("Y")) tn+="365일권 ";
+							%>
+							<%if(p.getPsTicketCode().contains("1")) tn+="1시간";
+							if(p.getPsTicketCode().contains("2")) tn+="2시간";%>
+							<option value="<%=p.getPsTicketId() %>"><%=tn%></option>
+							<%tn="";%>
+						<%} %>
+					</select> 
+			      </div>
+			      <div></div>
+			      <div class="textForm">
+					<select name="rentalshop" id="rentalshop" required>
+						<option value="">대여소</option>
+						<option value="GAS_BANG">GAS_BANG</option>
+						<option value="MINGOOSE">MINGOOSE</option>
+						<option value="JJULIUS">JJULIUS</option>
+						<option value="DRAGON_CASTLE">DRAGON_CASTLE</option>
+						<option value="JUN_DRAGON">JUN_DRAGON</option>
+					</select> 
+				  </div>
+				  <div></div>
+				  <div class="textForm">
+					<select name="bike" id="bike" required>
+						<option value="">자전거</option>
+					</select> 
+				  </div>
+				  <div></div>
+			      <input type="submit" class="btn" value="대 여 하 기"/>
+			    </form>
+			 </div>
+ 		<%} %>
+	<%}%>
 	  
 	  <script>
 	  $(()=>{
@@ -75,6 +153,11 @@
 					}
 				})
 		  })
+		  
+		  $("#buyBtn").click(e=>{
+			  location.assign("<%=request.getContextPath()%>/member.do");
+		  })
+		  
 	  })
 	  </script>
 	  
@@ -112,7 +195,27 @@
 	  display: flex;
 	}
 	
+	.name {
+	  width: 100%;
+	  border:none;
+	  outline:none;
+	  color: black;
+	  font-size:16px;
+	  height:25px;
+	  background: none;
+	}
+	
 	#rentalshop {
+	  width: 100%;
+	  border:none;
+	  outline:none;
+	  color: black;
+	  font-size:16px;
+	  height:25px;
+	  background: none;
+	}
+	
+	#possessionticket {
 	  width: 100%;
 	  border:none;
 	  outline:none;

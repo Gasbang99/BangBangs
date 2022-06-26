@@ -18,6 +18,7 @@ import com.bbs.model.dao.MemberDao;
 import com.bbs.model.vo.Bike;
 import com.bbs.model.vo.BrokenReportHistory;
 import com.bbs.model.vo.RentalHistory;
+import com.bbs.payment.model.vo.PossessionTicket;
 
 public class RentalReturnDao {
 	private Properties prop=new Properties();
@@ -193,6 +194,56 @@ public class RentalReturnDao {
 		try {
 			pstmt = conn.prepareStatement(prop.getProperty("updateMemberOnLoanReturn"));
 			pstmt.setString(1, id);
+			result = pstmt.executeUpdate();
+			if(result>0) commit(conn);
+			else rollback(conn);
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public List<PossessionTicket> selectPossessionTicket(Connection conn, String memberId) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		List<PossessionTicket> result=new ArrayList();
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("selectPossessionTicket"));
+			pstmt.setString(1, memberId);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				result.add(getPossessionTicket(rs));
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}return result;
+	}
+	
+	private PossessionTicket getPossessionTicket(ResultSet rs) throws SQLException{
+		return PossessionTicket.builder()
+				.psTicketId(rs.getInt("PS_TICKET_ID"))
+				.psTicketActive(rs.getString("PS_TICKET_ACTIVE"))
+				.psTicketActiveDate(rs.getDate("PS_TICKET_ACTIVE_DATE"))
+				.psTicketExpireDate(rs.getDate("PS_TICKET_EXPIRE_DATE"))
+				.psTicketCode(rs.getString("PS_TICKET_CODE"))
+				.memberId(rs.getString("MEMBER_ID"))
+				.build();
+	}
+
+	public int updatePossessionTicketActive(Connection conn, int psTicketId) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("updatePossessionTicketActive"));
+			pstmt.setString(1, "활성");
+			pstmt.setInt(2, psTicketId);
+			pstmt.setInt(3, psTicketId);
 			result = pstmt.executeUpdate();
 			if(result>0) commit(conn);
 			else rollback(conn);

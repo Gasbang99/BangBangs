@@ -14,15 +14,6 @@
 %>
 <%@ include file="/views/common/footer.jsp" %>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>로그인</title>
-<script src="<%=request.getContextPath() %>/js/jquery-3.6.0.min.js"></script>
-
-</head>
-<body>
 <div>
 	<div class="wrap">
 	    <div class="form-wrap">

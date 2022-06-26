@@ -9,6 +9,7 @@ import java.util.List;
 import com.bbs.model.vo.Bike;
 import com.bbs.model.vo.BrokenReportHistory;
 import com.bbs.model.vo.RentalHistory;
+import com.bbs.payment.model.vo.PossessionTicket;
 import com.bbs.rentalreturn.model.dao.RentalReturnDao;
 
 public class RentalReturnService {
@@ -73,6 +74,20 @@ public class RentalReturnService {
 	public int updateMemberOnLoanReturn(String id) {
 		Connection conn = getConnection();
 		int result = dao.updateMemberOnLoanReturn(conn, id);
+		close(conn);
+		return result;
+	}
+
+	public List<PossessionTicket> selectPossessionTicket(String memberId) {
+		Connection conn = getConnection();
+		List<PossessionTicket> result = dao.selectPossessionTicket(conn, memberId);
+		close(conn);
+		return result;
+	}
+
+	public int updatePossessionTicketActive(int psTicketId) {
+		Connection conn = getConnection();
+		int result = dao.updatePossessionTicketActive(conn, psTicketId);
 		close(conn);
 		return result;
 	}
