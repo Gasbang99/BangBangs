@@ -52,16 +52,17 @@ public class MemberSearchServlet extends HttpServlet {
 				  "cPage",cPage,"numPerpage",numPerpage);
 				  
 	  List<Member> result=new
-	  AdminMemberService().searchMemberList(type,keyword,cPage,numPerpage); int
-	  totalData=new AdminMemberService().searchMemberCount(type,keyword); int
-	  totalPage=(int)Math.ceil((double)totalData/numPerpage); int pageBarSize=5;
-	  int pageNo=((cPage-1)/pageBarSize)*pageBarSize+1; int
-	  pageEnd=pageNo+pageBarSize-1;
+	  AdminMemberService().searchMemberList(type,keyword,cPage,numPerpage); 
+	  int totalData=new AdminMemberService().searchMemberCount(type,keyword); 
+	  int totalPage=(int)Math.ceil((double)totalData/numPerpage); int pageBarSize=5;
+	  int pageNo=((cPage-1)/pageBarSize)*pageBarSize+1; 
+	  int pageEnd=pageNo+pageBarSize-1;
 	  
-	  String pageBar=""; if(pageNo==1) { pageBar+="<span>[이전]</span>"; }else {
+	  String pageBar=""; 
+	  if(pageNo==1) { pageBar+="<span>[이전]</span>"; }
+	  else {
 	  pageBar+="<a href='"+request.getRequestURL()
-	  +"?cPage="+(pageNo-1)+"&searchType="+type+"&searchKeyword="+keyword+
-	  "'>[이전]</a>"; }
+	  +"?cPage="+(pageNo-1)+"&searchType="+type+"&searchKeyword="+keyword+"'>[이전]</a>"; }
 	  
 	  while(!(pageNo>pageEnd||pageNo>totalPage)) { if(pageNo==cPage) {
 	  pageBar+="<span>"+pageNo+"</span>"; }else {

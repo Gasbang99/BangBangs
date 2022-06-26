@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-	<%@ include file="/views/admin_views/common/header.jsp" %>
 
-	<%@ include file="/views/admin_views/common/navigationBar.jsp" %>
+<%@ page import="java.util.List,com.bbs.model.vo.Bike" %>
 	
 
 <%
@@ -15,7 +14,7 @@
 	
 
 <style type="text/css">
-	section#BikeList-container {text-align:center;}	
+	section#BikeList-container {text-align:center; margin-top: 30px;}	
 	section#BikeList-container table#tbl-Bike {width:100%; border:1px solid gray; border-collapse:collapse;}
 	section#BikeList-container table#tbl-Bike th, table#tbl-bike td {border:1px solid gray; padding:5px; font-size:10px; width: 10%}
  	div#search-container {margin:0 0 10px 0; padding:3px; align: center;}
@@ -27,12 +26,12 @@
     #Bikelist-container{display:flex;}
     div.center{align-items: center;}
     .select-searchbar{justify-content: center;}
-    #tbl-container{}
+    #list-container{margin-top: 30px;}
     
 </style>
 
 	<div>
-	<div>
+	<div id="list-container">
 	    <section id="BikeList-container">
 	       <h2>자전거관리</h2> 
 	       <table id="tbl-bike">
@@ -80,19 +79,19 @@
 	<div id="search-container">
         	검색타입 : 
         <select id="searchType">
-        	<option value="BikeId" <%=searchType!=null&&searchType.equals("BikeId")?"selected":"" %>>일련번호</option>
-        	<option value="bikeStatus" <%=searchType!=null&&searchType.equals("bikeStatus")?"selected":"" %> >자전거상태</option>
+        	<option value="bikeId" <%=searchType!=null&&searchType.equals("bikeId")?"selected":"" %>>일련번호</option>
+        	<option value="bikeBrokenStatus" <%=searchType!=null&&searchType.equals("bikeBrokenStatus")?"selected":"" %> >자전거상태</option>
         	<option value="rentalAvailability" <%=searchType!=null&&searchType.equals("rentalAvailability")?"selected":"" %> >대여여부</option>
         </select>
-        <div id="search-BikeId">
+        <div id="search-bikeId">
         	<form action="<%=request.getContextPath()%>/admin/bikesearch.do">
-        		<input type="hidden" name="searchType" value="Bike_Id" >
+        		<input type="hidden" name="searchType" value="Bike_Id">
         		<input type="text" name="searchKeyword" size="25" 
         		placeholder="검색할 일련번호를 입력하세요" >
         		<button type="submit">검색</button>
         	</form>
         </div>
-        <div id="search-bikeStatus">
+        <div id="search-bikeBrokenStatus">
         	<form action="<%=request.getContextPath()%>/admin/bikesearch.do">
         		<input type="hidden" name="searchType" value="BIKE_BROKEN_STATUS">
         		<label><input type="radio" name="searchKeyword" value="정상" >정상</label>

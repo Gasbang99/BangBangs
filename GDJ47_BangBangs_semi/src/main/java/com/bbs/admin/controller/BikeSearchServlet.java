@@ -37,7 +37,8 @@ public class BikeSearchServlet extends HttpServlet {
 		String type=request.getParameter("searchType");
 		String keyword=request.getParameter("searchKeyword");
 
-		
+
+		System.out.println(keyword + type);
 		int cPage;
 		int numPerpage=5;
 		try {
@@ -56,6 +57,7 @@ public class BikeSearchServlet extends HttpServlet {
 				"cPage",cPage,"numPerpage",numPerpage);
 		
 		List<Bike> result=new AdminBikeService().searchBikeList(type,keyword,cPage,numPerpage);
+		
 		int totalData=new AdminBikeService().searchBikeCount(type,keyword);
 		int totalPage=(int)Math.ceil((double)totalData/numPerpage);
 		int pageBarSize=5;
@@ -90,7 +92,7 @@ public class BikeSearchServlet extends HttpServlet {
 		request.setAttribute("list", result);
 		
 		
-		request.getRequestDispatcher("/views/admin_views/bikeManagement/BikeManagement.jsp")
+		request.getRequestDispatcher("/views/admin_views/bikeManagement/bikeManagement.jsp")
 		.forward(request, response);
 	}
 
