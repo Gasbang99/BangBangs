@@ -24,6 +24,4 @@ public class Member {
    private String memberLevel;
    private int totalMileage;
    private String onLoan;
-   
-   
 }

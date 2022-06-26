@@ -87,9 +87,10 @@
 	    padding: 0.5rem 0;
 	    color: black;
 		}
-		.nav-link:hover{
 		
-		}
+		#admin_menu a {cursor:pointer;}
+		#admin_menu .admin_hide {display:none;}
+		
         </style>
 </head>
 <body id="page-top">
@@ -123,7 +124,19 @@
                         <%}else{ %>
                         	<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/memberdata.do?memberId=<%=loginMember.getMemberId()%>">마이페이지</a></li>
 	                        <%if(loginMember.getMemberId().equals("admin")){ %>
-								<li><a class="nav-link" href="<%=request.getContextPath()%>/admin/index.do">관리자페이지</a></li><%} %>
+                                <div>
+                                	<ul style="list-style: none;">
+                                		<li id="admin_menu"><a class="nav-link">관리자메뉴</a>
+                                            <ul class="admin_hide" style="list-style: none;">
+                                                <li><a class="nav-link" href="<%=request.getContextPath()%>/admin/memberList.do">회원관리</a></li>
+                                                <li><a class="nav-link" href="<%=request.getContextPath()%>/admin/bikeManagement.do">자전거 관리</a></li>
+                                                <li><a class="nav-link" href="<%=request.getContextPath()%>/rentalShopManagement.do">대여소관리</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+							<%} %>
+	                        
 	                        <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/logout.do">로그아웃</a></li>
                         <%} %>
                     </ul>
@@ -174,4 +187,33 @@
     	$('navbar-nav').hidden;
     })
 	
+    function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+// Close the dropdown menu if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+
+    $(document).ready(function(){
+    	$("#admin_menu>a").click(function(){
+    		var submenu=$(this).next("ul");
+    		if(submenu.is(":visible")){
+    			submenu.slideUp();
+    		}else{
+    			submenu.slideDown();
+    		}
+    	});
+    });
     </script>

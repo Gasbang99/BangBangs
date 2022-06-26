@@ -84,9 +84,12 @@ private Properties prop=new Properties();
 			pstmt.setString(1, keyword);
 			pstmt.setInt(2, (cPage-1)*numPerpage+1);
 			pstmt.setInt(3, cPage*numPerpage);
+			System.out.println((cPage-1)*numPerpage+1);
+			System.out.println(cPage*numPerpage);
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
 				result.add(getBike(rs));
+				System.out.println(result);
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();

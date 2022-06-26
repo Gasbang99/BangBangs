@@ -14,9 +14,9 @@
 	
 
 <style type="text/css">
-	section#BikeList-container {text-align:center; margin-top: 30px;}	
-	section#BikeList-container table#tbl-Bike {width:100%; border:1px solid gray; border-collapse:collapse;}
-	section#BikeList-container table#tbl-Bike th, table#tbl-bike td {border:1px solid gray; padding:5px; font-size:10px; width: 10%}
+	section#bikeList-container table#tbl-bike {height: 50%; width:70%; border:1px solid gray; border-collapse:collapse; margin: auto;}
+	section#bikeList-container table#tbl-bike th, table#tbl-bike td {border:1px solid gray; padding:5px; font-size:13px; }
+	section#bikeList-container table#tbl-bike th{font-size:15px;}
  	div#search-container {margin:0 0 10px 0; padding:3px; align: center;}
     div#search-BikeId{display:inline-block;}
     div#search-bikeStatus{display:none;}
@@ -27,12 +27,15 @@
     div.center{align-items: center;}
     .select-searchbar{justify-content: center;}
     #list-container{margin-top: 30px;}
+    #tbl-bike{margin: 30px; justify-content: center;}
+    div#whole-container{margin-top: 150px; text-align: center;}
+    div#pageBar{margin: 20px;}
     
 </style>
 
-	<div>
-	<div id="list-container">
-	    <section id="BikeList-container">
+	<div id="whole-container">
+	<div id="sub-container">
+	    <section id="bikeList-container">
 	       <h2>자전거관리</h2> 
 	       <table id="tbl-bike">
 	           <thead>
@@ -102,9 +105,9 @@
         </div>
         <div id="search-rentalAvailability">
         	<form action="<%=request.getContextPath()%>/admin/bikesearch.do">
-        		<input type="hidden" name="searchType" value=RENTAL_AVAILABILITY>
-        		<label><input type="radio" name="searchKeyword" value="y" >대여가능</label>
-        		<label><input type="radio" name="searchKeyword" value="n" >대여중</label>
+        		<input type="hidden" name="searchType" value="RENTAL_AVAILABILITY">
+        		<label><input type="radio" name="searchKeyword" value="Y" >대여가능</label>
+        		<label><input type="radio" name="searchKeyword" value="N" >대여중</label>
         		<button type="submit">검색</button>
         	</form>
         </div>
@@ -126,7 +129,4 @@
 	</script>
 	
 	
-	
-
-	<%@ include file="/views/admin_views/common/footer.jsp" %>
-	
+        <%@ include file="/views/common/footer.jsp" %>

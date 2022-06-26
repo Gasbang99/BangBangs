@@ -88,3 +88,5 @@ declare global {
 window.initMap = initMap;
 export {};
 </script>
+
+        <%@ include file="/views/common/footer.jsp" %>

@@ -6,11 +6,17 @@
 
 %>
 <%@ include file="/views/common/header.jsp" %>
+<style>
+div#subMenu-detail{margin-top: 20%;}
+
+</style>
 
 		<div id="subMenu-detail">
 		<form action="<%=request.getContextPath()%>/admin/changeBike.do">
-
+				
+				<h2 style="text-align: center;">자전거 상세정보</h2>
 				<table>
+				
 				    <tr>
 				        <td>자전거 일련번호</td>
 				        <td><input type="text" name="bikeId" id="bike_Id" class="form-control" value="<%=b.getBikeId()%>" required></td>
@@ -33,13 +39,15 @@
 				        <td><input type="text" name="Availability" id="Availability" class="form-control" value="<%=b.getRentalAvailability()%>" required></td>
 				    </tr>
 				    <tr>
-				    	<td colspan="2"><button type="submit" class="btn btn-secondary">수정하기</button></td>
-				    </tr>
+				    	<td colspan="2"><button type="submit" class="btn btn-secondary" style="float:right; border:0px;" >수정하기</button></td>
+				    	 </tr>
 				</table>
+				<div style="align;">
+					<button type="submit" class="btn btn-secondary" style="border:0px;" >수리보내기</button>
+					<button type="submit" class="btn btn-secondary" style="border:0px;" >삭제하기</button>
 				</div>
 			</form>
-		</div>
-    </div>
+			</div>
 
 	<script>
 	</script>
@@ -81,5 +89,4 @@
 	$("tr").attr("class","border rounded");
 	</script>
     
-</body>
-</html>
+        <%@ include file="/views/common/footer.jsp" %>
