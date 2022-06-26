@@ -3,7 +3,7 @@
 <%@ page import="com.bbs.model.vo.Member" %>
 <%
 	Member loginMember = (Member)session.getAttribute("loginMember");
-	String onLoanBike = String.valueOf(session.getAttribute("onLoanBike"));
+	String onloan = (String)session.getAttribute("onloan");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -110,9 +110,11 @@
                         <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/board/boardList.do">문의/FAQ</a></li>
                         <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/member.do">이용권구매</a></li>
                         <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/searchrentalshop.do">대여소조회</a></li>
-                        <%if(onLoanBike==null){ %>
+                        <% if(loginMember==null){ %>
                         	<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/rentalBike.do">대여하기</a></li>
-                        <%}else{ %>
+                        <%}else if((loginMember!=null&&loginMember.getOnLoan().equals("N"))||(loginMember!=null&&onloan=="offloan")){ %>
+                        	<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/rentalBike.do">대여하기</a></li>
+                        <%}else if(loginMember!=null&&loginMember.getOnLoan().equals("Y")||(loginMember!=null&&onloan=="onloan")){ %>
                         	<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/returnBike.do">반납하기</a></li>
                         <%} %>
                         <% if(loginMember==null){ %>
@@ -122,7 +124,6 @@
                         	<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/memberdata.do?memberId=<%=loginMember.getMemberId()%>">마이페이지</a></li>
 	                        <%if(loginMember.getMemberId().equals("admin")){ %>
 								<li><a class="nav-link" href="<%=request.getContextPath()%>/admin/index.do">관리자페이지</a></li><%} %>
-	                        
 	                        <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/logout.do">로그아웃</a></li>
                         <%} %>
                     </ul>

@@ -47,12 +47,12 @@ public class EnrollRentalHistoryServlet extends HttpServlet {
 		
 		int resultRH = new RentalReturnService().insertRentalHistory(rh);
 		int resultBRA = new RentalReturnService().updateBikeRentalAvailability(Integer.parseInt(bikeId));
+		int resultM = new RentalReturnService().updateMemberOnLoan(id);
 		
 		String msg="";
 		String loc="";
-		if(resultRH>0&&resultBRA>0) {
-			HttpSession session2 = request.getSession();
-			session2.setAttribute("onLoanBike", Integer.parseInt(bikeId));
+		if(resultRH>0&&resultBRA>0&&resultM>0) {
+			session.setAttribute("onloan", "onloan");
 			msg = "대여 완료!";
 			loc = "/";
 		}else {

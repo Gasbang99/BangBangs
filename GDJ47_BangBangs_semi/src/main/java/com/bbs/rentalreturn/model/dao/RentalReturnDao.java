@@ -16,6 +16,7 @@ import java.util.Properties;
 
 import com.bbs.model.dao.MemberDao;
 import com.bbs.model.vo.Bike;
+import com.bbs.model.vo.BrokenReportHistory;
 import com.bbs.model.vo.RentalHistory;
 
 public class RentalReturnDao {
@@ -84,6 +85,114 @@ public class RentalReturnDao {
 		try {
 			pstmt = conn.prepareStatement(prop.getProperty("updateBikeRentalAvailability"));
 			pstmt.setInt(1, bikeId);
+			result = pstmt.executeUpdate();
+			if(result>0) commit(conn);
+			else rollback(conn);
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int updateMemberOnLoan(Connection conn, String id) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("updateMemberOnLoan"));
+			pstmt.setString(1, id);
+			result = pstmt.executeUpdate();
+			if(result>0) commit(conn);
+			else rollback(conn);
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int insertBrokenReportHistory(Connection conn, BrokenReportHistory brh) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("insertBrokenReportHistory"));
+			pstmt.setString(1, brh.getBrokenReportTitle());
+			pstmt.setString(2, brh.getBrokenReportContent());
+			pstmt.setString(3, brh.getMemberId());
+			pstmt.setString(4, brh.getMemberId());
+			result = pstmt.executeUpdate();
+			if(result>0) commit(conn);
+			else rollback(conn);
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int updateReturnBikeBroken(Connection conn, String id, String rentalshop) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("updateReturnBikeBroken"));
+			pstmt.setString(1, "고장");
+			pstmt.setString(2, rentalshop);
+			pstmt.setString(3, id);
+			result = pstmt.executeUpdate();
+			if(result>0) commit(conn);
+			else rollback(conn);
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int updateReturnBikeNormal(Connection conn, String id, String rentalshop) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("updateReturnBikeNormal"));
+			pstmt.setString(1, rentalshop);
+			pstmt.setString(2, id);
+			result = pstmt.executeUpdate();
+			if(result>0) commit(conn);
+			else rollback(conn);
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int updateReturnRentalHistory(Connection conn, String id) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("updateReturnRentalHistory"));
+			pstmt.setString(1, id);
+			result = pstmt.executeUpdate();
+			if(result>0) commit(conn);
+			else rollback(conn);
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int updateMemberOnLoanReturn(Connection conn, String id) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("updateMemberOnLoanReturn"));
+			pstmt.setString(1, id);
 			result = pstmt.executeUpdate();
 			if(result>0) commit(conn);
 			else rollback(conn);
