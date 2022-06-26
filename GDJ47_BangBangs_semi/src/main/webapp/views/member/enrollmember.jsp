@@ -4,11 +4,12 @@
 <%@ include file="/views/common/footer.jsp" %>
 
 <div id="wrapper">
-	<form name="enrollMemberFrm" action="<%=request.getContextPath() %>/enrollmemberend.do" method="POST" class="joinForm" onsubmit="return fn_enrollmemberValidate();">                                                                                           
+	<form name="enrollMemberFrm" action="<%=request.getContextPath() %>/enrollmemberend.do" method="POST" class="joinForm">                                                                                       
       <h2 style="font-weight:bolder;">회원가입</h2>
       <div class="textForm">
         <input name="loginId" type="text" id="id" class="id" placeholder="아이디" required>
 		<input type="button" id="idCkBtn" class="button" value="중복확인">
+		<input type="hidden" name="idchecked" id="idchecked" value="no">
       </div>
 	  <div id="idMsg"></div>
       <div class="textForm">
@@ -74,7 +75,7 @@
         <input name="cellphoneNo" type="text" id="cellphoneNo" class="cellphoneNo" placeholder="휴대전화 번호(-없이)" required>
       </div>
 	  <div id="phoneMsg"></div>
-      <input type="submit" class="btn" value="J O I N"/>
+      <input type="submit" class="btn" id="submitBtn" value="J O I N"/>
     </form>
     <form name="idDuplicateFrm">
     	<input type="hidden" name="userId">
@@ -306,12 +307,17 @@
 				}
 			})
 			
-			const fn_enrollmemberValidate=()=>{
+			$("#submitBtn").click(e=>{
                 const id = $("#id").val();
 				regid=/^[a-z0-9][a-z0-9_-]{4,19}$/;
                 if(!regid.test(id)){
                     $("#id").focus();
                     return false;
+                }
+                
+                if($("#idchecked").val()!='checked'){
+                	alert("아이디 중복확인을 해주세요.");
+                	return false;
                 }
                 
                 const pwVal=$("#pw").val();
@@ -339,6 +345,7 @@
 				const crtfcNo2 = $("#crtfcNoCk").val();
 				if(crtfcNo1!=crtfcNo2){
 	           	 $("#crtfcNo").focus();
+	           	 	alert("인증번호를 확인해주세요.")
 	                return false;
 	            }
 
@@ -349,10 +356,8 @@
 	                return false;
                 }
                 
-                $("#")
-                
                 return true;
-            }
+			});
 		});
 	</script>
 	<style>
