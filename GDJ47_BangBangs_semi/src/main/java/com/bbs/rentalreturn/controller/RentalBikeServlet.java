@@ -1,12 +1,18 @@
 package com.bbs.rentalreturn.controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import com.bbs.model.vo.Member;
+import com.bbs.payment.model.vo.PossessionTicket;
+import com.bbs.rentalreturn.model.service.RentalReturnService;
 
 /**
  * Servlet implementation class RentalBikeServlet
@@ -30,7 +36,10 @@ public class RentalBikeServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		HttpSession session = request.getSession();
-		if(session.getAttribute("loginMember")!=null) {
+		Member m = (Member)session.getAttribute("loginMember");
+		List<PossessionTicket> list = new RentalReturnService().selectPossessionTicket(m.getMemberId());
+		if(m!=null) {
+			request.setAttribute("pslist", list);
 			request.getRequestDispatcher("/views/rentalreturn/rental.jsp").forward(request, response);
 		}else {
 			request.getRequestDispatcher("/views/member/login.jsp").forward(request, response);

@@ -40,6 +40,12 @@ public class EnrollRentalHistoryServlet extends HttpServlet {
 		Member m = (Member) session.getAttribute("loginMember");
 		String id = m.getMemberId();
 		
+		System.out.println(request.getParameter("possessionticket"));
+		int resultPT=0;
+		if(request.getParameter("possessionticket")!=null) {
+			resultPT = new RentalReturnService().updatePossessionTicketActive(Integer.parseInt(request.getParameter("possessionticket")));
+		}
+		
 		RentalHistory rh = RentalHistory.builder()
 				.bikeId(Integer.parseInt(bikeId))
 				.memberId(id)
