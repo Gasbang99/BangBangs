@@ -22,18 +22,18 @@
 	  </div>
 	  <div></div>
 	  <div id="brokenContainer" style="display:none">
-	  <div class="textForm" id="brokenAreaDiv">
-	  	  <label><input type="checkbox" name="brokenArea" id="brokenArea1" value="타이어"> 타이어</label>&nbsp;&nbsp;
-		  <label><input type="checkbox" name="brokenArea" id="brokenArea2" value="안장"> 안장</label>&nbsp;&nbsp;
-		  <label><input type="checkbox" name="brokenArea" id="brokenArea3" value="페달"> 페달</label>&nbsp;&nbsp;
-		  <label><input type="checkbox" name="brokenArea" id="brokenArea4" value="체인"> 체인</label>&nbsp;&nbsp;
-		  <label><input type="checkbox" name="brokenArea" id="brokenArea5" value="기타"> 기타</label>
-	  </div>
-	  <div id="checkedOrNot"></div>
-	  <div class="textForm" id="brokenContentDiv">
-	  	<textarea cols="50" rows="5" name="brokenContent" id="brokenContent" style="resize: none;"></textarea>
-	  </div>
-	  <div id="contentOrNot"></div>
+		  <div class="textForm" id="brokenAreaDiv">
+		  	  <label><input type="checkbox" name="brokenArea" id="brokenArea1" value="타이어"> 타이어</label>&nbsp;&nbsp;
+			  <label><input type="checkbox" name="brokenArea" id="brokenArea2" value="안장"> 안장</label>&nbsp;&nbsp;
+			  <label><input type="checkbox" name="brokenArea" id="brokenArea3" value="페달"> 페달</label>&nbsp;&nbsp;
+			  <label><input type="checkbox" name="brokenArea" id="brokenArea4" value="체인"> 체인</label>&nbsp;&nbsp;
+			  <label><input type="checkbox" name="brokenArea" id="brokenArea5" value="기타"> 기타</label>
+		  </div>
+		  <div id="checkedOrNot"></div>
+		  <div class="textForm" id="brokenContentDiv">
+		  	<textarea cols="50" rows="5" name="brokenContent" id="brokenContent" style="resize: none;"></textarea>
+		  </div>
+		  <div id="contentOrNot"></div>
 	  </div>
       <input type="submit" class="btn" id="returnBtn" value="반 납 하 기"/>
     </form>

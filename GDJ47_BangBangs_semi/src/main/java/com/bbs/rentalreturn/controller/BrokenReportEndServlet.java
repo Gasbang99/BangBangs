@@ -1,7 +1,6 @@
 package com.bbs.rentalreturn.controller;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,16 +14,16 @@ import com.bbs.model.vo.Member;
 import com.bbs.rentalreturn.model.service.RentalReturnService;
 
 /**
- * Servlet implementation class ReturnBikeEndServlet
+ * Servlet implementation class BrokenReportEndServlet
  */
-@WebServlet("/returnBikeEnd.do")
-public class ReturnBikeEndServlet extends HttpServlet {
+@WebServlet("/brokenReportEnd.do")
+public class BrokenReportEndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReturnBikeEndServlet() {
+    public BrokenReportEndServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,41 +34,31 @@ public class ReturnBikeEndServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		String rentalshop = request.getParameter("rentalshop");
-		
 		HttpSession session = request.getSession();
 		Member m = (Member) session.getAttribute("loginMember");
 		String id = m.getMemberId();
 		
-		String brokenReport = request.getParameter("brokenReport");
-		int resultB;
-		int resultBRH = 0;
-		if(brokenReport!=null) {
-			String[] brokenArea = request.getParameterValues("brokenArea");
-			String brokenContent = request.getParameter("brokenContent");
-			BrokenReportHistory brh = BrokenReportHistory.builder()
-					.brokenReportTitle(String.join("/", brokenArea))
-					.brokenReportContent(brokenContent)
-					.memberId(id)
-					.build();
-			resultBRH = new RentalReturnService().insertBrokenReportHistory(brh);
-			resultB = new RentalReturnService().updateReturnBikeBroken(id, rentalshop);
-		}else {
-			resultB = new RentalReturnService().updateReturnBikeNormal(id, rentalshop);
-		}
-		int resultRH = new RentalReturnService().updateReturnRentalHistory(id);
-		int resultM = new RentalReturnService().updateMemberOnLoanReturn(id);
+		int bikeId = Integer.parseInt(request.getParameter("bike"));
+		
+		String[] brokenArea = request.getParameterValues("brokenArea");
+		String brokenContent = request.getParameter("brokenContent");
+		BrokenReportHistory brh = BrokenReportHistory.builder()
+				.brokenReportTitle(String.join("/", brokenArea))
+				.brokenReportContent(brokenContent)
+				.bikeId(bikeId)
+				.memberId(id)
+				.build();
+		int resultBRH = new RentalReturnService().insertBrokenReportHistory2(brh);
+		int resultB = new RentalReturnService().updateBikeBrokenReport(bikeId);
 		
 		String msg="";
 		String loc="";
-		if(resultRH>0&&resultM>0&&resultB>0) {
-			m = new MemberService().selectMemberById(id);
-			session.setAttribute("loginMember", m);
-			msg = "반납 완료!";
+		if(resultBRH>0&&resultB>0) {
+			msg = "고장신고 완료!";
 			loc = "/";
 		}else {
-			msg="반납하기 실패. 다시 시도하세요.";
-			loc="/returnBike.do";
+			msg="고장신고 실패. 다시 시도하세요.";
+			loc="/brokenReport.do";
 		}
 		request.setAttribute("msg", msg);
 		request.setAttribute("loc", loc);

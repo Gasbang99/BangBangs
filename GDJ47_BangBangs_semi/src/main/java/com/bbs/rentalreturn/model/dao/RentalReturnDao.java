@@ -304,4 +304,42 @@ public class RentalReturnDao {
 		return result;
 	}
 
+	public int updateBikeBrokenReport(Connection conn, int bikeId) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("updateBikeBrokenReport"));
+			pstmt.setString(1, "고장");
+			pstmt.setInt(2, bikeId);
+			result = pstmt.executeUpdate();
+			if(result>0) commit(conn);
+			else rollback(conn);
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int insertBrokenReportHistory2(Connection conn, BrokenReportHistory brh) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("insertBrokenReportHistory2"));
+			pstmt.setString(1, brh.getBrokenReportTitle());
+			pstmt.setString(2, brh.getBrokenReportContent());
+			pstmt.setInt(3, brh.getBikeId());
+			pstmt.setString(4, brh.getMemberId());
+			result = pstmt.executeUpdate();
+			if(result>0) commit(conn);
+			else rollback(conn);
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
 }

@@ -142,8 +142,11 @@
 					url : "<%=request.getContextPath()%>/findbike.do?rentalshop="+val,
 					dataType : "json",
 					success : data=>{
+						$("#bike").children().remove();
+						const firstOption = $("<option>").attr("value","").text("자전거");
+						$("#bike").append(firstOption);
 						for(let i=0; i<data.length; i++){
-							const option = $("<option>").attr("value",Object.values(data[i])[0]).text(Object.values(data[i])[0]);
+							let option = $("<option>").attr("value",Object.values(data[i])[0]).text(Object.values(data[i])[0]);
 							$("#bike").append(option);
 						}
 					},

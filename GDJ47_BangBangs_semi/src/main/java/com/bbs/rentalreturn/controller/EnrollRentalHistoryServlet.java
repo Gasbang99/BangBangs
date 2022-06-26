@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.bbs.model.service.MemberService;
 import com.bbs.model.vo.Member;
 import com.bbs.model.vo.RentalHistory;
 import com.bbs.rentalreturn.model.service.RentalReturnService;
@@ -40,7 +41,6 @@ public class EnrollRentalHistoryServlet extends HttpServlet {
 		Member m = (Member) session.getAttribute("loginMember");
 		String id = m.getMemberId();
 		
-		System.out.println(request.getParameter("possessionticket"));
 		int resultPT=0;
 		if(request.getParameter("possessionticket")!=null) {
 			resultPT = new RentalReturnService().updatePossessionTicketActive(Integer.parseInt(request.getParameter("possessionticket")));
@@ -58,7 +58,8 @@ public class EnrollRentalHistoryServlet extends HttpServlet {
 		String msg="";
 		String loc="";
 		if(resultRH>0&&resultBRA>0&&resultM>0) {
-			session.setAttribute("onloan", "onloan");
+			m = new MemberService().selectMemberById(id);
+			session.setAttribute("loginMember", m);
 			msg = "대여 완료!";
 			loc = "/";
 		}else {

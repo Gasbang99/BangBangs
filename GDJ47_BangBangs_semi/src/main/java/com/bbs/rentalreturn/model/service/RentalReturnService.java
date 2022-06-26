@@ -106,4 +106,18 @@ public class RentalReturnService {
 		return result;
 	}
 
+	public int updateBikeBrokenReport(int bikeId) {
+		Connection conn = getConnection();
+		int result = dao.updateBikeBrokenReport(conn, bikeId);
+		close(conn);
+		return result;
+	}
+
+	public int insertBrokenReportHistory2(BrokenReportHistory brh) {
+		Connection conn = getConnection();
+		int result = dao.insertBrokenReportHistory2(conn, brh);
+		close(conn);
+		return result;
+	}
+
 }
