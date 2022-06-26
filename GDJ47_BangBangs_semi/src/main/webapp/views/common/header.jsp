@@ -3,6 +3,7 @@
 <%@ page import="com.bbs.model.vo.Member" %>
 <%
 	Member loginMember = (Member)session.getAttribute("loginMember");
+	String onloan = (String)session.getAttribute("onloan");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -110,7 +111,13 @@
                         <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/board/boardList.do">문의/FAQ</a></li>
                         <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/member.do">이용권구매</a></li>
                         <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/searchrentalshop.do">대여소조회</a></li>
-                        <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/rentalBike.do">대여하기</a></li>
+                        <% if(loginMember==null){ %>
+                        	<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/rentalBike.do">대여하기</a></li>
+                        <%}else if((loginMember!=null&&loginMember.getOnLoan().equals("N"))||(loginMember!=null&&onloan=="offloan")){ %>
+                        	<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/rentalBike.do">대여하기</a></li>
+                        <%}else if(loginMember!=null&&loginMember.getOnLoan().equals("Y")||(loginMember!=null&&onloan=="onloan")){ %>
+                        	<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/returnBike.do">반납하기</a></li>
+                        <%} %>
                         <% if(loginMember==null){ %>
 	                        <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/login.do">로그인</a></li>
 	                        <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/enrollmember.do">회원가입</a></li>

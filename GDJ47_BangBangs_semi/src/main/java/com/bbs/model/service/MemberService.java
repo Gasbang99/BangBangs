@@ -85,4 +85,12 @@ public class MemberService {
 		return result;
 	}
 
+	public int selectTotalMileageById(String memberId) {
+		Connection conn=getConnection();
+		Member m=dao.selectMemberById(conn, memberId);
+		int result=m.getTotalMileage();
+		close(conn);
+		return result;
+	}
+
 }

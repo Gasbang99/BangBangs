@@ -1,4 +1,4 @@
-package com.bbs.rentalreturn.controller;
+package com.mypage.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,17 +8,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.bbs.payment.model.service.PaymentService;
+
 /**
- * Servlet implementation class RentalBikeServlet
+ * Servlet implementation class ActiveTicketServlet
  */
-@WebServlet("/rentalBike.do")
-public class RentalBikeServlet extends HttpServlet {
+@WebServlet("/activeTicket.do")
+public class ActiveTicketServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RentalBikeServlet() {
+    public ActiveTicketServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,14 +29,29 @@ public class RentalBikeServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		int psTicketId=Integer.parseInt(request.getParameter("psTicketId"));
+		String memberId= request.getParameter("memberId");
 		
-		HttpSession session = request.getSession();
-		if(session.getAttribute("loginMember")!=null) {
-			request.getRequestDispatcher("/views/rentalreturn/rental.jsp").forward(request, response);
-		}else {
-			request.getRequestDispatcher("/views/member/login.jsp").forward(request, response);
+		String msg="",loc="";
+		int result=0;
+		try {
+			result=new PaymentService().activePsTicketBypsTicketId(psTicketId);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+		
+		loc="/possessionHistory.do?memberId="+memberId;
+		if(result>0) {
+			msg="이용권이 활성화되었습니다";	
+		}else {
+			msg="이용권활성화를 실패했습니다";			
+		}
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", loc);
+		
+		request.getRequestDispatcher("/views/common/msg.jsp")
+		.forward(request, response);
+		
 	}
 
 	/**

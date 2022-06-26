@@ -47,7 +47,7 @@
     body {
       min-height: 100%;
     }
-  /*    .footer {
+      .footer {
 	  position:absolute;    
       bottom: 0;
       left: 0;
@@ -55,5 +55,5 @@
       padding: 15px 0;
       text-align: center;
       background: seashell;
-    }  */
+    }  
   </style>

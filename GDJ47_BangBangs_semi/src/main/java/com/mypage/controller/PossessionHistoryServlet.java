@@ -11,20 +11,20 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.bbs.board.model.service.IbBoardService;
 import com.bbs.model.vo.IbBoard;
-import com.bbs.model.vo.RentalHistory;
-import com.bbs.rentalreturn.model.service.RentalReturnService;
+import com.bbs.payment.model.service.PaymentService;
+import com.bbs.payment.model.vo.PossessionTicket;
 
 /**
- * Servlet implementation class HistoryDataServlet
+ * Servlet implementation class PossessionHistoryServlet
  */
-@WebServlet("/historydata.do")
-public class HistoryDataServlet extends HttpServlet {
+@WebServlet("/possessionHistory.do")
+public class PossessionHistoryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HistoryDataServlet() {
+    public PossessionHistoryServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,8 +33,7 @@ public class HistoryDataServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-String memberId=request.getParameter("memberId");
+		String memberId=request.getParameter("memberId");
 		
 		int cPage;
 		
@@ -49,9 +48,9 @@ String memberId=request.getParameter("memberId");
 	
 		System.out.println(memberId);
 		
-		List<RentalHistory> rentalHistory=new RentalReturnService().selectRentalHistoryById(memberId, cPage, numPerpage);
+		List<PossessionTicket> psTicket=new PaymentService().selectPsTicketListById(memberId, cPage, numPerpage);
 
-		int totalBoard=new RentalReturnService().selectRentalHistoryCountById(memberId);
+		int totalBoard=new PaymentService().selectPsTicketCountById(memberId);
 		int totalPage=(int)Math.ceil((double)totalBoard/numPerpage);
 
 		int pageBarSize=5;
@@ -89,9 +88,10 @@ String memberId=request.getParameter("memberId");
 		}
 
 		request.setAttribute("pageBar", pageBar);
-		request.setAttribute("rentalHistory", rentalHistory);
+		request.setAttribute("psTicket", psTicket);
 		
-		request.getRequestDispatcher("/views/mypage/historyData/mypage_historyData.jsp").forward(request, response);
+		
+		request.getRequestDispatcher("/views/mypage/historyData/possessionHistory.jsp").forward(request, response);
 	}
 
 	/**
