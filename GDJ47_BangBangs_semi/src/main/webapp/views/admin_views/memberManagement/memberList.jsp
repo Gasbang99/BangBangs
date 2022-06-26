@@ -12,7 +12,7 @@
 	
 
 <style type="text/css">
-	section#memberList-container table#tbl-member {height: 50%; width:70%; border:1px solid gray; border-collapse:collapse; }
+	section#memberList-container table#tbl-member {height: 50%; width:90%; border:1px solid gray; border-collapse:collapse; margin: auto;}
 	section#memberList-container table#tbl-member th, table#tbl-member td {border:1px solid gray; padding:5px; font-size:13px; }
 	section#memberList-container table#tbl-member th{font-size:15px;}
  	div#search-container {margin:0 0 10px 0; padding:3px;margin: auto;}
@@ -24,14 +24,15 @@
     div.center{align-items: center;}
     div#search-container{justify-content: center; margin: 20px}
     div#whole-container{margin-top: 150px; text-align: center;}
-	#tbl-member{margin: 30px; justify-content: center;}
+	table#tbl-member{justify-content: center;}
 	section#memberlist-container{margin-left: 150px; align-content: center;}
 	select#searchType{height:30px;}
+	div#pageBar{margin: 20px;}
     
 </style>
 
 	<div id="whole-container">
-	<div>
+	<div id="sub-container">
 	    <section id="memberList-container">
 	        <h2>회원관리</h2> 
 	        <table id="tbl-member">
@@ -47,7 +48,9 @@
 			    <th>가입날짜</th>
 			    <th>회원등급</th>
 			    <th>총마일리지</th>
+			    <th>현재 대여여부</th>
 			    <th>상세정보</th>
+			    
                </tr>
            </thead>
            <tbody>
@@ -69,6 +72,7 @@
 	       				<td><%=m.getEnrollDate() %></td> 
 	       				<td><%=m.getMemberLevel() %> </td>
 	       				<td><%=m.getTotalMileage() %></td>
+	       				<td><%=m.getOnLoan() %></td>
 	       				<form id="member-detail" action="<%=request.getContextPath()%>/admin/memberDetail.do" method="post">
 	       				<td><input type="hidden" name="memberId" value="<%=m.getMemberId() %>" ><input type="submit" value="상세정보"></td>
 	       				</form>

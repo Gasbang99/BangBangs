@@ -44,7 +44,7 @@
 				    <tr>
 				        <td>회원등급</td>
 				        <td><input type="text" name="member_level" id="member_level" class="form-control"
-										value="<%=m.getMemberLevel()%>" readonly>
+										value="<%=m.getMemberLevel()%>"	>
 						</td>
 				    </tr>
 				    <tr>
@@ -102,7 +102,11 @@
 										value="<%=m.getEnrollDate()%>" readonly>
 				        </td>
 				    </tr>
-				    
+				    <tr>
+				        <td>현재 대여여부</td>
+				        <td>
+				        <input type="text" name="ON_LOAN" id="ON_LOAN" class="form-control" value="<%=m.getOnLoan()%>" readonly></td>
+				    </tr>
 				</table>
 				</div>
 			</form>
@@ -139,5 +143,4 @@
 	$("tr").attr("class","border rounded");
 	</script>
     
-</body>
-</html>
+        <%@ include file="/views/common/footer.jsp" %>
