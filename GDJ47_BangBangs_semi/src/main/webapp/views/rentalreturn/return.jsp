@@ -4,7 +4,7 @@
 <%@ include file="/views/common/footer.jsp" %>
 
 <div id="wrapper">
-	<form name="enrollrentalhistory" action="<%=request.getContextPath() %>/enrollrentalhistory.do" method="POST" class="joinForm" onsubmit="return fn_returnBikeValidate();">                                                                                           
+	<form name="enrollrentalhistory" action="<%=request.getContextPath() %>/returnBikeEnd.do" method="POST" class="joinForm">                                                                                           
       <h2 style="font-weight:bolder;">반납하기</h2>
       <div class="textForm">
 		<select name="rentalshop" id="rentalshop" required>
@@ -18,10 +18,11 @@
 	  </div>
 	  <div></div>
 	  <div class="textForm">
-		<label id="brokenReport"><input type="checkbox" name="brokenReport"> 고장 신고하기</label>
+		<label id="brokenReportLabel"><input type="checkbox" name="brokenReport" id="brokenReport"> 고장 신고하기</label>
 	  </div>
 	  <div></div>
-	  <div class="textForm">
+	  <div id="brokenContainer" style="display:none">
+	  <div class="textForm" id="brokenAreaDiv">
 	  	  <label><input type="checkbox" name="brokenArea" id="brokenArea1" value="타이어"> 타이어</label>&nbsp;&nbsp;
 		  <label><input type="checkbox" name="brokenArea" id="brokenArea2" value="안장"> 안장</label>&nbsp;&nbsp;
 		  <label><input type="checkbox" name="brokenArea" id="brokenArea3" value="페달"> 페달</label>&nbsp;&nbsp;
@@ -29,11 +30,12 @@
 		  <label><input type="checkbox" name="brokenArea" id="brokenArea5" value="기타"> 기타</label>
 	  </div>
 	  <div id="checkedOrNot"></div>
-	  <div class="textForm">
+	  <div class="textForm" id="brokenContentDiv">
 	  	<textarea cols="50" rows="5" name="brokenContent" id="brokenContent" style="resize: none;"></textarea>
 	  </div>
-	  <div></div>
-      <input type="submit" class="btn" value="대 여 하 기"/>
+	  <div id="contentOrNot"></div>
+	  </div>
+      <input type="submit" class="btn" id="returnBtn" value="반 납 하 기"/>
     </form>
  </div>
 	  
@@ -49,7 +51,7 @@
                 $(e.target).parent().css("border-color","green");
           })
 	      
-	      $("input, select, textarea").blur(e=>{ // 벗어나면 밑줄 원래대로 / 입력 안하고 벗어날시 메세지 출력
+	      $("input, select").blur(e=>{ // 벗어나면 밑줄 원래대로 / 입력 안하고 벗어날시 메세지 출력
 	                $(e.target).parent().css("border-color","#adadad");
 	                const val=e.target.value;
 	                if(val.length==0){
@@ -60,20 +62,8 @@
            $("label").mouseout(e=>{
             	$(e.target).parent().css("border-color","#adadad");
            })
-            
-           
-           const fn_returnBikeValidate=()=>{
-        	   if(!($("input[name=brokenArea]").is(":checked"))){
-     			  $("#checkedOrNot").text("필수 정보입니다.");
-                  $("#checkedOrNot").css("color","red");
-                  return false;
-     		  }else{
-    			  $("#checkedOrNot").text("");
-    			  return true;
-    		  }
-           }
 	
-			$("input, textarea").keyup(e=>{ // 입력시 필수정보 메세지 사라짐
+			$("input").keyup(e=>{ // 입력시 필수정보 메세지 사라짐
                 const val=e.target.value;
                 if(val.length>0){
                     $(e.target).parent().next().text("");
@@ -86,6 +76,31 @@
                }
             })
 		  
+            $("#returnBtn").click(e=>{
+            	if($("#brokenReport").is(":checked")){
+            		$("input[name=brokenArea]").attr("disabled",false);
+            		$("#brokenContent").attr("disabled",false);
+            		if(!($("input[name=brokenArea]").is(":checked"))){
+           			  $("#checkedOrNot").text("필수 정보입니다.");
+                      $("#checkedOrNot").css("color","red");
+                      return false;
+	           		}
+            		if($("#brokenContent").val()==""){
+            			$("#contentOrNot").text("필수 정보입니다.");
+                        $("#contentOrNot").css("color","red");
+                        return false;
+            		}
+            		return true;
+            	}else{
+            		$("input[name=brokenArea]").attr("disabled",true);
+            		$("#brokenContent").attr("disabled",true);
+            		return true;
+            	}
+           })
+           
+           $("#brokenReport").click(e=>{
+       		   $("#brokenContainer").toggle(0);
+           })
 	  })
 	  </script>
 	  
@@ -133,7 +148,7 @@
 	  background: none;
 	}
 	
-	#brokenReport {
+	#brokenReportLabel {
 	  width: 100%;
 	  border:none;
 	  outline:none;

@@ -3,7 +3,7 @@
 <%@ page import="com.bbs.model.vo.Member" %>
 <%
 	Member loginMember = (Member)session.getAttribute("loginMember");
-	String onLoanBike = (String)session.getAttribute("onLoanBike");
+	String onLoanBike = String.valueOf(session.getAttribute("onLoanBike"));
 %>
 <!DOCTYPE html>
 <html lang="en">
